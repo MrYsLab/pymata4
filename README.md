@@ -3,6 +3,12 @@
 # UNDER CONSTRUCTION
 
 ### A high performance, non-blocking client for the Arduino Firmata Protocol.
+Pymata4 is a Python Arduino Firmata client that, like its asyncio sibling,
+ [pymata-express,](https://mryslab.github.io/pymata-express/)
+ allows you to control an Arduino using the high-performance FirmataExpress sketch.
+  It uses a conventional Python API for those that do not need or wish to use the asyncio programming paradigm of pymata-express.
+
+
 
 ### It supports both an enhanced version of StandardaFirmata 2.5.8, called FirmataExpress, as well as StandardFirmata. 
 * **[FirmataExpress](https://github.com/MrYsLab/FirmataExpress) adds support for:**
@@ -19,9 +25,9 @@
 
 * **Set the pin mode and go!**
 
-* **Data change events may be associated with a callback function or each pin can be polled for its last event change.**
+* **Data change events may be associated with a callback function, or each pin can be polled for its last event change.**
 
-    * **Each data change event is time stamped and logged.**
+    * **Each data change event is time-stamped and logged.**
 
 * **Fully documented <a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html" target="_blank">API</a>**
 
@@ -31,7 +37,7 @@
 
 * **Advanced auto-detection of Arduino devices (when using FirmataExpress).**
 
-Here is an example that monitors for data changes on a digital input pin. It demonstrates both callback and 
+Here is an example that monitors data changes on a digital input pin. It demonstrates both callback and 
 polling techniques
 
 ```python

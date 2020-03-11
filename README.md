@@ -21,7 +21,7 @@
 
     * **Each data change event is time stamped and logged.**
 
-* **Fully documented <a href="http://htmlpreview.github.io/?https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html" target="_blank">API</a>**
+* **Fully documented <a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html" target="_blank">API</a>**
 
 * **[User's Guide](https://mryslab.github.io/pymata4/), Including Examples.**
 

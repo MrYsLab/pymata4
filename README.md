@@ -2,8 +2,8 @@
 
 # UNDER CONSTRUCTION
 
-### A high performance, non-blocking client for the Arduino Firmata Protocol.
-Pymata4 is a Python Arduino Firmata client that, like its asyncio sibling,
+### A high performance, non-blocking Python client for the Arduino Firmata Protocol.
+Pymata4 is a Firmata client that, like its asyncio sibling,
  [pymata-express,](https://mryslab.github.io/pymata-express/)
  allows you to control an Arduino using the high-performance FirmataExpress sketch.
   It uses a conventional Python API for those that do not need or wish to use the asyncio programming paradigm of pymata-express.

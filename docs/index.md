@@ -8,7 +8,7 @@
 client that, like its asyncio sibling [pymata-express](https://mryslab.github.io/pymata4/)
 allows you to control an Arduino using the high-performance FirmataExpress sketch. But unlike
 pymata-express, it uses a conventional 
-[Python API](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/pymata4.html)
+[Python API](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html)
 for those that do not need or wish to use an asycnio
 programming paradigm.
 

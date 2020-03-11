@@ -105,7 +105,7 @@ except KeyboardInterrupt:
 ```
      
 And here is the console output:
-```python
+```bash
 pymata4:  Version 1.00
 
 Copyright (c) 2020 Alan Yorinks All Rights Reserved.

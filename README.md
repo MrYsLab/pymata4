@@ -1,5 +1,7 @@
 # pymata4
 
+# UNDER CONSTRUCTION
+
 ### A high performance, non-blocking client for the Arduino Firmata Protocol.
 
 ### It supports both an enhanced version of StandardaFirmata 2.5.8, called FirmataExpress, as well as StandardFirmata. 

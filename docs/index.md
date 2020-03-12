@@ -4,24 +4,32 @@
 <br>
 <br>
 
-[Pymata4](https://github.com/MrYsLab/pymata4) is a Python Arduino Firmata
-client that, like its asyncio sibling [pymata-express](https://mryslab.github.io/pymata4/)
-allows you to control an Arduino using the high-performance FirmataExpress sketch. But unlike
-pymata-express, it uses a conventional 
-[Python API](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html)
-for those that do not need or wish to use an asycnio
-programming paradigm.
+[Pymata4](https://github.com/MrYsLab/pymata4) is a [Firmata Protocol](https://github.com/firmata/protocol) 
+client that, like its asyncio sibling [pymata-express,](https://mryslab.github.io/pymata4/) allows the user to take
+advantage of the advanced feature set of 
+the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress)
+Arduino sketch. If you prefer to use StandardFirmata, that is supported as well.
 
-When used with the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress) Arduino sketch,
-the serial data rate is 115200 baud, twice the speed of StandardFirmata. FirmataExpress,
-is based on [StandardFirmata 2.5.8 protocol,](https://github.com/firmata/protocol/blob/master/protocol.md),
- and adds support for
-stepper motors, tone generation, HC-SRO4 distance sensors, and the auto-detection of Arduino boards.
+## Major Features
 
-If you prefer to work with StandardFirmata Pymata Express is compatible with it as well.
+* Conventional [Python (non-asyncio) API.](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html))
+* Callback support with time-stamps for immediate, asynchronous pin change notifications.
+* Data value changes for each pin or i2c device are retained and available for retrieval (polling).
+* When Using FirmataExpress, Advanced Integrated Hardware Support For:
+    * HC-SR04 Ultrasonic Distance Sensors.
+    * Stepper Motors.
+    * Tone Generation For Piezo Devices.
+    * High-speed communication throughput (baud rate of 115200).
+    * Advanced Arduino auto-discovery support.
+    * Optional watch-dog/reset timer support for the ATmega328P processor.
 
-The pymata4 API is intuitive and easy to use. Essentially, just set a pin mode, specify a callback function, 
-and wait for pin state changes.
+
+## Intuitive And Easy To Use API.
+
+* To monitor pin state changes:
+    * Set the pin mode.
+    * Specify a callback function. 
+    * Wait for pin state changes notifications.
 
 Here is an object-oriented example that monitors digital pin 12 for state changes:
 
@@ -81,25 +89,25 @@ if __name__ == '__main__':
 ```
 
 Sample console output as input change events occur:
-```python
+```bash
 Pin: 12 Value: 0 Time Stamp: 2020-03-10 13:26:22
 Pin: 12 Value: 1 Time Stamp: 2020-03-10 13:26:27
 ```
 
-A full set of [working examples
- is available on GitHub.](https://github.com/MrYsLab/pymata4/tree/master/examples)
-  These examples demonstate
-pymata4's entire feature set.
+### What Will Be Covered In This Guide
 
-Installation and system requirements are provided in the following sections
-of this document:
-
-* [Verifying The Python 3 Version.](/python_3_verify/#how-to-verify-the-python-3-version-installed) 
-* [Python 3 Installation Instructions.](/python_install/#installing-python-37-or-greater)
-* [Installing _pymata4_.](/install_pymata4/#before-you-install)
-* [Installing FirmataExpress On Your Arduino.](/firmata_express/#installation-instruction)
+* A discussion of the API methods including links to working examples.
+* Definitions of _pymata4_ specific terminology
+* Installation and system requirements:
+    * [Verifying The Python 3 Version.](/python_3_verify/#how-to-verify-the-python-3-version-installed) 
+    * [Python 3 Installation Instructions.](/python_install/#installing-python-37-or-greater)
+    * [Installing _pymata4_.](/install_pymata4/#before-you-install)
+    * [Installing FirmataExpress On Your Arduino.](/firmata_express/#installation-instruction)
 
 
-Last updated 12 March 2020 For Release v1.00
+<br>
+<br>
 
 Copyright (C) 2020 Alan Yorinks. All Rights Reserved.
+
+Last updated 12 March 2020 For Release v1.00

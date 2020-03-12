@@ -1,21 +1,24 @@
 site_name: pymata4
 nav:
-    - Introduction: index.md
+    - What Is Pymata4?: index.md
     - The Pymata4 API:
-        - Introduction To The API: api.md
-        - Instantiating pymata4: init.md
-        - Setting Pin Modes: pin_modes.md
-        - Monitoring Pin Changes: pin_changes.md
-        - Report Requests: report_requests.md
-        - Data Polling: polling.md
-        - Management Requests: management.md
-    - Application Development With pymata4: guidelines.md
-    - System Requirements and Installation:
+        - What Will Be Covered: api.md
+        - Termininology: terminology.md
+        - Why Callbacks?: callbacks.md
+        - API Methods:
+            - Instantiating pymata4: init.md
+            - Setting Pin Modes: pin_modes.md
+            - Monitoring Pin Changes: pin_changes.md
+            - Report Requests: report_requests.md
+            - Data Polling: polling.md
+            - Management Requests: management.md
+        - Example Applications/Tests: examples.md
+    - System and Installation Requirements:
         - Verifying Python 3 Version: python_3_verify.md
         - Python 3 Installation: python_install.md
         - Installing pymata4: install_pymata4.md
         - Installing FirmataExpress: firmata_express.md
-    - Example Applications/Tests: examples.md
+
     - About: about.md
     - License: license.md
-theme: readthedocs
+theme: windmill

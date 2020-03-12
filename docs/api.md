@@ -1,7 +1,11 @@
-# Categorizing The API Methods
 
-To gain a better understanding of the API, let's divide the API into several categories, and then sort the methods
-by category.
+
+
+To gain a better understanding of the API, the API will be divided into several categories
+for discussion. 
+
+> Explicit pymata4 terminology definitions will be shown in paragraphs formatted
+> like this one.
 
 The group of API categories is as follows:
 

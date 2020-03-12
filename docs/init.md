@@ -83,7 +83,8 @@ Pymata4 will raise a RuntimeError exception in \__init__ for the following reaso
 3. The user hit Control-C.
 
 ## Examples
-   Every [example on GitHub](TBD) illustrates instantiating the Pymata4 class.
+   Each [example on GitHub](https://github.com/MrYsLab/pymata4/tree/master/examples) 
+   demonstrates instantiating the Pymata4 class.
 
 <br>
 <br>

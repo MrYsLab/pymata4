@@ -54,7 +54,7 @@ def sonar(my_board, trigger_pin, echo_pin, callback):
     # wait forever
     while True:
         try:
-            time.sleep(.5)
+            time.sleep(.01)
             print(f'data read: {my_board.sonar_read(TRIGGER_PIN)}')
         except KeyboardInterrupt:
             my_board.shutdown()

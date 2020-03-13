@@ -55,9 +55,10 @@ DIGITAL_PIN = 12  # arduino pin number
 POLL_TIME = 5  # number of seconds between polls
 
 # Callback data indices
-CB_PIN = 0
-CB_VALUE = 1
-CB_PIN_MODE = 2
+# Callback data indices
+CB_PIN_MODE = 0
+CB_PIN = 1
+CB_VALUE = 2
 CB_TIME = 3
 
 
@@ -69,7 +70,6 @@ def the_callback(data):
 
     :param data: [pin, current reported value, pin_mode, timestamp]
     """
-
     date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(data[CB_TIME]))
     print(f'Pin: {data[CB_PIN]} Value: {data[CB_VALUE]} Time Stamp: {date}')
 

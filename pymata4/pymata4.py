@@ -1246,7 +1246,7 @@ class Pymata4(threading.Thread):
             self.analog_pins[pin].event_time = time_stamp
 
             # append pin number, pin value, and pin type to return value and return as a list
-            message = [pin, value, PrivateConstants.ANALOG, time_stamp]
+            message = [PrivateConstants.ANALOG, pin, value, time_stamp]
 
             if self.analog_pins[pin].cb:
                 self.analog_pins[pin].cb(message)
@@ -1283,7 +1283,7 @@ class Pymata4(threading.Thread):
             self.digital_pins[pin].event_time = time_stamp
 
             # append pin number, pin value, and pin type to return value and return as a list
-            message = [pin, value, PrivateConstants.INPUT, time_stamp]
+            message = [PrivateConstants.INPUT, pin, value, time_stamp]
 
             if self.digital_pins[pin].cb:
                 self.digital_pins[pin].cb(message)
@@ -1304,8 +1304,8 @@ class Pymata4(threading.Thread):
         :param data: raw data returned from i2c device
 
         """
-        # remove the start and end sysex commands from the data
-        reply_data = []
+        # initialze the reply data with I2C pin mode
+        reply_data = [PrivateConstants.I2C]
         # reassemble the data from the firmata 2 byte format
         address = (data[0] & 0x7f) + (data[1] << 7)
 
@@ -1443,7 +1443,8 @@ class Pymata4(threading.Thread):
         pin_number = data[0]
         val = int((data[PrivateConstants.MSB] << 7) +
                   data[PrivateConstants.LSB])
-        reply_data = []
+        # initilize reply_data with SONAR pin type
+        reply_data = [PrivateConstants.SONAR]
 
         with self.the_lock:
 

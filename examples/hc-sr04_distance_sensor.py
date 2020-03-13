@@ -23,7 +23,7 @@ from pymata4 import pymata4
 This program continuously monitors an HC-SR04 Ultrasonic Sensor
 It reports changes to the distance sensed.
 """
-
+# indices into callback data
 DISTANCE_CM = 1
 TRIGGER_PIN = 12
 ECHO_PIN = 13
@@ -33,7 +33,7 @@ ECHO_PIN = 13
 def the_callback(data):
     """
     The callback function to display the change in distance
-    :param data: data[0] = pin number, data[1] = distance
+    :param data: data[0]=pin_type, data[1]=trigger pin number, data[2]=distance
     """
     print(f'Distance in cm: {data[DISTANCE_CM]}')
 
@@ -54,7 +54,7 @@ def sonar(my_board, trigger_pin, echo_pin, callback):
     # wait forever
     while True:
         try:
-            time.sleep(.4)
+            time.sleep(.5)
             print(f'data read: {my_board.sonar_read(TRIGGER_PIN)}')
         except KeyboardInterrupt:
             my_board.shutdown()

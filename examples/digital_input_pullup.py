@@ -30,9 +30,10 @@ DIGITAL_PIN = 12  # arduino pin number
 KILL_TIME = 5  # sleep time to keep forever loop open
 
 # Callback data indices
-CB_PIN = 0
-CB_VALUE = 1
-CB_PIN_MODE = 2
+# Callback data indices
+CB_PIN_MODE = 0
+CB_PIN = 1
+CB_VALUE = 2
 CB_TIME = 3
 
 

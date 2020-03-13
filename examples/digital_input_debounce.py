@@ -38,9 +38,10 @@ DIGITAL_PIN = 12  # arduino pin number
 POLL_TIME = 5  # number of seconds between polls
 
 # Callback data indices
-CB_PIN = 0
-CB_VALUE = 1
-CB_PIN_MODE = 2
+# Callback data indices
+CB_PIN_MODE = 0
+CB_PIN = 1
+CB_VALUE = 2
 CB_TIME = 3
 
 

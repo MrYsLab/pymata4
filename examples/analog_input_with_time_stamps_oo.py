@@ -47,9 +47,9 @@ class MonitorAnalogPin:
         self.differential = differential
 
         # Callback data indices
-        self.CB_PIN = 0  # pin number
-        self.CB_VALUE = 1  # reported value
-        self.CB_PIN_MODE = 2  # pin mode (see pin modes in private_constants.py)
+        self.CB_PIN_MODE = 0  # pin mode (see pin modes in private_constants.py)
+        self.CB_PIN = 1  # pin number
+        self.CB_VALUE = 2  # reported value
         self.CB_TIME = 3  # raw time stamp
 
         # instantiate pymata4
@@ -86,7 +86,10 @@ class MonitorAnalogPin:
         """
         A callback function to report data changes.
 
+        :param data: [pin_mode, pin, current_reported_value,  timestamp]
+
         """
+        print(data[self.CB_TIME])
         formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(data[self.CB_TIME]))
         print(f'Analog Call Input Callback: pin={data[self.CB_PIN]}, '
               f'Value={data[self.CB_VALUE]} Time={formatted_time} '

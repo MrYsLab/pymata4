@@ -29,9 +29,9 @@ ANALOG_PIN = 2  # arduino pin number
 POLL_TIME = 5  # number of seconds between polls
 
 # Callback data indices
-CB_PIN = 0
-CB_VALUE = 1
-CB_PIN_MODE = 2
+CB_PIN_MODE = 0
+CB_PIN = 1
+CB_VALUE = 2
 CB_TIME = 3
 
 
@@ -41,8 +41,9 @@ def the_callback(data):
     """
     A callback function to report data changes.
 
-    :param data: [pin, current reported value, pin_mode, timestamp]
+    :param data: [pin_mode, pin, current_reported_value,  timestamp]
     """
+
     formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(data[CB_TIME]))
     print(f'Analog Call Input Callback: pin={data[CB_PIN]}, '
           f'Value={data[CB_VALUE]} Time={formatted_time} '

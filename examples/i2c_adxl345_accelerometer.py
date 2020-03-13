@@ -29,7 +29,7 @@ It will continuously print data the raw xyz data from the device.
 def the_callback(data):
     """
 
-    :param data: [Device address, x data pair, y data pair, z data pair]
+    :param data: [pin_type, Device address, device read register, x data pair, y data pair, z data pair]
     :return:
     """
     print(data)

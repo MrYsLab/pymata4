@@ -151,8 +151,18 @@ class Pymata4(threading.Thread):
         self.analog_pins = []
         self.digital_pins = []
 
-        # This lock is used when the PinData object update or retrieve their contents
-        self.the_lock = threading.Lock()
+        # This lock is used when the PinData object is update or contents
+        # are retrieved
+        self.the_pin_data_lock = threading.Lock()
+
+        # a lock for the i2c map data structure
+        self.the_i2c_map_lock = threading.Lock()
+
+        # a lock for the sonar map
+        self.the_sonar_map_lock = threading.Lock()
+
+        # a when sending data to the arduino
+        self.the_send_sysex_lock = threading.Lock()
 
         # serial port in use
         self.serial_port = None
@@ -248,10 +258,10 @@ class Pymata4(threading.Thread):
         # custom assemble the pin lists
         try:
             for pin in report:
-                digital_data = PinData(self.the_lock)
+                digital_data = PinData(self.the_pin_data_lock)
                 self.digital_pins.append(digital_data)
                 if pin != PrivateConstants.IGNORE:
-                    analog_data = PinData(self.the_lock)
+                    analog_data = PinData(self.the_pin_data_lock)
                     self.analog_pins.append(analog_data)
 
             print(f'Auto-discovery complete. Found {len(self.digital_pins)} Digital Pins'
@@ -609,7 +619,7 @@ class Pymata4(threading.Thread):
 
         """
         if address in self.i2c_map:
-            with self.the_lock:
+            with self.the_i2c_map_lock:
                 map_entry = self.i2c_map.get(address)
                 data = map_entry.get('value')
                 return data
@@ -721,7 +731,7 @@ class Pymata4(threading.Thread):
 
         """
         if address not in self.i2c_map:
-            with self.the_lock:
+            with self.the_i2c_map_lock:
                 self.i2c_map[address] = {'value': None, 'callback': callback}
         data = [address, read_type, register & 0x7f, (register >> 7) & 0x7f,
                 number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
@@ -1095,6 +1105,7 @@ class Pymata4(threading.Thread):
                 self.digital_pins[pin_number].cb = callback
             elif pin_state == PrivateConstants.PULLUP:
                 self.digital_pins[pin_number].cb = callback
+                self.digital_pins[pin_number].pull_up = True
             elif pin_state == PrivateConstants.ANALOG:
                 self.analog_pins[pin_number].cb = callback
                 self.analog_pins[pin_number].differential = differential
@@ -1184,7 +1195,7 @@ class Pymata4(threading.Thread):
 
         :returns: active_sonar_map
         """
-        with self.the_lock:
+        with self.the_sonar_map_lock:
             sonar_pin_entry = self.active_sonar_map.get(trigger_pin)
             value = sonar_pin_entry[1]
             return value
@@ -1283,7 +1294,10 @@ class Pymata4(threading.Thread):
             self.digital_pins[pin].event_time = time_stamp
 
             # append pin number, pin value, and pin type to return value and return as a list
-            message = [PrivateConstants.INPUT, pin, value, time_stamp]
+            if self.digital_pins[pin].pull_up:
+                message = [PrivateConstants.PULLUP, pin, value, time_stamp]
+            else:
+                message = [PrivateConstants.INPUT, pin, value, time_stamp]
 
             if self.digital_pins[pin].cb:
                 self.digital_pins[pin].cb(message)
@@ -1304,14 +1318,14 @@ class Pymata4(threading.Thread):
         :param data: raw data returned from i2c device
 
         """
-        # initialze the reply data with I2C pin mode
+        # initialize the reply data with I2C pin mode
         reply_data = [PrivateConstants.I2C]
         # reassemble the data from the firmata 2 byte format
         address = (data[0] & 0x7f) + (data[1] << 7)
 
         # if we have an entry in the i2c_map, proceed
         if address in self.i2c_map:
-            with self.the_lock:
+            with self.the_i2c_map_lock:
                 # get 2 bytes, combine them and append to reply data list
                 for i in range(0, len(data), 2):
                     combined_data = (data[i] & 0x7f) + (data[i + 1] << 7)
@@ -1443,10 +1457,10 @@ class Pymata4(threading.Thread):
         pin_number = data[0]
         val = int((data[PrivateConstants.MSB] << 7) +
                   data[PrivateConstants.LSB])
-        # initilize reply_data with SONAR pin type
+        # initialize reply_data with SONAR pin type
         reply_data = [PrivateConstants.SONAR]
 
-        with self.the_lock:
+        with self.the_sonar_map_lock:
 
             sonar_pin_entry = self.active_sonar_map[pin_number]
 
@@ -1486,7 +1500,8 @@ class Pymata4(threading.Thread):
             for d in sysex_data:
                 the_command.append(d)
         the_command.append(PrivateConstants.END_SYSEX)
-        self._send_command(the_command)
+        with self.the_send_sysex_lock:
+            self._send_command(the_command)
 
     # noinspection PyMethodMayBeStatic
     def _string_data(self, data):

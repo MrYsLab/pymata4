@@ -1002,7 +1002,7 @@ class Pymata4(threading.Thread):
         self._send_sysex(PrivateConstants.SERVO_CONFIG, command)
 
     def set_pin_mode_sonar(self, trigger_pin, echo_pin,
-                           cb=None, timeout=80000):
+                           callback=None, timeout=80000):
         """
         This is a FirmataExpress feature.
 
@@ -1047,7 +1047,7 @@ class Pymata4(threading.Thread):
             print('sonar_config: maximum number of devices assigned'
                   ' - ignoring request')
         else:
-            self.active_sonar_map[trigger_pin] = [cb, 0]
+            self.active_sonar_map[trigger_pin] = [callback, 0]
 
         self._send_sysex(PrivateConstants.SONAR_CONFIG, data)
 

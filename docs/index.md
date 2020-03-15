@@ -7,8 +7,8 @@
 [Pymata4](https://github.com/MrYsLab/pymata4) is a [Firmata Protocol](https://github.com/firmata/protocol) 
 client that, like its asyncio sibling [pymata-express,](https://mryslab.github.io/pymata4/) allows the user to take
 advantage of the advanced feature set of 
-the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress)
-Arduino sketch. If you prefer to use StandardFirmata, that is supported as well.
+the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress) (recommended) or StandardFirmata.
+Arduino sketches. 
 
 ## Major Features
 
@@ -97,8 +97,9 @@ Pin: 12 Value: 1 Time Stamp: 2020-03-10 13:26:27
 
 ### What Will Be Covered In This Guide
 
+* What are callbacks and why use them?
+* A quick look at the threading model and associated data structures.
 * A discussion of the API methods including links to working examples.
-* Definitions of _pymata4_ specific terminology
 * Installation and system requirements:
     * [Verifying The Python 3 Version.](/python_3_verify/#how-to-verify-the-python-3-version-installed) 
     * [Python 3 Installation Instructions.](/python_install/#installing-python-37-or-greater)

@@ -24,7 +24,7 @@ This program continuously monitors an HC-SR04 Ultrasonic Sensor
 It reports changes to the distance sensed.
 """
 # indices into callback data
-DISTANCE_CM = 1
+DISTANCE_CM = 2
 TRIGGER_PIN = 12
 ECHO_PIN = 13
 

@@ -74,7 +74,10 @@ class PinData:
         self._event_time = 0
         # callback reference
         self._cb = None
+        # analog differential
         self._differential = 1
+        # digital pin was set as a pullup pin
+        self._pull_up = False
 
     @property
     def current_value(self):
@@ -114,7 +117,17 @@ class PinData:
     @differential.setter
     def differential(self, value):
         with self.data_lock:
-            self._differential = value</code></pre>
+            self._differential = value
+
+    @property
+    def pull_up(self):
+        with self.data_lock:
+            return self._pull_up
+
+    @pull_up.setter
+    def pull_up(self, value):
+        with self.data_lock:
+            self._pull_up = value</code></pre>
 </details>
 </section>
 <section>
@@ -157,7 +170,10 @@ inputs.</p></section>
         self._event_time = 0
         # callback reference
         self._cb = None
+        # analog differential
         self._differential = 1
+        # digital pin was set as a pullup pin
+        self._pull_up = False
 
     @property
     def current_value(self):
@@ -197,7 +213,17 @@ inputs.</p></section>
     @differential.setter
     def differential(self, value):
         with self.data_lock:
-            self._differential = value</code></pre>
+            self._differential = value
+
+    @property
+    def pull_up(self):
+        with self.data_lock:
+            return self._pull_up
+
+    @pull_up.setter
+    def pull_up(self, value):
+        with self.data_lock:
+            self._pull_up = value</code></pre>
 </details>
 <h3>Instance variables</h3>
 <dl>
@@ -253,6 +279,19 @@ def event_time(self):
         return self._event_time</code></pre>
 </details>
 </dd>
+<dt id="pymata4.pin_data.PinData.pull_up"><code class="name">var <span class="ident">pull_up</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def pull_up(self):
+    with self.data_lock:
+        return self._pull_up</code></pre>
+</details>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -278,6 +317,7 @@ def event_time(self):
 <li><code><a title="pymata4.pin_data.PinData.current_value" href="#pymata4.pin_data.PinData.current_value">current_value</a></code></li>
 <li><code><a title="pymata4.pin_data.PinData.differential" href="#pymata4.pin_data.PinData.differential">differential</a></code></li>
 <li><code><a title="pymata4.pin_data.PinData.event_time" href="#pymata4.pin_data.PinData.event_time">event_time</a></code></li>
+<li><code><a title="pymata4.pin_data.PinData.pull_up" href="#pymata4.pin_data.PinData.pull_up">pull_up</a></code></li>
 </ul>
 </li>
 </ul>

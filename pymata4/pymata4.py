@@ -170,16 +170,17 @@ class Pymata4(threading.Thread):
         # An i2c_map entry consists of a device i2c address as the key, and
         #  the value of the key consists of a dictionary containing 2 entries.
         #  The first entry. 'value' contains the last value reported, and
-        # the second, 'callback' contains a reference to a callback function.
+        # the second, 'callback' contains a reference to a callback function,
+        # and the third, a time-stamp
         # For example:
-        # {12345: {'value': 23, 'callback': None}}
+        # {12345: {'value': 23, 'callback': None, time_stamp:None}}
         self.i2c_map = {}
 
         # The active_sonar_map maps the sonar trigger pin number (the key)
         # to the current data value returned
         # if a callback was specified, it is stored in the map as well.
         # A map entry consists of:
-        #   pin: [callback, current_data_returned]
+        #   pin: [callback, current_data_returned, time_stamp]
         self.active_sonar_map = {}
 
         # first analog pin number
@@ -384,7 +385,7 @@ class Pymata4(threading.Thread):
 
         :param pin: Analog pin number (ex. A2 is specified as 2)
 
-        :returns: A tuple of last value change and the time that it occurred
+        :returns: A list = [last value change,  time_stamp]
         """
         return self.analog_pins[pin].current_value, self.analog_pins[pin].event_time
 
@@ -394,10 +395,10 @@ class Pymata4(threading.Thread):
 
         :param pin: Digital pin number
 
-        :returns: A tuple of last value change and the time that it occurred
+        :returns: A list = [last value change,  time_stamp]
 
         """
-        return self.digital_pins[pin].current_value, self.digital_pins[pin].event_time
+        return [self.digital_pins[pin].current_value, self.digital_pins[pin].event_time]
 
     def digital_pin_write(self, pin, value):
         """
@@ -467,7 +468,10 @@ class Pymata4(threading.Thread):
 
     def enable_analog_reporting(self, pin, callback=None, differential=1):
         """
-        Enables analog reporting. This is an alias for set_pin_mode_analog
+        Enables analog reporting. This is an alias for set_pin_mode_analog_input.
+        Disabling analog reporting sets the pin to a digital input pin,
+        so we need to provide the callback and differential if we wish
+        to specify it.
 
         :param pin: Analog pin number. For example for A0, the number is 0.
 
@@ -616,13 +620,14 @@ class Pymata4(threading.Thread):
         :param address: I2C device address
 
         :returns: Last cached value reported
+                  This contains the number of bytes requested
+                  followed by the time_stamp.
 
         """
         if address in self.i2c_map:
             with self.the_i2c_map_lock:
                 map_entry = self.i2c_map.get(address)
-                data = map_entry.get('value')
-                return data
+                return map_entry.get('value')
         else:
             return None
 
@@ -641,6 +646,13 @@ class Pymata4(threading.Thread):
 
         :param callback: Optional callback function to report i2c data as a
                    result of read command
+
+
+        callback returns a data list:
+
+        [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
+
+        The pin_type for sonar pins = 6
 
         """
 
@@ -663,6 +675,14 @@ class Pymata4(threading.Thread):
 
         :param callback: Optional callback function to report i2c data as a
                    result of read command
+
+
+        callback returns a data list:
+
+        [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
+
+        The pin_type for sonar pins = 6
+
 
         """
 
@@ -687,6 +707,13 @@ class Pymata4(threading.Thread):
 
         :param callback: Optional callback function to report i2c data as a
                    result of read command
+
+
+        callback returns a data list:
+
+        [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
+
+        The pin_type for sonar pins = 6
 
         """
 
@@ -924,6 +951,13 @@ class Pymata4(threading.Thread):
         :param differential: This value needs to be met for a callback
                              to be invoked.
 
+
+        callback returns a data list:
+
+        [pin_type, pin_number, pin_value, raw_time_stamp]
+
+        The pin_type for analog input pins = 2
+
         """
         self._set_pin_mode(pin_number, PrivateConstants.ANALOG,
                            callback=callback,
@@ -937,6 +971,13 @@ class Pymata4(threading.Thread):
 
         :param callback: callback function
 
+
+        callback returns a data list:
+
+        [pin_type, pin_number, pin_value, raw_time_stamp]
+
+        The pin_type for digital input pins = 0
+
         """
         self._set_pin_mode(pin_number, PrivateConstants.INPUT, callback)
 
@@ -947,6 +988,13 @@ class Pymata4(threading.Thread):
         :param pin_number: arduino pin number
 
         :param callback: callback function
+
+
+        callback returns a data list:
+
+        [pin_type, pin_number, pin_value, raw_time_stamp]
+
+        The pin_type for digital input pins with pullups enabled = 11
 
         """
         self._set_pin_mode(pin_number, PrivateConstants.PULLUP, callback)
@@ -970,6 +1018,10 @@ class Pymata4(threading.Thread):
 
         :param read_delay_time (in microseconds): an optional parameter,
                                                   default is 0
+
+        NOTE: Callbacks are set within the individual i2c read methods of this
+              API.
+              See i2c_read, i2c_read_continuous, or i2c_read_restart_transmission.
 
         """
         data = [read_delay_time & 0x7f, (read_delay_time >> 7) & 0x7f]
@@ -1016,7 +1068,8 @@ class Pymata4(threading.Thread):
         If the maximum is exceeded a message is sent to the console and the
         request is ignored.
 
-        NOTE: data is measured in centimeters
+        NOTE: data is measured in centimeters. Callback is called only when the
+              the latest value received is different than the previous.
 
         :param trigger_pin: The pin number of for the trigger (transmitter).
 
@@ -1025,6 +1078,13 @@ class Pymata4(threading.Thread):
         :param cb: optional callback function to report sonar data changes
 
         :param timeout: a tuning parameter. 80000UL equals 80ms.
+
+
+        callback returns a data list:
+
+        [pin_type, trigger_pin_number, distance_value (in cm), raw_time_stamp]
+
+        The pin_type for sonar pins = 12
 
 
         """
@@ -1047,7 +1107,8 @@ class Pymata4(threading.Thread):
             print('sonar_config: maximum number of devices assigned'
                   ' - ignoring request')
         else:
-            self.active_sonar_map[trigger_pin] = [callback, 0]
+            # initialize map entry with callback, data value of 0 and time_stamp of 0
+            self.active_sonar_map[trigger_pin] = [callback, 0, 0]
 
         self._send_sysex(PrivateConstants.SONAR_CONFIG, data)
 
@@ -1193,12 +1254,15 @@ class Pymata4(threading.Thread):
 
         :param trigger_pin: key into sonar data map
 
-        :returns: active_sonar_map
+        :returns: A list = [last value, raw time_stamp]
+
         """
-        with self.the_sonar_map_lock:
-            sonar_pin_entry = self.active_sonar_map.get(trigger_pin)
-            value = sonar_pin_entry[1]
-            return value
+
+        sonar_pin_entry = self.active_sonar_map.get(trigger_pin)
+        if sonar_pin_entry:
+            return [sonar_pin_entry[1], sonar_pin_entry[2]]
+        else:
+            return[0, 0]
 
     def stepper_write(self, motor_speed, number_of_steps):
         """
@@ -1331,10 +1395,14 @@ class Pymata4(threading.Thread):
                     combined_data = (data[i] & 0x7f) + (data[i + 1] << 7)
                     reply_data.append(combined_data)
 
+                current_time = time.time()
+                reply_data.append(current_time)
+
                 # place the data in the i2c map without storing the address byte or
                 #  register byte (returned data only)
                 map_entry = self.i2c_map.get(address)
-                map_entry['value'] = reply_data[2:]
+                map_entry['value'] = reply_data[3:]
+                map_entry['time_stamp'] = current_time
                 self.i2c_map[address] = map_entry
                 cb = map_entry.get('callback')
                 if cb:
@@ -1461,18 +1529,19 @@ class Pymata4(threading.Thread):
         reply_data = [PrivateConstants.SONAR]
 
         with self.the_sonar_map_lock:
-
             sonar_pin_entry = self.active_sonar_map[pin_number]
-
             if sonar_pin_entry[0] is not None:
                 # check if value changed since last reading
                 if sonar_pin_entry[1] != val:
                     sonar_pin_entry[1] = val
+                    time_stamp = time.time()
+                    sonar_pin_entry[2] = time_stamp
                     self.active_sonar_map[pin_number] = sonar_pin_entry
                     # Do a callback if one is specified in the table
                     if sonar_pin_entry[0]:
                         reply_data.append(pin_number)
                         reply_data.append(val)
+                        reply_data.append(time_stamp)
                         if sonar_pin_entry[1]:
                             sonar_pin_entry[0](reply_data)
 

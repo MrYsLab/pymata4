@@ -19,7 +19,8 @@ Pymata4 is a Firmata client that, like its asyncio sibling,
 
 <h2><u>Major features</u></h2>
 
-* **Intuitive API.**
+* **Fully documented <a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html" target="_blank">intuitieve API</a>**
+
 
 * **Python 3.7+ compatible.**
 
@@ -28,8 +29,6 @@ Pymata4 is a Firmata client that, like its asyncio sibling,
 * **Data change events may be associated with a callback function, or each pin can be polled for its last event change.**
 
     * **Each data change event is time-stamped and logged.**
-
-* **Fully documented <a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html" target="_blank">API</a>**
 
 * **[User's Guide](https://mryslab.github.io/pymata4/), Including Examples.**
 

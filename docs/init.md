@@ -1,5 +1,9 @@
 # Instantiating The Pymata4 Class
 
+To use the Pymata4 class, you must first import it:
+
+
+
 If you are using FiramataExpress with a single Arduino, then in most cases, you
  can accept all of the default parameters provided in the \__init__ method.
  

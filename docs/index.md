@@ -1,36 +1,51 @@
 
 
-<div style="text-align:center;color:#990033; font-family:times, serif; font-size:6.5em"><i>pymata4</i></div>
+<div style="text-align:center;color:#990033; font-family:times, serif; font-size:3em"><i>pymata4</i></div>
+<div style="text-align:center;color:#990033; font-family:times, serif; font-size:2em"><i>A User's Guide</i></div>
+
 <br>
 <br>
 
-[Pymata4](https://github.com/MrYsLab/pymata4) is a [Firmata Protocol](https://github.com/firmata/protocol) 
-client that, like its asyncio sibling [pymata-express,](https://mryslab.github.io/pymata4/) allows the user to take
+**What is pymata4?** 
+
+[Pymata4](https://github.com/MrYsLab/pymata4) is a Python 3  [Firmata Protocol](https://github.com/firmata/protocol) 
+client that, in conjunction with an Arduino Firmata sketch, permits you to control and monitor Arduino hardware
+remotely over a serial link.
+
+Like its asyncio sibling [pymata-express,](https://mryslab.github.io/pymata4/) pymata4 allows the user to take
 advantage of the advanced feature set of 
 the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress) (recommended) or StandardFirmata.
-Arduino sketches. 
+Arduino server sketches. 
 
-## Major Features
+**Here is a summary of pymata4's major features:**
 
-* Conventional [Python (non-asyncio) API.](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html))
-* Callback support with time-stamps for immediate, asynchronous pin change notifications.
-* A [full set of working examples](https://github.com/MrYsLab/pymata4/tree/master/examples) to demonstrate every aspect of pymata4.
-* Data value changes for each pin or i2c device are retained and available for retrieval (polling).
-* When Using FirmataExpress, Advanced Integrated Hardware Support For:
-    * HC-SR04 Ultrasonic Distance Sensors.
-    * Stepper Motors.
-    * Tone Generation For Piezo Devices.
-    * High-speed communication throughput (baud rate of 115200).
-    * Advanced Arduino auto-discovery support.
-    * Optional watch-dog/reset timer support for the ATmega328P processor.
+* Applications are programmed using conventional Python 3.
+* Data change events may be associated with a callback function for asynchronous notification, 
+or polling may be used when a synchronous approach is desired.
+* Each data change event is time-stamped and logged.
+* [API Reference Documentation](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html) 
+ is available online.
+* A full set of working examples
+are available for download [online.](https://github.com/MrYsLab/pymata4/tree/master/examples)
 
+**Advantages of Using The FirmataExpress Sketch Over StandardFirmata:**
 
-## Intuitive And Easy To Use API.
+* The data link runs at 115200, twice the speed of StandardFirmata.
+* Advanced Arduino auto-discovery support is provided.
+* Additional hardware support is provided for:
+    * HC-SR04 ultrasonic distance sensors.
+    * Stepper motors.
+    * Tone generation for piezo devices.
 
-* To monitor pin state changes:
-    * Set the pin mode.
-    * Specify a callback function. 
-    * Wait for pin state change notifications.
+**Pymata4's API is intuitive and easy to use!**
+
+For example, to receive asynchronous digital pin state data change notifications, you simply do the following:
+
+1. Set a pin mode for the pin and register a callback function.
+2. Have your application sit in a loop waiting for notifications.
+    
+When pymata4 executes your callback method, the data parameter will contain
+a list of items that describe the change event, including a time-stamp.
 
 Here is an object-oriented example that monitors digital pin 12 for state changes:
 
@@ -95,10 +110,8 @@ Pin: 12 Value: 0 Time Stamp: 2020-03-10 13:26:22
 Pin: 12 Value: 1 Time Stamp: 2020-03-10 13:26:27
 ```
 
-### What Will Be Covered In This Guide
+**Here is what this document is going to cover:**
 
-* What are callbacks and why use them?
-* A quick look at the threading model and associated data structures.
 * A discussion of the API methods including links to working examples.
 * Installation and system requirements:
     * [Verifying The Python 3 Version.](/python_3_verify/#how-to-verify-the-python-3-version-installed) 

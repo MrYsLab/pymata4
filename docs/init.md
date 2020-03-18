@@ -63,7 +63,7 @@ Instantiating The Pymata4 Class
 This parameter is only valid when using FirmataExpress. This parameter
 allows pymata4 to connect to an Arduino with a matching ID.
 
-This is useful if you have multiple Arduino's plugged into your computer
+This is useful if you have multiple Arduino's plugged into your computer,
 and you wish to have a specific Arduino selected for connection. 
 
 StandardFirmata does not have this capability, and auto-discovery connects to the first
@@ -91,14 +91,15 @@ buffer, pymata4 sleeps for the sleep_tune period before checking again.
 The default value is 0.000001 seconds.
 
 ### shutdown_on_exception
-When an exception is detected within pymata4, if this parameter
-is set to True, 
-the _shutdown_ method is called before raising the exception. 
-to perform an orderly pymata4 shutdown. The Arduino will be set to a knownIf you set
-this to False, the exception is raised without calling shutdown.
+When this parameter is set to True, the shutdown method is automatically
+called when an exception is detected. This disables reporting for both digital and analog pins, 
+in addition to closing the serial port.
 
-By setting this parameter to False, the Arduino will remain in its current state. 
-In contrast, when it is set to True, the Arduino will be set to a known, and hopefully safe state.
+By setting this parameter to False, the Arduino may continue to send data to
+your application even after restarting it.
+
+The default is True and recommended to be used.
+
 
 ### Exceptions
 Pymata4 will raise a RuntimeError exception in \__init__ for the following reasons:

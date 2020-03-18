@@ -22,7 +22,7 @@ Arduino server sketches.
 * Applications are programmed using conventional Python 3.
 * Data change events may be associated with a callback function for asynchronous notification, 
 or polling may be used when a synchronous approach is desired.
-* Each data change event is time-stamped and logged.
+* Each data change event is time-stamped and stored.
 * [API Reference Documentation](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html) 
  is available online.
 * A full set of working examples

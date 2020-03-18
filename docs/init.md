@@ -1,4 +1,4 @@
-# Instantiating The Pymata4 Class
+# The Pymata4 Class
 
 To use the Pymata4 class, you must first import it:
 
@@ -15,18 +15,18 @@ board = pymata4.Pymata4()
 The *board* variable contains a reference to the Pymata4 instance. You use this
 reference to access the Pymata4 methods of the instance. 
 
-For example to cleanly shutdown your Pymata4 application, you might call
+For example, to cleanly shutdown your Pymata4 application, you might call
 the *shutdown* method:
 
 ```python
 board.shutdown()
 ```
 
-Of course you can name the instance variable anything that is meaningful to you.
+Of course, you can name the instance variable, anything that is meaningful to you.
 There is nothing *magic* about the name *board*.
 
 
-## Understanding The Pymata4 Parameters
+## Understanding The Pymata4 *\__init__* Parameters
 ```python
 def __init__(self, com_port=None, baud_rate=115200,
                  arduino_instance_id=1, arduino_wait=4,
@@ -42,13 +42,6 @@ If you are using FiramataExpress with a single Arduino, then in most cases, you
 But there are times when you may wish to take advantage of the flexibility provided
 by the \__init__ method parameters, so let's explore the definition and purpose
 of each parameter:
-
-```python
-def __init__(self, com_port=None, baud_rate=115200,
-                 arduino_instance_id=1, arduino_wait=4,
-                 sleep_tune=0.000001,
-                 shutdown_on_exception=True):
-```
 
 ### The Auto-Discovery Parameters - com_port, baud_rate, and arduino_instance
 By accepting the default values for these parameters, pymata4 assumes you have
@@ -66,18 +59,18 @@ FirmataExpress, you will set the baud_rate to 57600. If you specify the baud_rat
 and accept the default com_port value, pymata4 attempts to find a connected Arduino
 Instantiating The Pymata4 Class
 
-But there are times when you may wish to take advantage of the flexibility provided by the __init__ method parameters, so let's explore the definition and purpose of each parameter:
-
-The Auto-Discovery Parameters - com_port, baud_rate, and arduino_instance
-
-By accepting the default values for these parameters, pymata4 assumes you have flashed your Arduino with FirmataExpress.
-
 ### arduino_instance_id
 This parameter is only valid when using FirmataExpress. This parameter
-allows pymata4 to match a specific com_port with a specific Arduino.
+allows pymata4 to connect to an Arduino with a matching ID.
+
+This is useful if you have multiple Arduino's plugged into your computer
+and you wish to have a specific Arduino selected for connection. 
+
+StandardFirmata does not have this capability, and auto-discovery connects to the first
+Arduino it finds. This is not always the desired result.
+
 The default value for the arduino_instance_id for both pymata4 and FirmataExpress is 1.
-To allow pymata4 to auto-discover the com_port for a specific connected Arduino, the
-arduino_instance_id values in both the FirmataExpress and pymata4 must match.
+
 Instructions for changing the FirmataExpress value may be found
 in the [**Installing FirmataExpress**](/firmata_express/#installation-instruction) section of this document.
 
@@ -90,14 +83,18 @@ auto-discovery will fail.
 
 ### sleep_tune
 This is the sleep value expressed in seconds, that is used at several strategic
-points in pymata4. For example, the serial receiver continuously checks if a 
-character is available to be received from the Arduino. If there is no character in the
-buffer, this thread sleeps for the sleep_tune value before checking again.
+points in pymata4. For example, the serial receiver continuously checks the serial port receive
+buffer for an available
+character to process. If there is no character in the
+buffer, pymata4 sleeps for the sleep_tune period before checking again.
+
 The default value is 0.000001 seconds.
 
 ### shutdown_on_exception
-The default value is True. When an exception occurs within pymata4,
-the shutdown method is called to perform an orderly shutdown. If you set
+When an exception is detected within pymata4, if this parameter
+is set to True, 
+the _shutdown_ method is called before raising the exception. 
+to perform an orderly pymata4 shutdown. The Arduino will be set to a knownIf you set
 this to False, the exception is raised without calling shutdown.
 
 By setting this parameter to False, the Arduino will remain in its current state. 

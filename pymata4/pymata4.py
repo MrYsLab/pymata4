@@ -1135,7 +1135,7 @@ class Pymata4(threading.Thread):
         """
         This is FirmataExpress feature.
 
-        Set the analog pin to tone mode.
+        Set a PWM pin to tone mode.
 
         :param pin_number: arduino pin number
 
@@ -1269,7 +1269,6 @@ class Pymata4(threading.Thread):
         This is a FirmataExpress feature
 
         Move a stepper motor for the number of steps at the specified speed.
-        This is a FirmataPlus feature.
 
         :param motor_speed: 21 bits of data to set motor speed
 

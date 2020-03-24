@@ -652,7 +652,7 @@ class Pymata4(threading.Thread):
 
         [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
 
-        The pin_type for sonar pins = 6
+        The pin_type for i2c = 6
 
         """
 
@@ -681,7 +681,7 @@ class Pymata4(threading.Thread):
 
         [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
 
-        The pin_type for sonar pins = 6
+        The pin_type for i2c = 6
 
 
         """
@@ -713,7 +713,7 @@ class Pymata4(threading.Thread):
 
         [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
 
-        The pin_type for sonar pins = 6
+        The pin_type for i2c pins = 6
 
         """
 

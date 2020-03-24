@@ -1,8 +1,9 @@
 # Communicating With I2C Devices
-Pymata4 provides a set of API methods to allow an application to read and write
-to i2c devices.
+Pymata4 supports multiple i2c devices connected to the i2c bus.
+The application communicates and controls an i2c device by using 
+the following API methods:
 
-
+## 
 
 
 a set

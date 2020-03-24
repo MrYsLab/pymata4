@@ -1,13 +1,13 @@
 # Introduction
-An Arduino pin has the capability to be configured to operate in one of several modes.
+An Arduino pin can be configured to operate in one of several modes.
 The modes available to any given pin is dependent upon pin type.
 
-For example, 
-a digital pin may be configured for input, output or and for some digital pins, PWM output operation.
+For example, f
+a digital pin may be configured for input, output, or and for some digital pins, PWM output operation.
 
 Analog input pins
 are even more flexible.
-They may be configured for analog input, digital input or digital output operation.
+They may be configured for analog input, digital input, or digital output operation.
 
 Pymata4 requires that before using a pin, its mode must be explicitly set. This is accomplished using one of
 the pymata4 mode setting methods.
@@ -44,10 +44,9 @@ provided.
 ***Notes:*** 
 
 1. When an analog input message is received from Firmata, the current reported
-data value is compared with that of the previous reported value. If the the difference, either positive or negative,
+data value is compared with that of the previously reported value. If the difference, either positive or negative,
 is greater than the differential parameter, then the callback is invoked. This is useful when you have a "noisy"
-input that may constantly fluctuate by a small value, and you wish to only to be alerted when the fluctuation
-is more meaningful than the noise.
+input that may constantly fluctuate by a small value, and you wish to ignore the noise.
 2. Pymata4 refers to analog pins using the numeric portion of the pin number only. 
 For example, pin A3 is referred to as pin 3.
 
@@ -127,7 +126,7 @@ For example, pin A3 is referred to as pin 3.
 
 ***Notes:*** 
 
-1. Only certain digital pins support PWM mode. Check with the Arduino documentation
+1. Only specific digital pins support PWM mode. Check with the Arduino documentation
 to determine which pins support PWM for your board.
 
 ## DEVICE TYPE PIN MODES
@@ -218,7 +217,7 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 ```python
  def set_pin_mode_tone(self, pin_number)
 
-    This is FirmataExpress feature.
+    This is a FirmataExpress feature.
 
     Set a PWM pin to tone mode.
 

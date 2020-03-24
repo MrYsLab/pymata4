@@ -5,7 +5,8 @@ nav:
     - The Pymata4 API:
         - The __init__ Method: init.md
         - Pin Modes: pin_modes.md
-        - Polling And Callbacks: polling.md
+        - Input Data Polling: pin_changes.md
+        - I2C Reads And Writes: i2c.md
         - Report Requests: report_requests.md
         - Management Requests: management.md
         - Exceptions: exceptions.md

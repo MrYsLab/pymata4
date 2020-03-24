@@ -36,7 +36,7 @@ provided.
 
     The pin_type for analog input pins = 2
 ```
-### Example:
+### Examples:
 
 1. [analog_input_with_time_stamps.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps.py)
 2. [analog_input_with_time_stamps_oo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps_oo.py)
@@ -93,9 +93,9 @@ For example, pin A3 is referred to as pin 3.
     The pin_type for digital input pins with pullups enabled = 11
 
 ```
-### Examples: 
+### Example: 
 
-[digital_input_pullup.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_pullup.py) 
+1. [digital_input_pullup.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_pullup.py) 
 
 ## set_pin_mode_digital_output
 ```python

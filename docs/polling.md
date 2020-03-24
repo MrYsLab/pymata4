@@ -44,6 +44,7 @@ The application may query or poll these data structures to obtain the
 latest data updates for a given pin. 
 
 The pymata4 API methods that implement polling are:
+
 * analog_read
 * digital_read
 * i2c_read_saved_data

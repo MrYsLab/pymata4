@@ -1,92 +1,219 @@
 # Introduction
-Arduino pins can be configured to work in a variety of ways. For example,
-a digital pin may be configured to act as either an input or an output. Analog input pins
+An Arduino pin has the capability to be configured to operate in one of several modes.
+The modes available to any given pin is dependent upon pin type.
+
+For example, 
+a digital pin may be configured for input, output or and for some digital pins, PWM output operation.
+
+Analog input pins
 are even more flexible.
-They may be configured to act as an analog input, digital input or digital output.
+They may be configured for analog input, digital input or digital output operation.
 
-Before looking at the specific pin mode methods and how to use them, 
-let's discuss Arduino pin modes in a little more detail.
+Pymata4 requires that before using a pin, its mode must be explicitly set. This is accomplished using one of
+the pymata4 mode setting methods.
 
-## Digital Pin Modes
+In this section, the methods to set pin modes are presented. For each API method, a link to an example is
+provided. 
 
-**NOTE:**  The Arduino terminology, in my opinion, can be confusing when discussing PWM
-functionality. In Arduino terminology, the function  to perform a *write* on a PWM pin is *analog_write*.
-However there are Arduino boards available that have true Digital To Analog Converters, and
-as a result, the term *analog* is ambiguous. To keep the terminology explicit, 
-pymata4 refers to PWM operations using PWM in the method's name.
+# ANALOG PIN MODE
 
+## set_pin_mode_analog_input
 
-### __set_pin_mode_digital_input__
+```python
+ def set_pin_mode_analog_input(self, pin_number, callback=None, differential=1)
 
-method signature
+    Set a pin as an analog input.
 
-__set_pin_mode_digital_input_pullup__
+    :param pin_number: arduino pin number
 
-__set_pin_mode_digital_output__
+    :param callback: callback function
 
-__set_pin_mode_pwm_output__
+    :param differential: This value needs to be met for a callback to be invoked.
 
+    callback returns a data list:
 
+    [pin_type, pin_number, pin_value, raw_time_stamp]
 
+    The pin_type for analog input pins = 2
+```
+### Example:
 
+1. [analog_input_with_time_stamps.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps.py)
+2. [analog_input_with_time_stamps_oo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps_oo.py)
 
-Currently the Firmata protocol does not support DAC operations, but if it does in the future,
-pymata4 can be easily enhanced to support true DAC and continue to be explicit in its
-terminology.
+***Notes:*** 
 
-## Analog Pins
-
-When using the standard Arduino C++ API to differentiate analog from digital pins, an analog pin 
-is specified by using the letter "A" prefixing the pin number.
-
-With pymata4, such a distinction is not necessary because 
-the pymata4 methods that address analog functionality all contain the word
-"analog" in their names.
-
-As a result, to specify an analog pin number, you only use the numeric portion 
-of the pin name. For example, if you wish to refer to analog input pin 3 (A3), with
-pymata4, it is simply referred to as 3. This simplifies parsing pin numbers when your
-application receives data change notifications for the pin.
+1. When an analog input message is received from Firmata, the current reported
+data value is compared with that of the previous reported value. If the the difference, either positive or negative,
+is greater than the differential parameter, then the callback is invoked. This is useful when you have a "noisy"
+input that may constantly fluctuate by a small value, and you wish to only to be alerted when the fluctuation
+is more meaningful than the noise.
+2. Pymata4 refers to analog pins using the numeric portion of the pin number only. 
+For example, pin A3 is referred to as pin 3.
 
 
-* __set_pin_mode_analog_input__
-* __analog_read__
-* __disable_analog_reporting__
-* __enable_analog_reporting__
+# DIGITAL PIN MODES
+
+## set_pin_mode_digital_input
+```python
+ def set_pin_mode_digital_input(self, pin_number, callback=None)
+
+    Set a pin as a digital input.
+
+    :param pin_number: arduino pin number
+
+    :param callback: callback function
+
+    callback returns a data list:
+
+    [pin_type, pin_number, pin_value, raw_time_stamp]
+
+    The pin_type for digital input pins = 0
+```
+
+### Examples: 
+
+1. [digital_input.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input.py)
+2. [digital_input_debounce.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_debounce.py)
+
+## set_pin_mode_digital_input_pullup
+
+```python
+ def set_pin_mode_digital_input_pullup(self, pin_number, callback=None)
+
+    Set a pin as a digital input with pullup enabled.
+
+    :param pin_number: arduino pin number
+
+    :param callback: callback function
+
+    callback returns a data list:
+
+    [pin_type, pin_number, pin_value, raw_time_stamp]
+
+    The pin_type for digital input pins with pullups enabled = 11
+
+```
+### Examples: 
+
+[digital_input_pullup.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_pullup.py) 
+
+## set_pin_mode_digital_output
+```python
+ def set_pin_mode_digital_output(self, pin_number)
+
+    Set a pin as a digital output pin.
+
+    :param pin_number: arduino pin number
+
+```
+### Examples: 
+1. [digital_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_output.py)
+2. [digital_pin_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_pin_output.py)
 
 
+## set_pin_mode_pwm_output
 
-# Pymata4 Mode Types
-Pymata4 separates modes into two classifications. The first set are the pin modes,
-and the second are device modes, for items such as a servo or stepper motor.
+```python
+ def set_pin_mode_pwm_output(self, pin_number)
 
-Before using a pin or device, pymata4 requires that the application explicitly
-sets the desired mode. 
+    Set a pin as a pwm (analog output) pin.
 
-##  Setting Pin Modes
+    :param pin_number:arduino pin number
+```
 
-### set_pin_mode_analog_input
+### Examples:
+1. [pwm_analog_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/pwm_analog_output.py)
 
-### set_pin_mode_digital_input
+***Notes:*** 
 
-### set_pin_mode_digital_input_pullup
+1. Only certain digital pins support PWM mode. Check with the Arduino documentation
+to determine which pins support PWM for your board.
 
-### set_pin_mode_digital_output
+## DEVICE TYPE PIN MODES
 
-### set_pin_mode_pwm_output
+## set_pin_mode_i2c
+```python
+def set_pin_mode_i2c(self, read_delay_time=0)
 
-## Setting Device Modes
+    Establish the standard Arduino i2c pins for i2c utilization.
 
-### set_pin_mode_i2c
+    NOTE: THIS METHOD MUST BE CALLED BEFORE ANY I2C REQUEST IS MADE:
+          This method initializes Firmata for I2c operations.
 
-### set_pin_mode_servo
+    :param read_delay_time (in microseconds): an optional parameter, default is 0
 
-### set_pin_mode_sonar
+    NOTE: Callbacks are set within the individual i2c read methods of this API. 
+          See i2c_read, i2c_read_continuous, or i2c_read_restart_transmission.
+```
 
-### set_pin_mode_stepper
+### Example:
+1. [i2c_adxl345_accelerometer.py](https://github.com/MrYsLab/pymata4/blob/master/examples/i2c_adxl345_accelerometer.py)
 
-### set_pin_mode_tone
+## set_pin_mode_servo
+```python
+ def set_pin_mode_servo(self, pin, min_pulse=544, max_pulse=2400)
 
+    Configure a pin as a servo pin. Set pulse min, max in ms.
+
+    :param pin: Servo Pin.
+
+    :param min_pulse: Min pulse width in ms.
+
+    :param max_pulse: Max pulse width in ms.
+```
+### Example:
+1. [servo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/servo.py)
+
+## set_pin_mode_sonar
+```python
+ def set_pin_mode_sonar(self, trigger_pin, echo_pin, callback=None, timeout=80000)
+
+    This is a FirmataExpress feature.
+
+    Configure the pins,ping interval and maximum distance for an HC-SR04 type device.
+
+    Single pin configuration may be used. To do so, set both the trigger and echo pins to the same value.
+
+    Up to a maximum of 6 SONAR devices is supported. If the maximum is exceeded a message is sent to the console and the request is ignored.
+
+    NOTE: data is measured in centimeters. Callback is called only when the the latest value received is different than the previous.
+
+    :param trigger_pin: The pin number of for the trigger (transmitter).
+
+    :param echo_pin: The pin number for the received echo.
+
+    :param cb: optional callback function to report sonar data changes
+
+    :param timeout: a tuning parameter. 80000UL equals 80ms.
+
+    callback returns a data list:
+
+    [pin_type, trigger_pin_number, distance_value (in cm), raw_time_stamp]
+
+    The pin_type for sonar pins = 12
+
+```
+### Example:
+1. [hc-sr04_distance_sensor.py](https://github.com/MrYsLab/pymata4/blob/master/examples/hc-sr04_distance_sensor.py)
+
+## set_pin_mode_stepper
+```python
+ def set_pin_mode_stepper(self, steps_per_revolution, stepper_pins)
+
+    This is a FirmataExpress feature.
+
+    Configure stepper motor prior to operation. 
+
+    :param steps_per_revolution: number of steps per motor revolution
+
+    :param stepper_pins: a list of control pin numbers - either 4 or 2 pins
+```
+### Example:
+1. [stepper.py](https://github.com/MrYsLab/pymata4/blob/master/examples/stepper.py)
+
+## set_pin_mode_tone
+ 
 
 
 

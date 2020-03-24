@@ -171,13 +171,15 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 
     This is a FirmataExpress feature.
 
-    Configure the pins,ping interval and maximum distance for an HC-SR04 type device.
+    Configure the pins,ping interval and maximum distance for 
+    an HC-SR04 type device.
 
-    Single pin configuration may be used. To do so, set both the trigger and echo pins to the same value.
+    Up to a maximum of 6 SONAR devices is supported. 
+    If the maximum is exceeded a message is sent to the console and 
+    the request is ignored.
 
-    Up to a maximum of 6 SONAR devices is supported. If the maximum is exceeded a message is sent to the console and the request is ignored.
-
-    NOTE: data is measured in centimeters. Callback is called only when the the latest value received is different than the previous.
+    NOTE: data is measured in centimeters. Callback is 
+    called only when the the latest value received is different than the previous.
 
     :param trigger_pin: The pin number of for the trigger (transmitter).
 
@@ -213,8 +215,17 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 1. [stepper.py](https://github.com/MrYsLab/pymata4/blob/master/examples/stepper.py)
 
 ## set_pin_mode_tone
- 
+```python
+ def set_pin_mode_tone(self, pin_number)
 
+    This is FirmataExpress feature.
+
+    Set a PWM pin to tone mode.
+
+    :param pin_number: arduino pin number
+``` 
+### Example:
+1. [play_tone.py](https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py)
 
 
 

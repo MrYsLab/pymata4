@@ -1061,9 +1061,6 @@ class Pymata4(threading.Thread):
         Configure the pins,ping interval and maximum distance for an HC-SR04
         type device.
 
-        Single pin configuration may be used. To do so, set both the trigger
-        and echo pins to the same value.
-
         Up to a maximum of 6 SONAR devices is supported.
         If the maximum is exceeded a message is sent to the console and the
         request is ignored.

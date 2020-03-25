@@ -47,8 +47,9 @@ Refer to the [Firmata Protocol specification](https://github.com/firmata/protoco
 1. [retrieve_firmware_version.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_firmware_version.py)
 
 *** NOTES: *** 
-This report will return the major and minor numbers of the release 
-as well as the name of the sketch.
+This report will return the major and minor numbers of the release and 
+the firmware name.
+
 
 ## get_pin_state
 ```python
@@ -109,7 +110,7 @@ Refer to the [Firmata Protocol specification](https://github.com/firmata/protoco
     :returns: PyMata Express version number.
 ```
 ### Example: 
-1. [retrieve_protocol_version.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_protocol_version.py)
+1. [retrieve_pymata_version.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_pymata_version.py)
 
 <br>
 <br>

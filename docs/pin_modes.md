@@ -49,6 +49,8 @@ is greater than the differential parameter, then the callback is invoked. This i
 input that may constantly fluctuate by a small value, and you wish to ignore the noise.
 2. Pymata4 refers to analog pins using the numeric portion of the pin number only. 
 For example, pin A3 is referred to as pin 3.
+3. Data reporting via callbacks for this pin begins immediately after this method is called. 
+
 
 
 # DIGITAL PIN MODES
@@ -75,6 +77,11 @@ For example, pin A3 is referred to as pin 3.
 1. [digital_input.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input.py)
 2. [digital_input_debounce.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_debounce.py)
 
+***Notes:*** 
+
+1. Data reporting via callbacks for this pin begins immediately after this method is called. 
+
+
 ## set_pin_mode_digital_input_pullup
 
 ```python
@@ -96,6 +103,10 @@ For example, pin A3 is referred to as pin 3.
 ### Example: 
 
 1. [digital_input_pullup.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_pullup.py) 
+
+***Notes:*** 
+
+1. Data reporting via callbacks for this pin begins immediately after this method is called. 
 
 ## set_pin_mode_digital_output
 ```python

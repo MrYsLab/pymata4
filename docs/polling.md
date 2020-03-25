@@ -1,7 +1,10 @@
-# Firmata And Input Data
+# Processing Input Data
 
-Understanding how the Firmata sketches handle input data changes may be
+Understanding how both Firmata generates input data notification messages, as well as 
+how pymata4 processes these messages, may be
 beneficial in designing your application.
+
+## Firmata Data Collection
 
 Both the FirmataExpress and StandardFirmata sketches poll all input pins within the *loop method*
 of the sketch.

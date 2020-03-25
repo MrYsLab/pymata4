@@ -1,10 +1,11 @@
 site_name: pymata4
 nav:
     - What Is Pymata4?: index.md
-    - Before We Get Started: polling.md
+    - Understanding Input Data Collection: polling.md
     - The Pymata4 API:
         - The __init__ Method: init.md
         - Pin Modes: pin_modes.md
+        - Enabling/Disabling Analog And Digital Reporting: enable_disable.md
         - Reading Input Data Via Polling: pin_changes.md
         - Writing To Pins And Selected Devices:  device_writes.md
         - I2C Reads And Writes: i2c.md

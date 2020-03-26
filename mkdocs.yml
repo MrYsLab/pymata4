@@ -1,8 +1,8 @@
 site_name: pymata4
 nav:
     - What Is Pymata4?: index.md
-    - Understanding Input Data Collection: polling.md
     - The Pymata4 API:
+        - Understanding Input Data Collection: polling.md
         - The __init__ Method: init.md
         - Pin Modes: pin_modes.md
         - Enabling/Disabling Analog And Digital Reporting: enable_disable.md
@@ -20,4 +20,6 @@ nav:
         - Installing FirmataExpress: firmata_express.md
     - About: about.md
     - License: license.md
-theme: windmill
+# theme: windmill
+theme:
+  name: 'material'

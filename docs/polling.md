@@ -1,8 +1,11 @@
 # Processing Input Data
 
-Understanding how both Firmata generates input data notification messages, as well as 
+Before discussing the API, understanding how both Firmata generates input data 
+notification messages, as well as 
 how pymata4 processes these messages, may be
-beneficial in designing your application.
+beneficial in designing your application. Understanding the
+differences between using a callback versus polling is 
+crucial when designing your application.
 
 ## Firmata Data Collection
 
@@ -10,32 +13,38 @@ Both the FirmataExpress and StandardFirmata sketches poll all input pins within 
 of the sketch.
 
 Firmata builds notification messages containing the pin number, pin type, and data value,
- and these messages are sent to pymata4
+ and transmits these messages to pymata4
 over the serial link.
 
 ## Firmata Data Polling
 
 ### Digital Input
-For digital input pins, all the pins are polled with *each* iteration of the loop,
-with no delays. Data changes are reported by generating change notification
- messages and transmitting them over the serial link.
-
+For digital input pins, all the pins are polled with *each* iteration of the sketch *loop*,
+with no delays. If the state of a pin has changed since the last loop iteration,
+Firmata creates a notification message and transmits the messaage over the serial link
+to pymata4.
 
 ### Analog Input
-For analog input pins, the Firmata *loop* polls and reports the current value of each pin, 
-regardless of change, 
+For analog input pins, each pin is polled and its current value is reported,
+regardless of whether its value has changed since the last iteration or not.
 All analog input pins are nominally polled every 19 milliseconds.
 
 ### I2C Input
+
+Typically an application polls 
+
+Some i2c devices may be placed in a continuous read mode. In this
+mode the i2c sends update notifications to the Firmata sketch periodically without
+additional commands from Firmata.
 If you are using i2c devices that support a continuous read mode,
 the Firmata *loop* polls each device. It then reports the current value of each device, regardless of change.
-This is done nominally every 19 milliseconds for all i2c devices configured for
+The polling rate is nominally every 19 milliseconds for all i2c devices configured for
 continuous read.
 
 ### Sonar (HC-SR04) Input
 FirmataExpress supports HC-SR04 type distance sensors. The Firmata *loop* polls each device 
 and reports its current value regardless of change.
-This is done nominally every 40 milliseconds.
+The polling rate is nominally every 40 milliseconds for HC-SR04 type devices.
 
 # Using Pymata4 To Access Input Data
 

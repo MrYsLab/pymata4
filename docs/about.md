@@ -1,7 +1,7 @@
 # REPORTING ISSUES
 
 If you wish to report an issue with Pymata Express please use
-[this link](https://github.com/MrYsLab/pymata-express/issues).
+[this link](https://github.com/MrYsLab/pymata4/issues).
 For FirmataExpress, please use [this link](https://github.com/MrYsLab/FirmataExpress/issues).
 
 When filing an issue, please provide any console output, a description
@@ -18,20 +18,7 @@ may exceed the maximum current capabilities of the USB port.
 In those cases, use a separate power supply for the
 connected device.
 
-When insufficient power is available, you may see
-an exception traceback that looks similar to the following:
 
-```
-Traceback (most recent call last):
-  File "/home/afy/PycharmProjects/pymata-express/examples/pymata_express/servo.py", line 44, in <module>
-    loop.run_until_complete(servo(board, 5))
-  File "/usr/local/lib/python3.7/asyncio/base_events.py", line 584, in run_until_complete
-    return future.result()
-concurrent.futures._base.CancelledError
-```
-
-This exception was caused while operating a servo motor. Connecting an external
-supply for the motor solved the issue.
 
 <br>
 <br>

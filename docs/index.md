@@ -1,10 +1,8 @@
 
 
-<div style="text-align:center;color:#990033; font-family:times, serif; font-size:3em"><i>pymata4</i></div>
+<div style="text-align:center;color:#990033; font-family:times, serif; font-size:3.5em"><i>pymata4</i></div>
 <div style="text-align:center;color:#990033; font-family:times, serif; font-size:2em"><i>A User's Guide</i></div>
 
-<br>
-<br>
 
 ## What is pymata4? 
 
@@ -17,7 +15,7 @@ advantage of the advanced feature set of
 the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress) (recommended) or StandardFirmata.
 Arduino server sketches. 
 
-## A summary of pymata4's major features:**
+## A summary of pymata4's major features:
 
 * Applications are programmed using conventional Python 3.
 * Data change events may be associated with a callback function for asynchronous notification, 

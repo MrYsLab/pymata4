@@ -10,6 +10,10 @@ of the issue, and a some code so that the problem can be reproduced.
 If you have any questions about Pymata Express or FirmataExpress, you
 may also use the issues links to do that as well.
 
+<br>
+<br>
+
+
 # TROUBLESHOOTING TIPS
 
 Powering both Arduino connected devices (such as motors) and the Arduino micro-controller

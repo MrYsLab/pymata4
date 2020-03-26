@@ -1,11 +1,12 @@
 # Remote Firmata Management
+The methods in this section allow your application to to 
+perform some Firmata management functions remotely.
 
 ## keep_alive
 
-This is a FirmataExpress feature. If you are using an Arduino
-with an Arduino that uses an ATmega328P processor, if serial communication
-is lost between pymata4 and the Arduino, the Arduino will perform 
-a hardware reset of itself.
+For Arduino's utilizing an ATmega328P processor, this
+exclusive FirmataExpress feature will reset the Arduino
+if serial communication is lost between pymata4 and the Arduino.
 
 ```python
  def keep_alive(self, period=1, margin=0.3)
@@ -31,6 +32,10 @@ a hardware reset of itself.
 
 [keep_alive.py](https://github.com/MrYsLab/pymata4/blob/master/examples/keep_alive.py)
 
+**Notes:**
+
+When keep_alive is called, it spawns and runs in its own thread.
+
 ## send_reset
 
 ```python
@@ -39,9 +44,9 @@ a hardware reset of itself.
     Send a Sysex reset command to the arduino
 ```
 
-**Example:**
+**Examples:**
 
-[send_reset.py](https://github.com/MrYsLab/pymata4/blob/master/examples/keep_alive.py)
+All examples call shutdown, which in turn calls send_reset.
 
 **Notes:**
 
@@ -53,6 +58,20 @@ This command will reset several Firmata internal data structures.
 * If a pin was configured for tone, the tone is turned off.
 * It clears all servo entries from its servo map.
 * It sets the number of active sonar devices to zero.
+
+The shutdown method calls *send_reset*.
+
+## shutdown
+
+```python
+ def shutdown(self)
+
+    This method attempts an orderly shutdown.
+    If any exceptions are thrown, they are ignored.
+```
+**Examples:**
+
+All the examples call shutdown.
 
 <br>
 <br>

@@ -7,7 +7,7 @@ In this section, we discuss writing data to:
 * Servo motors.
 * Stepper motors.
 
-***NOTE:*** I2C devices are discussed in the [next section](/i2c)
+**Note:** I2C devices are discussed in the [next section](/i2c)
  of this guide. 
 
 ## digital_write
@@ -21,7 +21,7 @@ In this section, we discuss writing data to:
     :param value: pin value (1 or 0)
 
 ```
-### Example: 
+**Example:**
 
 1. [digital_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_output.py) 
 
@@ -37,13 +37,13 @@ In this section, we discuss writing data to:
     :param value: Pin value (0 - 0x4000)
 ```
 
-### Example: 
+**Example:**
 
 1. [pwm_analog_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/pwm_analog_output.py) 
 
-***Notes:*** 
+**Notes:** 
 
-1. The value parameter is typically set between 0 and 255.
+The value parameter is typically set between 0 and 255.
 
 ## play_tone
 ```python
@@ -60,7 +60,7 @@ In this section, we discuss writing data to:
     :param duration: duration in milliseconds
 
 ```
-### Example: 
+**Example:**
 
 1. [play_tone.py](https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py) 
 
@@ -76,7 +76,7 @@ In this section, we discuss writing data to:
 
     :param frequency: tone frequency in hz
 ```
-### Example: 
+**Example:**
 
 1. [play_tone.py](https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py) 
 
@@ -91,7 +91,7 @@ In this section, we discuss writing data to:
     :param pin_number: arduino pin number
 ```
 
-### Example: 
+**Example:**
 
 1. [play_tone.py](https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py) 
 
@@ -106,13 +106,13 @@ In this section, we discuss writing data to:
 
     :param position: servo position
 ```
-### Example: 
+**Example:**
 
 1. [servo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/servo.py) 
 
-***Notes:*** 
+**Notes:** 
 
-1. For an angular servo, the position parameter is set between 0 and 180 (degrees).
+For an angular servo, the position parameter is set between 0 and 180 (degrees).
 For a continuous servo, 0 is full-speed in one direction, 
 180 is full speed in the other, and a value near 90 is no movement.
 
@@ -129,7 +129,7 @@ For a continuous servo, 0 is full-speed in one direction,
     :param number_of_steps: 14 bits for number of steps & direction positive is forward, negative is reverse
 
 ```
-### Example: 
+**Example:**
 
 1. [stepper.py](https://github.com/MrYsLab/pymata4/blob/master/examples/stepper.py) 
 

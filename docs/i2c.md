@@ -3,16 +3,21 @@ Pymata4 has the capability to support one or more i2c devices connected
  to the i2c bus.
 The API supports several i2c read methods, and a single i2c write method, described below.
 
-***NOTE 1:*** If you do not specify a callback for any give read method, to retrieve the latest
+**NOTE 1:** 
+
+If you do not specify a callback for any give read method, to retrieve the latest
 values, you will need to use the [i2c_read_saved_data](/pin_changes/#i2c_read_saved_data) method. 
 The amount of time it takes an i2c device to reply to a an i2c read varies from device to device.
 Therefore it is simpler to use callbacks.
 
-***NOTE 2:*** An example,  is provided for *i2c_read*. Callbacks for i2c_read, 
+**NOTE 2:** 
 
-# I2c Read Methods
+Refer to [this example](https://github.com/MrYsLab/pymata4/blob/master/examples/i2c_adxl345_accelerometer.py) 
+for the i2c read and write methods.
 
-## i2c_read
+## Read Commands
+
+### i2c_read
 
 ```python
  def i2c_read(self, address, register, number_of_bytes, callback=None)
@@ -37,11 +42,12 @@ Therefore it is simpler to use callbacks.
     The pin_type for i2c = 6
 
 ```
-### Example:
+**Example:**
 
-See NOTE2 above.
+See NOTE 2 above.
 
-## i2c_read_continuous
+### i2c_read_continuous
+
 ```python
  def i2c_read_continuous(self, address, register, number_of_bytes, callback=None)
 
@@ -65,11 +71,12 @@ See NOTE2 above.
     The pin_type for i2c = 6
 
 ```
-### Example:
+**Example:**
 
-See NOTE2 above.
+See NOTE 2 above.
 
-## i2c_read_restart_transmission
+### i2c_read_restart_transmission
+
 ```python
  def i2c_read_restart_transmission(self, address, register, number_of_bytes, callback=None)
 
@@ -90,12 +97,30 @@ See NOTE2 above.
     The pin_type for i2c pins = 6
 ```
 
-### Example:
+**Example:**
 
-See NOTE2 above.
+See NOTE 2 above.
 
-# I2c Write Method
-##
+### i2c_read_saved_data
+
+
+```python
+ def i2c_read_saved_data(self, address)
+
+    This method retrieves cached i2c data to support a polling mode.
+
+    :param address: I2C device address
+
+    :returns: Last cached value reported This contains the number of bytes requested followed by the time_stamp.
+```
+**Example:**
+
+See NOTE 2 above.
+
+
+## Write Commmand
+
+### i2c_write
 ```python
  def i2c_write(self, address, args)
 

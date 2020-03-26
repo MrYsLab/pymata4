@@ -22,13 +22,13 @@ reporting before exiting your application.
     :param pin: Analog pin number. For example for A0, the number is 0.
 ```
 
-### Example: 
+**Example:**
 
 1. [disable_enable_analog_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_analog_reporting.py) 
 
-***Notes:*** 
+**Notes:**
 
-1. This method resets the pin mode for the specified pin to a digital input
+This method resets the pin mode for the specified pin to a digital input
 mode. 
 
 
@@ -47,7 +47,7 @@ mode.
     :param differential: This value needs to be met for a callback to be invoked.
 ```
 
-### Example: 
+**Example:**
 
 1. [disable_enable_analog_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_analog_reporting.py) 
 
@@ -60,7 +60,7 @@ mode.
 
     :param pin: Pin and all pins for this port
 ```
-### Example: 
+**Example:**
 
 1. [disable_enable_digital_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_analog_reporting.py) 
 
@@ -77,7 +77,7 @@ mode.
     :returns: No return value
 
 ```
-### Example: 
+**Example:**
 
 1. [disable_enable_digital_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_analog_reporting.py) 
 

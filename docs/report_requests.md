@@ -12,14 +12,17 @@ block until they return.
     :returns: An analog map response or None if a timeout occurs
 
 ```
-### Example: 
+**Example:** 
+
 1. [retrieve_analog_map.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_analog_map.py)
 
-*** NOTES: *** 
+**Notes:**
+
 Refer to the [Firmata Protocol specification](https://github.com/firmata/protocol/blob/master/protocol.md#analog-mapping-query)
  for an explanation of the report data. 
 
 ## get_capability_report
+
 ```python
  def get_capability_report(self)
 
@@ -28,14 +31,16 @@ Refer to the [Firmata Protocol specification](https://github.com/firmata/protoco
 
     :returns: A capability report in the form of a list
 ```
-### Example: 
+**Example:** 
+
 1. [retrieve_capability_report.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_capability_report.py)
 
-*** NOTES: *** 
+**Notes:**
+
 Refer to the [Firmata Protocol specification](https://github.com/firmata/protocol/blob/master/protocol.md#capability-query)
  for an explanation of the report data.]
  
- ## get_firmware_version
+## get_firmware_version
 ```python
   def get_firmware_version(self)
 
@@ -43,10 +48,12 @@ Refer to the [Firmata Protocol specification](https://github.com/firmata/protoco
 
     :returns: Firmata firmware version
 ```
-### Example: 
+**Example:** 
+
 1. [retrieve_firmware_version.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_firmware_version.py)
 
-*** NOTES: *** 
+**Notes:**
+
 This report will return the major and minor numbers of the release and 
 the firmware name.
 
@@ -81,10 +88,12 @@ the firmware name.
 
     :returns: pin state report
 ```
-### Example: 
+**Example:** 
+
 1. [retrieve_pin_state.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_pin_state.py)
 
-*** NOTES: *** 
+**Notes:**
+
 Refer to the [Firmata Protocol specification](https://github.com/firmata/protocol/blob/master/protocol.md#pin-state-query)
  for an explanation of the report data.]
 
@@ -97,7 +106,8 @@ Refer to the [Firmata Protocol specification](https://github.com/firmata/protoco
 
     :returns: Firmata protocol version
 ```
-### Example: 
+**Example:**
+
 1. [retrieve_protocol_version.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_protocol_version.py)
 
 
@@ -109,7 +119,8 @@ Refer to the [Firmata Protocol specification](https://github.com/firmata/protoco
 
     :returns: PyMata Express version number.
 ```
-### Example: 
+**Example:** 
+
 1. [retrieve_pymata_version.py](https://github.com/MrYsLab/pymata4/blob/master/examples/retrieve_pymata_version.py)
 
 <br>

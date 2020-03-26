@@ -2,7 +2,7 @@
 An Arduino pin can be configured to operate in one of several modes.
 The modes available to any given pin is dependent upon pin type.
 
-For example, f
+For example, 
 a digital pin may be configured for input, output, or and for some digital pins, PWM output operation.
 
 Analog input pins
@@ -15,9 +15,9 @@ the pymata4 mode setting methods.
 In this section, the methods to set pin modes are presented. For each API method, a link to an example is
 provided. 
 
-# ANALOG PIN MODE
+## ANALOG PIN MODE
 
-## set_pin_mode_analog_input
+### set_pin_mode_analog_input
 
 ```python
  def set_pin_mode_analog_input(self, pin_number, callback=None, differential=1)
@@ -36,12 +36,12 @@ provided.
 
     The pin_type for analog input pins = 2
 ```
-### Examples:
+**Examples:**
 
 1. [analog_input_with_time_stamps.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps.py)
 2. [analog_input_with_time_stamps_oo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps_oo.py)
 
-***Notes:*** 
+**Notes:** 
 
 1. When an analog input message is received from Firmata, the current reported
 data value is compared with that of the previously reported value. If the difference, either positive or negative,
@@ -53,9 +53,9 @@ For example, pin A3 is referred to as pin 3.
 
 
 
-# DIGITAL PIN MODES
+## DIGITAL PIN MODES
 
-## set_pin_mode_digital_input
+### set_pin_mode_digital_input
 ```python
  def set_pin_mode_digital_input(self, pin_number, callback=None)
 
@@ -72,17 +72,17 @@ For example, pin A3 is referred to as pin 3.
     The pin_type for digital input pins = 0
 ```
 
-### Examples: 
+**Examples:** 
 
 1. [digital_input.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input.py)
 2. [digital_input_debounce.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_debounce.py)
 
-***Notes:*** 
+**Notes:** 
 
-1. Data reporting via callbacks for this pin begins immediately after this method is called. 
+Data reporting via callbacks for this pin begins immediately after this method is called. 
 
 
-## set_pin_mode_digital_input_pullup
+### set_pin_mode_digital_input_pullup
 
 ```python
  def set_pin_mode_digital_input_pullup(self, pin_number, callback=None)
@@ -100,15 +100,15 @@ For example, pin A3 is referred to as pin 3.
     The pin_type for digital input pins with pullups enabled = 11
 
 ```
-### Example: 
+**Example:** 
 
 1. [digital_input_pullup.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_pullup.py) 
 
-***Notes:*** 
+**Notes:** 
 
-1. Data reporting via callbacks for this pin begins immediately after this method is called. 
+Data reporting via callbacks for this pin begins immediately after this method is called. 
 
-## set_pin_mode_digital_output
+### set_pin_mode_digital_output
 ```python
  def set_pin_mode_digital_output(self, pin_number)
 
@@ -117,12 +117,12 @@ For example, pin A3 is referred to as pin 3.
     :param pin_number: arduino pin number
 
 ```
-### Examples: 
+**Examples:** 
 1. [digital_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_output.py)
 2. [digital_pin_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_pin_output.py)
 
 
-## set_pin_mode_pwm_output
+### set_pin_mode_pwm_output
 
 ```python
  def set_pin_mode_pwm_output(self, pin_number)
@@ -132,17 +132,17 @@ For example, pin A3 is referred to as pin 3.
     :param pin_number:arduino pin number
 ```
 
-### Examples:
+**Example:**
 1. [pwm_analog_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/pwm_analog_output.py)
 
-***Notes:*** 
+**Notes:** 
 
-1. Only specific digital pins support PWM mode. Check with the Arduino documentation
+Only specific digital pins support PWM mode. Check with the Arduino documentation
 to determine which pins support PWM for your board.
 
 ## DEVICE TYPE PIN MODES
 
-## set_pin_mode_i2c
+### set_pin_mode_i2c
 ```python
 def set_pin_mode_i2c(self, read_delay_time=0)
 
@@ -157,10 +157,10 @@ def set_pin_mode_i2c(self, read_delay_time=0)
           See i2c_read, i2c_read_continuous, or i2c_read_restart_transmission.
 ```
 
-### Example:
+**Example:**
 1. [i2c_adxl345_accelerometer.py](https://github.com/MrYsLab/pymata4/blob/master/examples/i2c_adxl345_accelerometer.py)
 
-## set_pin_mode_servo
+### set_pin_mode_servo
 ```python
  def set_pin_mode_servo(self, pin, min_pulse=544, max_pulse=2400)
 
@@ -172,10 +172,10 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 
     :param max_pulse: Max pulse width in ms.
 ```
-### Example:
+**Example:**
 1. [servo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/servo.py)
 
-## set_pin_mode_sonar
+### set_pin_mode_sonar
 ```python
  def set_pin_mode_sonar(self, trigger_pin, echo_pin, callback=None, timeout=80000)
 
@@ -206,10 +206,10 @@ def set_pin_mode_i2c(self, read_delay_time=0)
     The pin_type for sonar pins = 12
 
 ```
-### Example:
+**Example:**
 1. [hc-sr04_distance_sensor.py](https://github.com/MrYsLab/pymata4/blob/master/examples/hc-sr04_distance_sensor.py)
 
-## set_pin_mode_stepper
+### set_pin_mode_stepper
 ```python
  def set_pin_mode_stepper(self, steps_per_revolution, stepper_pins)
 
@@ -221,10 +221,10 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 
     :param stepper_pins: a list of control pin numbers - either 4 or 2 pins
 ```
-### Example:
+**Example:**
 1. [stepper.py](https://github.com/MrYsLab/pymata4/blob/master/examples/stepper.py)
 
-## set_pin_mode_tone
+### set_pin_mode_tone
 ```python
  def set_pin_mode_tone(self, pin_number)
 
@@ -234,7 +234,7 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 
     :param pin_number: arduino pin number
 ``` 
-### Example:
+**Example:**
 1. [play_tone.py](https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py)
 
 

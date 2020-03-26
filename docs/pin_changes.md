@@ -17,7 +17,8 @@ describes the API methods to retrieve the latest cached input data values.
     :returns: A list = [last value change, time_stamp]
 ```
 
-### Examples: 
+**Examples:**
+
 1. [analog_input_with_time_stamps.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps.py)
 2. [analog_input_with_time_stamps_oo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps_oo.py)
 
@@ -32,7 +33,7 @@ describes the API methods to retrieve the latest cached input data values.
     :returns: A list = [last value change, time_stamp]
 
 ``` 
-### Examples: 
+**Examples:**
 
 1. [digital_input.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input.py)
 2. [digital_input_debounce.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_debounce.py)
@@ -48,12 +49,10 @@ describes the API methods to retrieve the latest cached input data values.
 
     :returns: Last cached value reported This contains the number of bytes requested followed by the time_stamp.
 ```
-### Example: 
+**Example:**
 
 1. [i2c_adxl345_accelerometer.py](https://github.com/MrYsLab/pymata4/blob/master/examples/i2c_adxl345_accelerometer.py)
 
-<br>
-<br>
 
 ## sonar_read
 ```python
@@ -69,7 +68,7 @@ describes the API methods to retrieve the latest cached input data values.
 
     :returns: A list = [last value, raw time_stamp]
 ```
-### Example:
+**Example:**
 1. [hc-sr04_distance_sensor.py](https://github.com/MrYsLab/pymata4/blob/master/examples/hc-sr04_distance_sensor.py)
 
 

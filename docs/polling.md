@@ -21,37 +21,36 @@ over the serial link.
 ### Digital Input
 For digital input pins, all the pins are polled with *each* iteration of the sketch *loop*,
 with no delays. If the state of a pin has changed since the last loop iteration,
-Firmata creates a notification message and transmits the messaage over the serial link
+Firmata creates a notification message and transmits the message over the serial link
 to pymata4.
 
 ### Analog Input
-For analog input pins, each pin is polled and its current value is reported,
-regardless of whether its value has changed since the last iteration or not.
+For analog input pins, each pin is polled, and its current value is reported,
+regardless of change. 
 All analog input pins are nominally polled every 19 milliseconds.
 
 ### I2C Input
 
-Typically an application polls 
+Unlike digital and analog inputs, most I2C devices report values only when a read request is issued 
+ to the i2c device. For these i2c devices, a read request results in a single reply. 
 
 Some i2c devices may be placed in a continuous read mode. In this
-mode the i2c sends update notifications to the Firmata sketch periodically without
-additional commands from Firmata.
-If you are using i2c devices that support a continuous read mode,
-the Firmata *loop* polls each device. It then reports the current value of each device, regardless of change.
-The polling rate is nominally every 19 milliseconds for all i2c devices configured for
-continuous read.
+mode, the i2c device automatically sends update notifications,
+ usually as quickly as possible. When in continuous i2c mode, 
+the Firmata *loop* retrieves cached responses at a nominal polling rate of 19 milliseconds.
 
 ### Sonar (HC-SR04) Input
 FirmataExpress supports HC-SR04 type distance sensors. The Firmata *loop* polls each device 
 and reports its current value regardless of change.
 The polling rate is nominally every 40 milliseconds for HC-SR04 type devices.
 
-# Using Pymata4 To Access Input Data
 
-## *Polling* For Input Data Changes
+## Using Pymata4 To Access Input Data
+
+### *Polling* For Input Data Changes
 As pymata4 receives input data notifications, 
-it caches the data in internal data structures. These structures retain
-the value reported as well as a time of occurrence time-stamp.
+it caches the data in internal data structures. These data structures retain
+the value reported as well as the time of occurrence.
 The application may query or poll these data structures to obtain the
 latest data updates for a given pin. 
 
@@ -65,7 +64,7 @@ The pymata4 API methods that implement polling are:
 A more efficient and automatic way for your application to be notified
 of data updates is to use the pymata4 *callback* feature. 
 
-## Using *Callbacks* Instead Of Polling
+### Using *Callbacks* Instead Of Polling
 Callback notification is much more efficient than using polling.
 
 A callback is simply a function or method written by you, that is called automatically
@@ -83,15 +82,16 @@ methods:
 * i2c_read_continuous
 * i2c_read_restart_transmission
 
-You may write a callback function for each input pin, or write
+You may write a callback function for each input pin, write
 a callback function to handle any pin of single type, such as analog input
-or digital input, or even have a single callback function to handle all input data notifications.
+or digital input, or even have a single callback function handle all input data notifications.
 
 You may use callbacks with some pins while using polling for others. Polling is available
 for all input pins whether callbacks are in use or not.
 
-A callback function is specified with a single input parameter. Pymata4 passes in a list 
-of information when it calls the callback function. A description of what is contained in the list
+A callback function is specified to accept a single input parameter, typically named
+***data***. The input parameter will be filled with a list when pymata4 invokes the callback.
+A description of what is contained in the list
 is provided in the 
 [reference API.]((https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html) )
 

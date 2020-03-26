@@ -6,7 +6,7 @@
 <br>
 <br>
 
-**What is pymata4?** 
+## What is pymata4? 
 
 [Pymata4](https://github.com/MrYsLab/pymata4) is a Python 3  [Firmata Protocol](https://github.com/firmata/protocol) 
 client that, in conjunction with an Arduino Firmata sketch, permits you to control and monitor Arduino hardware
@@ -17,7 +17,7 @@ advantage of the advanced feature set of
 the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress) (recommended) or StandardFirmata.
 Arduino server sketches. 
 
-**Here is a summary of pymata4's major features:**
+## A summary of pymata4's major features:**
 
 * Applications are programmed using conventional Python 3.
 * Data change events may be associated with a callback function for asynchronous notification, 
@@ -28,7 +28,7 @@ or polling may be used when a synchronous approach is desired.
 * A full set of working examples
 are available for download [online.](https://github.com/MrYsLab/pymata4/tree/master/examples)
 
-**Advantages of Using The FirmataExpress Sketch Over StandardFirmata:**
+## Advantages of Using The FirmataExpress Sketch Over StandardFirmata:
 
 * The data link runs at 115200, twice the speed of StandardFirmata.
 * Advanced Arduino auto-discovery support is provided.
@@ -37,7 +37,7 @@ are available for download [online.](https://github.com/MrYsLab/pymata4/tree/mas
     * Stepper motors.
     * Tone generation for piezo devices.
 
-**Pymata4's API is intuitive and easy to use!**
+## Intuitive And Easy To use API
 
 For example, to receive asynchronous digital pin state data change notifications, you simply do the following:
 
@@ -110,7 +110,7 @@ Pin: 12 Value: 0 Time Stamp: 2020-03-10 13:26:22
 Pin: 12 Value: 1 Time Stamp: 2020-03-10 13:26:27
 ```
 
-**Here is what this document is going to cover:**
+## Document Overview
 
 * A discussion of the API methods including links to working examples.
 * Installation and system requirements:

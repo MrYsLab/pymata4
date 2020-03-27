@@ -668,7 +668,7 @@ Firmata sketch is shown on the right.</p>
 <p><img alt="" src="../images/threading.png" /></p>
 <h2 id="the-command-thread">The Command Thread</h2>
 <p>Whenever your application makes an API method call, it is interacting directly
-with the <em>Command Thread</em>. API calls may be though of as synchronous (blocking) or 
+with the <em>Command Thread</em>. API calls may be thought of as synchronous (blocking) or 
 asynchronous (non-blocking) calls.</p>
 <h3 id="synchronous-api-method-calls">Synchronous API Method Calls</h3>
 <p>The synchronous API methods may be placed into two categories. Calls that poll
@@ -755,7 +755,7 @@ available from the Arduino to process. When it detects data is present, it remov
 the data and adds it to a buffer. It parses the data as it arrives until a complete
 message is received.  </p>
 <p>If the <em>Reporter Thread</em> receives an input data type message, it writes 
-latest reported value to the appropriate shared data structure. </p>
+the latest reported value to the appropriate shared data structure. </p>
 <p>The <em>Reporter Thread</em> also determines if there is a registered callback method for the event. If so,
 it <em>calls</em> the callback method passing in the appropriate data list.</p>
 <p>Callback methods should be written to be as fast as possible so that the <em>Reporter Thread</em> is not

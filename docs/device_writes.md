@@ -7,7 +7,7 @@ In this section, we discuss writing data to:
 * Servo motors.
 * Stepper motors.
 
-**Note:** I2C devices are discussed in the [next section](/i2c)
+**Note:** I2C devices are discussed in the [next section](../i2c)
  of this guide. 
 
 ## digital_write

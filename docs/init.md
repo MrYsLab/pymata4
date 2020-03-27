@@ -71,7 +71,7 @@ Arduino it finds. This is not always the desired result.
 The default value for the arduino_instance_id for both pymata4 and FirmataExpress is 1.
 
 Instructions for changing the FirmataExpress value may be found
-in the [**Installing FirmataExpress**](./firmata_express/#installation-instructions) section of this document.
+in the [**Installing FirmataExpress**](./firmata_express) section of this document.
 
 ### arduino_wait
 This parameter specifies the amount of time that pymata4 assumes it takes for an Arduino 

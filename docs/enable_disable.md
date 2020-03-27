@@ -8,7 +8,7 @@ In this scenario, if you do not re-power the Arduino before restarting your appl
 the continuing data stream may cause pymata4 to fail because the data stream is out
 of sync with pymata4's state.
 
-One way of making sure that you do encounter this scenario is to turn off
+One way of making sure that you do not encounter this scenario is to turn off
 reporting before exiting your application.
 
 

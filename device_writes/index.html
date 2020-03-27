@@ -1,0 +1,805 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Writing Values To Pins And Selected Devices - pymata4</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#setting-pin-and-device-values" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="pymata4" aria-label="pymata4" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              pymata4
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Writing Values To Pins And Selected Devices
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="pymata4" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    pymata4
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="What Is Pymata4?" class="md-nav__link">
+      What Is Pymata4?
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      The Pymata4 API
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        The Pymata4 API
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../polling/" title="Understanding Input Data Collection" class="md-nav__link">
+      Understanding Input Data Collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../init/" title="The __init__ Method" class="md-nav__link">
+      The __init__ Method
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pin_modes/" title="Setting Pin Modes" class="md-nav__link">
+      Setting Pin Modes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../enable_disable/" title="Enabling/Disabling Analog And Digital Reporting" class="md-nav__link">
+      Enabling/Disabling Analog And Digital Reporting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pin_changes/" title="Reading Input Data Via Polling" class="md-nav__link">
+      Reading Input Data Via Polling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Writing Values To Pins And Selected Devices
+      </label>
+    
+    <a href="./" title="Writing Values To Pins And Selected Devices" class="md-nav__link md-nav__link--active">
+      Writing Values To Pins And Selected Devices
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#digital_write" class="md-nav__link">
+    digital_write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwm_write" class="md-nav__link">
+    pwm_write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#play_tone" class="md-nav__link">
+    play_tone
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#play_tone_continuously" class="md-nav__link">
+    play_tone_continuously
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#play_tone_off" class="md-nav__link">
+    play_tone_off
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servo_write" class="md-nav__link">
+    servo_write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stepper_write" class="md-nav__link">
+    stepper_write
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../i2c/" title="I2C Reads And Writes" class="md-nav__link">
+      I2C Reads And Writes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../report_requests/" title="Report Requests" class="md-nav__link">
+      Report Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../management/" title="Management Requests" class="md-nav__link">
+      Management Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exceptions/" title="Exceptions" class="md-nav__link">
+      Exceptions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../concurrency/" title="The Pymata4 Concurrency Model" class="md-nav__link">
+      The Pymata4 Concurrency Model
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      System and Installation Requirements
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        System and Installation Requirements
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_3_verify/" title="Verifying Python 3 Version" class="md-nav__link">
+      Verifying Python 3 Version
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_install/" title="Python 3 Installation" class="md-nav__link">
+      Python 3 Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../install_pymata4/" title="Installing pymata4" class="md-nav__link">
+      Installing pymata4
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../firmata_express/" title="Installing FirmataExpress" class="md-nav__link">
+      Installing FirmataExpress
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#digital_write" class="md-nav__link">
+    digital_write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwm_write" class="md-nav__link">
+    pwm_write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#play_tone" class="md-nav__link">
+    play_tone
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#play_tone_continuously" class="md-nav__link">
+    play_tone_continuously
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#play_tone_off" class="md-nav__link">
+    play_tone_off
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servo_write" class="md-nav__link">
+    servo_write
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stepper_write" class="md-nav__link">
+    stepper_write
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="setting-pin-and-device-values">Setting Pin and Device Values</h1>
+<p>In this section, we discuss writing data to:</p>
+<ul>
+<li>Digital pins.</li>
+<li>PWM pins.</li>
+<li>Piezo tone devices.</li>
+<li>Servo motors.</li>
+<li>Stepper motors.</li>
+</ul>
+<p><strong>Note:</strong> I2C devices are discussed in the <a href="/i2c">next section</a>
+ of this guide. </p>
+<h2 id="digital_write">digital_write</h2>
+<pre><code class="python"> def digital_write(self, pin, value)
+
+    Set the specified pin to the specified value.
+
+    :param pin: arduino pin number
+
+    :param value: pin value (1 or 0)
+
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/digital_output.py">digital_output.py</a> </li>
+</ol>
+<h2 id="pwm_write">pwm_write</h2>
+<pre><code class="python"> def pwm_write(self, pin, value)
+
+    Set the selected pwm pin to the specified value.
+
+    :param pin: PWM pin number
+
+    :param value: Pin value (0 - 0x4000)
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/pwm_analog_output.py">pwm_analog_output.py</a> </li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<p>The value parameter is typically set between 0 and 255.</p>
+<h2 id="play_tone">play_tone</h2>
+<pre><code class="python"> def play_tone(self, pin_number, frequency, duration)
+
+    This is FirmataExpress feature
+
+    Play a tone at the specified frequency for the specified duration.
+
+    :param pin_number: arduino pin number
+
+    :param frequency: tone frequency in hz
+
+    :param duration: duration in milliseconds
+
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py">play_tone.py</a> </li>
+</ol>
+<h2 id="play_tone_continuously">play_tone_continuously</h2>
+<pre><code class="python"> def play_tone_continuously(self, pin_number, frequency)
+
+    This is a FirmataExpress feature
+
+    This method plays a tone continuously until play_tone_off is called.
+
+    :param pin_number: arduino pin number
+
+    :param frequency: tone frequency in hz
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py">play_tone.py</a> </li>
+</ol>
+<h2 id="play_tone_off">play_tone_off</h2>
+<pre><code class="python"> def play_tone_off(self, pin_number)
+
+    This is a FirmataExpress Feature
+
+    This method turns tone off for the specified pin. 
+
+    :param pin_number: arduino pin number
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py">play_tone.py</a> </li>
+</ol>
+<h2 id="servo_write">servo_write</h2>
+<pre><code class="python"> def servo_write(self, pin, position)
+
+    This is an alias for analog_write to set the position of a servo that has 
+    been previously configured using set_pin_mode_servo.
+
+    :param pin: arduino pin number
+
+    :param position: servo position
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/servo.py">servo.py</a> </li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<p>For an angular servo, the position parameter is set between 0 and 180 (degrees).
+For a continuous servo, 0 is full-speed in one direction, 
+180 is full speed in the other, and a value near 90 is no movement.</p>
+<h2 id="stepper_write">stepper_write</h2>
+<pre><code class="python"> def stepper_write(self, motor_speed, number_of_steps)
+
+    This is a FirmataExpress feature
+
+    Move a stepper motor for the number of steps at the specified speed.
+
+    :param motor_speed: 21 bits of data to set motor speed
+
+    :param number_of_steps: 14 bits for number of steps &amp; direction positive is forward, negative is reverse
+
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/stepper.py">stepper.py</a> </li>
+</ol>
+<p><br>
+<br></p>
+<p>Copyright (C) 2020 Alan Yorinks. All Rights Reserved.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../pin_changes/" title="Reading Input Data Via Polling" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Reading Input Data Via Polling
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../i2c/" title="I2C Reads And Writes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                I2C Reads And Writes
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

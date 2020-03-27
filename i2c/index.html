@@ -1,0 +1,813 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>I2C Reads And Writes - pymata4</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#communicating-with-i2c-devices" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="pymata4" aria-label="pymata4" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              pymata4
+            </span>
+            <span class="md-header-nav__topic">
+              
+                I2C Reads And Writes
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="pymata4" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    pymata4
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="What Is Pymata4?" class="md-nav__link">
+      What Is Pymata4?
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      The Pymata4 API
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        The Pymata4 API
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../polling/" title="Understanding Input Data Collection" class="md-nav__link">
+      Understanding Input Data Collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../init/" title="The __init__ Method" class="md-nav__link">
+      The __init__ Method
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pin_modes/" title="Setting Pin Modes" class="md-nav__link">
+      Setting Pin Modes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../enable_disable/" title="Enabling/Disabling Analog And Digital Reporting" class="md-nav__link">
+      Enabling/Disabling Analog And Digital Reporting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pin_changes/" title="Reading Input Data Via Polling" class="md-nav__link">
+      Reading Input Data Via Polling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../device_writes/" title="Writing Values To Pins And Selected Devices" class="md-nav__link">
+      Writing Values To Pins And Selected Devices
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        I2C Reads And Writes
+      </label>
+    
+    <a href="./" title="I2C Reads And Writes" class="md-nav__link md-nav__link--active">
+      I2C Reads And Writes
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#read-commands" class="md-nav__link">
+    Read Commands
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read" class="md-nav__link">
+    i2c_read
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read_continuous" class="md-nav__link">
+    i2c_read_continuous
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read_restart_transmission" class="md-nav__link">
+    i2c_read_restart_transmission
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read_saved_data" class="md-nav__link">
+    i2c_read_saved_data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-commmand" class="md-nav__link">
+    Write Commmand
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i2c_write" class="md-nav__link">
+    i2c_write
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../report_requests/" title="Report Requests" class="md-nav__link">
+      Report Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../management/" title="Management Requests" class="md-nav__link">
+      Management Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exceptions/" title="Exceptions" class="md-nav__link">
+      Exceptions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../concurrency/" title="The Pymata4 Concurrency Model" class="md-nav__link">
+      The Pymata4 Concurrency Model
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      System and Installation Requirements
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        System and Installation Requirements
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_3_verify/" title="Verifying Python 3 Version" class="md-nav__link">
+      Verifying Python 3 Version
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_install/" title="Python 3 Installation" class="md-nav__link">
+      Python 3 Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../install_pymata4/" title="Installing pymata4" class="md-nav__link">
+      Installing pymata4
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../firmata_express/" title="Installing FirmataExpress" class="md-nav__link">
+      Installing FirmataExpress
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#read-commands" class="md-nav__link">
+    Read Commands
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read" class="md-nav__link">
+    i2c_read
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read_continuous" class="md-nav__link">
+    i2c_read_continuous
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read_restart_transmission" class="md-nav__link">
+    i2c_read_restart_transmission
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i2c_read_saved_data" class="md-nav__link">
+    i2c_read_saved_data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-commmand" class="md-nav__link">
+    Write Commmand
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#i2c_write" class="md-nav__link">
+    i2c_write
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="communicating-with-i2c-devices">Communicating With I2C Devices</h1>
+<p>Pymata4 has the capability to support one or more i2c devices connected
+ to the i2c bus.
+The API supports several i2c read methods, and a single i2c write method, described below.</p>
+<p><strong>NOTE 1:</strong> </p>
+<p>If you do not specify a callback for any give read method, to retrieve the latest
+values, you will need to use the <a href="/pin_changes/#i2c_read_saved_data">i2c_read_saved_data</a> method. 
+The amount of time it takes an i2c device to reply to a an i2c read varies from device to device.
+Therefore it is simpler to use callbacks.</p>
+<p><strong>NOTE 2:</strong> </p>
+<p>Refer to <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/i2c_adxl345_accelerometer.py">this example</a> 
+for the i2c read and write methods.</p>
+<h2 id="read-commands">Read Commands</h2>
+<h3 id="i2c_read">i2c_read</h3>
+<pre><code class="python"> def i2c_read(self, address, register, number_of_bytes, callback=None)
+
+    Read the specified number of bytes from the specified 
+    register for the i2c device.
+
+    :param address: i2c device address
+
+    :param register: i2c register
+
+    :param number_of_bytes: number of bytes to be read
+
+    :param callback: Optional callback function to report i2c 
+                     data as a result of read command
+
+    callback returns a data list:
+
+    [pin_type, i2c_device_address, i2c_read_regsiter, 
+     data_bytes returned, time_stamp]
+
+    The pin_type for i2c = 6
+
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<p>See NOTE 2 above.</p>
+<h3 id="i2c_read_continuous">i2c_read_continuous</h3>
+<pre><code class="python"> def i2c_read_continuous(self, address, register, number_of_bytes, callback=None)
+
+    Some i2c devices support a continuous streaming data output. 
+    This command enables that mode for the device that supports continuous reads.
+
+    :param address: i2c device address
+
+    :param register: i2c register
+
+    :param number_of_bytes: number of bytes to be read
+
+    :param callback: Optional callback function to report 
+                     i2c data as a result of read command
+
+    callback returns a data list:
+
+    [pin_type, i2c_device_address, i2c_read_regsiter, 
+     data_bytes returned, time_stamp]
+
+    The pin_type for i2c = 6
+
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<p>See NOTE 2 above.</p>
+<h3 id="i2c_read_restart_transmission">i2c_read_restart_transmission</h3>
+<pre><code class="python"> def i2c_read_restart_transmission(self, address, register, number_of_bytes, callback=None)
+
+    Read the specified number of bytes from the specified register for the i2c device. This restarts the transmission after the read. It is required for some i2c devices such as the MMA8452Q accelerometer.
+
+    :param address: i2c device address
+
+    :param register: i2c register
+
+    :param number_of_bytes: number of bytes to be read
+
+    :param callback: Optional callback function to report i2c data as a result of read command
+
+    callback returns a data list:
+
+    [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
+
+    The pin_type for i2c pins = 6
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<p>See NOTE 2 above.</p>
+<h3 id="i2c_read_saved_data">i2c_read_saved_data</h3>
+<pre><code class="python"> def i2c_read_saved_data(self, address)
+
+    This method retrieves cached i2c data to support a polling mode.
+
+    :param address: I2C device address
+
+    :returns: Last cached value reported This contains the number of bytes requested followed by the time_stamp.
+</code></pre>
+
+<p><strong>Example:</strong></p>
+<p>See NOTE 2 above.</p>
+<h2 id="write-commmand">Write Commmand</h2>
+<h3 id="i2c_write">i2c_write</h3>
+<pre><code class="python"> def i2c_write(self, address, args)
+
+    Write data to an i2c device.
+
+    :param address: i2c device address
+
+    :param args: A variable number of bytes to be sent 
+                 to the device passed in as a list
+</code></pre>
+
+<p><br>
+<br></p>
+<p>Copyright (C) 2020 Alan Yorinks. All Rights Reserved.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../device_writes/" title="Writing Values To Pins And Selected Devices" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Writing Values To Pins And Selected Devices
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../report_requests/" title="Report Requests" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Report Requests
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

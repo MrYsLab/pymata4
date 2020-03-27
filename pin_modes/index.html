@@ -1,0 +1,1008 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Setting Pin Modes - pymata4</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#introduction" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="pymata4" aria-label="pymata4" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              pymata4
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Setting Pin Modes
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="pymata4" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    pymata4
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="What Is Pymata4?" class="md-nav__link">
+      What Is Pymata4?
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      The Pymata4 API
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        The Pymata4 API
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../polling/" title="Understanding Input Data Collection" class="md-nav__link">
+      Understanding Input Data Collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../init/" title="The __init__ Method" class="md-nav__link">
+      The __init__ Method
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Setting Pin Modes
+      </label>
+    
+    <a href="./" title="Setting Pin Modes" class="md-nav__link md-nav__link--active">
+      Setting Pin Modes
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analog-pin-mode" class="md-nav__link">
+    ANALOG PIN MODE
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_analog_input" class="md-nav__link">
+    set_pin_mode_analog_input
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digital-pin-modes" class="md-nav__link">
+    DIGITAL PIN MODES
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_digital_input" class="md-nav__link">
+    set_pin_mode_digital_input
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_digital_input_pullup" class="md-nav__link">
+    set_pin_mode_digital_input_pullup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_digital_output" class="md-nav__link">
+    set_pin_mode_digital_output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_pwm_output" class="md-nav__link">
+    set_pin_mode_pwm_output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-type-pin-modes" class="md-nav__link">
+    DEVICE TYPE PIN MODES
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_i2c" class="md-nav__link">
+    set_pin_mode_i2c
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_servo" class="md-nav__link">
+    set_pin_mode_servo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_sonar" class="md-nav__link">
+    set_pin_mode_sonar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_stepper" class="md-nav__link">
+    set_pin_mode_stepper
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_tone" class="md-nav__link">
+    set_pin_mode_tone
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../enable_disable/" title="Enabling/Disabling Analog And Digital Reporting" class="md-nav__link">
+      Enabling/Disabling Analog And Digital Reporting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pin_changes/" title="Reading Input Data Via Polling" class="md-nav__link">
+      Reading Input Data Via Polling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../device_writes/" title="Writing Values To Pins And Selected Devices" class="md-nav__link">
+      Writing Values To Pins And Selected Devices
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../i2c/" title="I2C Reads And Writes" class="md-nav__link">
+      I2C Reads And Writes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../report_requests/" title="Report Requests" class="md-nav__link">
+      Report Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../management/" title="Management Requests" class="md-nav__link">
+      Management Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exceptions/" title="Exceptions" class="md-nav__link">
+      Exceptions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../concurrency/" title="The Pymata4 Concurrency Model" class="md-nav__link">
+      The Pymata4 Concurrency Model
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      System and Installation Requirements
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        System and Installation Requirements
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_3_verify/" title="Verifying Python 3 Version" class="md-nav__link">
+      Verifying Python 3 Version
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_install/" title="Python 3 Installation" class="md-nav__link">
+      Python 3 Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../install_pymata4/" title="Installing pymata4" class="md-nav__link">
+      Installing pymata4
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../firmata_express/" title="Installing FirmataExpress" class="md-nav__link">
+      Installing FirmataExpress
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analog-pin-mode" class="md-nav__link">
+    ANALOG PIN MODE
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_analog_input" class="md-nav__link">
+    set_pin_mode_analog_input
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digital-pin-modes" class="md-nav__link">
+    DIGITAL PIN MODES
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_digital_input" class="md-nav__link">
+    set_pin_mode_digital_input
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_digital_input_pullup" class="md-nav__link">
+    set_pin_mode_digital_input_pullup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_digital_output" class="md-nav__link">
+    set_pin_mode_digital_output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_pwm_output" class="md-nav__link">
+    set_pin_mode_pwm_output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-type-pin-modes" class="md-nav__link">
+    DEVICE TYPE PIN MODES
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_i2c" class="md-nav__link">
+    set_pin_mode_i2c
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_servo" class="md-nav__link">
+    set_pin_mode_servo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_sonar" class="md-nav__link">
+    set_pin_mode_sonar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_stepper" class="md-nav__link">
+    set_pin_mode_stepper
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_pin_mode_tone" class="md-nav__link">
+    set_pin_mode_tone
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="introduction">Introduction</h1>
+<p>An Arduino pin can be configured to operate in one of several modes.
+The modes available to any given pin is dependent upon pin type.</p>
+<p>For example, 
+a digital pin may be configured for input, output, or and for some digital pins, PWM output operation.</p>
+<p>Analog input pins
+are even more flexible.
+They may be configured for analog input, digital input, or digital output operation.</p>
+<p>Pymata4 requires that before using a pin, its mode must be explicitly set. This is accomplished using one of
+the pymata4 mode setting methods.</p>
+<p>In this section, the methods to set pin modes are presented. For each API method, a link to an example is
+provided. </p>
+<h2 id="analog-pin-mode">ANALOG PIN MODE</h2>
+<h3 id="set_pin_mode_analog_input">set_pin_mode_analog_input</h3>
+<pre><code class="python"> def set_pin_mode_analog_input(self, pin_number, callback=None, differential=1)
+
+    Set a pin as an analog input.
+
+    :param pin_number: arduino pin number
+
+    :param callback: callback function
+
+    :param differential: This value needs to be met for a callback to be invoked.
+
+    callback returns a data list:
+
+    [pin_type, pin_number, pin_value, raw_time_stamp]
+
+    The pin_type for analog input pins = 2
+</code></pre>
+
+<p><strong>Examples:</strong></p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps.py">analog_input_with_time_stamps.py</a></li>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps_oo.py">analog_input_with_time_stamps_oo.py</a></li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<ol>
+<li>When an analog input message is received from Firmata, the current reported
+data value is compared with that of the previously reported value. If the difference, either positive or negative,
+is greater than the differential parameter, then the callback is invoked. This is useful when you have a "noisy"
+input that may constantly fluctuate by a small value, and you wish to ignore the noise.</li>
+<li>Pymata4 refers to analog pins using the numeric portion of the pin number only. 
+For example, pin A3 is referred to as pin 3.</li>
+<li>Data reporting via callbacks for this pin begins immediately after this method is called. </li>
+</ol>
+<h2 id="digital-pin-modes">DIGITAL PIN MODES</h2>
+<h3 id="set_pin_mode_digital_input">set_pin_mode_digital_input</h3>
+<pre><code class="python"> def set_pin_mode_digital_input(self, pin_number, callback=None)
+
+    Set a pin as a digital input.
+
+    :param pin_number: arduino pin number
+
+    :param callback: callback function
+
+    callback returns a data list:
+
+    [pin_type, pin_number, pin_value, raw_time_stamp]
+
+    The pin_type for digital input pins = 0
+</code></pre>
+
+<p><strong>Examples:</strong> </p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input.py">digital_input.py</a></li>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_debounce.py">digital_input_debounce.py</a></li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<p>Data reporting via callbacks for this pin begins immediately after this method is called. </p>
+<h3 id="set_pin_mode_digital_input_pullup">set_pin_mode_digital_input_pullup</h3>
+<pre><code class="python"> def set_pin_mode_digital_input_pullup(self, pin_number, callback=None)
+
+    Set a pin as a digital input with pullup enabled.
+
+    :param pin_number: arduino pin number
+
+    :param callback: callback function
+
+    callback returns a data list:
+
+    [pin_type, pin_number, pin_value, raw_time_stamp]
+
+    The pin_type for digital input pins with pullups enabled = 11
+
+</code></pre>
+
+<p><strong>Example:</strong> </p>
+<ol>
+<li><a href="https://github.com/MrYsLab/pymata4/blob/master/examples/digital_input_pullup.py">digital_input_pullup.py</a> </li>
+</ol>
+<p><strong>Notes:</strong> </p>
+<p>Data reporting via callbacks for this pin begins immediately after this method is called. </p>
+<h3 id="set_pin_mode_digital_output">set_pin_mode_digital_output</h3>
+<pre><code class="python"> def set_pin_mode_digital_output(self, pin_number)
+
+    Set a pin as a digital output pin.
+
+    :param pin_number: arduino pin number
+
+</code></pre>
+
+<p><strong>Examples:</strong> 
+1. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/digital_output.py">digital_output.py</a>
+2. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/digital_pin_output.py">digital_pin_output.py</a></p>
+<h3 id="set_pin_mode_pwm_output">set_pin_mode_pwm_output</h3>
+<pre><code class="python"> def set_pin_mode_pwm_output(self, pin_number)
+
+    Set a pin as a pwm (analog output) pin.
+
+    :param pin_number:arduino pin number
+</code></pre>
+
+<p><strong>Example:</strong>
+1. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/pwm_analog_output.py">pwm_analog_output.py</a></p>
+<p><strong>Notes:</strong> </p>
+<p>Only specific digital pins support PWM mode. Check with the Arduino documentation
+to determine which pins support PWM for your board.</p>
+<h2 id="device-type-pin-modes">DEVICE TYPE PIN MODES</h2>
+<h3 id="set_pin_mode_i2c">set_pin_mode_i2c</h3>
+<pre><code class="python">def set_pin_mode_i2c(self, read_delay_time=0)
+
+    Establish the standard Arduino i2c pins for i2c utilization.
+
+    NOTE: THIS METHOD MUST BE CALLED BEFORE ANY I2C REQUEST IS MADE:
+          This method initializes Firmata for I2c operations.
+
+    :param read_delay_time (in microseconds): an optional parameter, default is 0
+
+    NOTE: Callbacks are set within the individual i2c read methods of this API. 
+          See i2c_read, i2c_read_continuous, or i2c_read_restart_transmission.
+</code></pre>
+
+<p><strong>Example:</strong>
+1. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/i2c_adxl345_accelerometer.py">i2c_adxl345_accelerometer.py</a></p>
+<h3 id="set_pin_mode_servo">set_pin_mode_servo</h3>
+<pre><code class="python"> def set_pin_mode_servo(self, pin, min_pulse=544, max_pulse=2400)
+
+    Configure a pin as a servo pin. Set pulse min, max in ms.
+
+    :param pin: Servo Pin.
+
+    :param min_pulse: Min pulse width in ms.
+
+    :param max_pulse: Max pulse width in ms.
+</code></pre>
+
+<p><strong>Example:</strong>
+1. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/servo.py">servo.py</a></p>
+<h3 id="set_pin_mode_sonar">set_pin_mode_sonar</h3>
+<pre><code class="python"> def set_pin_mode_sonar(self, trigger_pin, echo_pin, callback=None, timeout=80000)
+
+    This is a FirmataExpress feature.
+
+    Configure the pins,ping interval and maximum distance for 
+    an HC-SR04 type device.
+
+    Up to a maximum of 6 SONAR devices is supported. 
+    If the maximum is exceeded a message is sent to the console and 
+    the request is ignored.
+
+    NOTE: data is measured in centimeters. Callback is 
+    called only when the the latest value received is different than the previous.
+
+    :param trigger_pin: The pin number of for the trigger (transmitter).
+
+    :param echo_pin: The pin number for the received echo.
+
+    :param cb: optional callback function to report sonar data changes
+
+    :param timeout: a tuning parameter. 80000UL equals 80ms.
+
+    callback returns a data list:
+
+    [pin_type, trigger_pin_number, distance_value (in cm), raw_time_stamp]
+
+    The pin_type for sonar pins = 12
+
+</code></pre>
+
+<p><strong>Example:</strong>
+1. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/hc-sr04_distance_sensor.py">hc-sr04_distance_sensor.py</a></p>
+<h3 id="set_pin_mode_stepper">set_pin_mode_stepper</h3>
+<pre><code class="python"> def set_pin_mode_stepper(self, steps_per_revolution, stepper_pins)
+
+    This is a FirmataExpress feature.
+
+    Configure stepper motor prior to operation. 
+
+    :param steps_per_revolution: number of steps per motor revolution
+
+    :param stepper_pins: a list of control pin numbers - either 4 or 2 pins
+</code></pre>
+
+<p><strong>Example:</strong>
+1. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/stepper.py">stepper.py</a></p>
+<p><strong> Notes:</strong>
+Only a single stepper motor is supported.</p>
+<h3 id="set_pin_mode_tone">set_pin_mode_tone</h3>
+<pre><code class="python"> def set_pin_mode_tone(self, pin_number)
+
+    This is a FirmataExpress feature.
+
+    Set a PWM pin to tone mode.
+
+    :param pin_number: arduino pin number
+</code></pre>
+
+<p><strong>Example:</strong>
+1. <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/play_tone.py">play_tone.py</a></p>
+<p><br>
+<br></p>
+<p>Copyright (C) 2020 Alan Yorinks. All Rights Reserved.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../init/" title="The __init__ Method" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                The __init__ Method
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../enable_disable/" title="Enabling/Disabling Analog And Digital Reporting" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Enabling/Disabling Analog And Digital Reporting
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

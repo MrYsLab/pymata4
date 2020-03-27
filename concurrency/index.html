@@ -1,0 +1,841 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>The Pymata4 Concurrency Model - pymata4</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#the-concurrency-model" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="pymata4" aria-label="pymata4" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              pymata4
+            </span>
+            <span class="md-header-nav__topic">
+              
+                The Pymata4 Concurrency Model
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="pymata4" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    pymata4
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="What Is Pymata4?" class="md-nav__link">
+      What Is Pymata4?
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      The Pymata4 API
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        The Pymata4 API
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../polling/" title="Understanding Input Data Collection" class="md-nav__link">
+      Understanding Input Data Collection
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../init/" title="The __init__ Method" class="md-nav__link">
+      The __init__ Method
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pin_modes/" title="Setting Pin Modes" class="md-nav__link">
+      Setting Pin Modes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../enable_disable/" title="Enabling/Disabling Analog And Digital Reporting" class="md-nav__link">
+      Enabling/Disabling Analog And Digital Reporting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pin_changes/" title="Reading Input Data Via Polling" class="md-nav__link">
+      Reading Input Data Via Polling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../device_writes/" title="Writing Values To Pins And Selected Devices" class="md-nav__link">
+      Writing Values To Pins And Selected Devices
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../i2c/" title="I2C Reads And Writes" class="md-nav__link">
+      I2C Reads And Writes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../report_requests/" title="Report Requests" class="md-nav__link">
+      Report Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../management/" title="Management Requests" class="md-nav__link">
+      Management Requests
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exceptions/" title="Exceptions" class="md-nav__link">
+      Exceptions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        The Pymata4 Concurrency Model
+      </label>
+    
+    <a href="./" title="The Pymata4 Concurrency Model" class="md-nav__link md-nav__link--active">
+      The Pymata4 Concurrency Model
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-command-thread" class="md-nav__link">
+    The Command Thread
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-api-method-calls" class="md-nav__link">
+    Synchronous API Method Calls
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polling-method-calls" class="md-nav__link">
+    Polling Method Calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-request-method-calls" class="md-nav__link">
+    Report Request Method Calls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-api-method-calls" class="md-nav__link">
+    Asynchronous API Method Calls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-reporter-thread" class="md-nav__link">
+    The Reporter Thread
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-serial-data-receiver-thread" class="md-nav__link">
+    The Serial Data Receiver Thread
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      System and Installation Requirements
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        System and Installation Requirements
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_3_verify/" title="Verifying Python 3 Version" class="md-nav__link">
+      Verifying Python 3 Version
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python_install/" title="Python 3 Installation" class="md-nav__link">
+      Python 3 Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../install_pymata4/" title="Installing pymata4" class="md-nav__link">
+      Installing pymata4
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../firmata_express/" title="Installing FirmataExpress" class="md-nav__link">
+      Installing FirmataExpress
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-command-thread" class="md-nav__link">
+    The Command Thread
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synchronous-api-method-calls" class="md-nav__link">
+    Synchronous API Method Calls
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polling-method-calls" class="md-nav__link">
+    Polling Method Calls
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-request-method-calls" class="md-nav__link">
+    Report Request Method Calls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asynchronous-api-method-calls" class="md-nav__link">
+    Asynchronous API Method Calls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-reporter-thread" class="md-nav__link">
+    The Reporter Thread
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-serial-data-receiver-thread" class="md-nav__link">
+    The Serial Data Receiver Thread
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="the-concurrency-model">The Concurrency Model</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In this section, we discuss the concurrency model used by pymata4.</p>
+<p>According to <a href="https://en.wikipedia.org/wiki/Concurrency_(computer_science)">Wikipedia,</a> 
+<em>"concurrency is the ability of different parts or units of a program, algorithm, or 
+problem to be executed out-of-order or in partial order, without affecting the final outcome. 
+This allows for parallel execution of the concurrent units, which can significantly 
+improve overall speed of the execution in multi-processor and multi-core systems."</em></p>
+<p>To assure the best possible performance, pymata4 needs to do the following tasks, all at the same time:</p>
+<ul>
+<li>Accept and process API calls from the application.<ul>
+<li>Translate the API calls into Firmata formatted messages.</li>
+<li>Transmit these messages across the serial link.</li>
+</ul>
+</li>
+<li>Continuously receive data from the serial link.<ul>
+<li>Assure no data loss</li>
+</ul>
+</li>
+<li>Decode the received data.<ul>
+<li>Store information in the pymata4 internal data structures.</li>
+<li>Notify the application of data change notifications by calling the user-provided callback methods.</li>
+</ul>
+</li>
+</ul>
+<p>To accomplish all this, pymata4 uses the Python <a href="https://docs.python.org/3.8/library/threading.html">threading</a> 
+module. It breaks its tasks into three
+main threads, the <em>Command Thread</em>, the <em>Reporter Thread</em>, and the <em>Serial Data Reciever Thread</em>. </p>
+<p>The concurrency model is depicted in the diagram below. The three threads, including the data structures used to 
+provide for inter-thread communication, are contained in the rectangle with the solid border.
+This rectangle constitutes the pymata4 package.</p>
+<p>The user application is depicted on the left side of the diagram, and the Arduino containing the
+Firmata sketch is shown on the right.</p>
+<p><img alt="" src="../images/threading.png" /></p>
+<h2 id="the-command-thread">The Command Thread</h2>
+<p>Whenever your application makes an API method call, it is interacting directly
+with the <em>Command Thread</em>. The API calls fall into two major categories, synchronous or blocking
+calls and asynchronous or non-blocking calls.</p>
+<h3 id="synchronous-api-method-calls">Synchronous API Method Calls</h3>
+<p>The synchronous API methods may be placed into two categories. Calls that poll
+for cached data values and calls that request report generation.</p>
+<h4 id="polling-method-calls">Polling Method Calls</h4>
+<ul>
+<li>read_analog</li>
+<li>read_digital</li>
+<li>i2c_read_saved_data</li>
+<li>sonar_read</li>
+</ul>
+<p>When the application calls one of the polling methods, the <em>Command Thread</em> accesses
+the pin data, i2c data, or sonar data structures. It then retrieves the current value for the item.</p>
+<p>The polling calls are reasonably quick in that the <em>Command Thread</em> reads and returns
+a value from one of the internal data structures. Only the <em>Command Thread</em> is involved
+in processing polling requests.</p>
+<h4 id="report-request-method-calls">Report Request Method Calls</h4>
+<ul>
+<li>get_analog_map</li>
+<li>get_capability_report</li>
+<li>get_firmware_version</li>
+<li>get_pin_state</li>
+<li>get_protocol_version</li>
+<li>get_pymata_version</li>
+</ul>
+<p>When your application requests a report:</p>
+<ol>
+<li>A report request message is formed and sent across the serial link to the Arduino.</li>
+<li>The <em>Command Thread</em> waits in a blocking loop anticipating the report reply.</li>
+<li>The Arduino processes the request. It formulates a reply and sends a response over the
+serial link.</li>
+<li>The <em>Serial Data Receiver Thread</em> receives the reply, and places each character on the <em>deque</em> that
+is shared between the <em>Serial Data Receiver Thread</em> and the <em>Reporter Thread</em>. </li>
+<li>The <em>Reporter Thread</em> decodes the reply and places the result on an internal data structure 
+shared with the <em>Command Thread</em>.</li>
+<li>The <em>Command Thread</em> detects that the report is available, and returns the report to the application.
+At this time, the <em>Command Thread</em> is no longer blocked.</li>
+</ol>
+<p>Requesting report information should only be done when necessary because
+of the long blocking period of the request.</p>
+<h3 id="asynchronous-api-method-calls">Asynchronous API Method Calls</h3>
+<p>All other API methods calls are considered asynchronous in that they do not block.
+These calls only involve the <em>Command Thread</em>. They build a Firmata message and send the
+message the Arduino over the serial link.</p>
+<ul>
+<li>digital_pin_write</li>
+<li>digital_write</li>
+<li>disable_analog_reporting</li>
+<li>disable_digital_reporting</li>
+<li>enable_analog_reporting</li>
+<li>enable_digital_reporting</li>
+<li>i2c_read</li>
+<li>i2c_read_continuous</li>
+<li>i2c_read_restart_transmission</li>
+<li>i2c_write</li>
+<li>keep_alive</li>
+<li>play_tone</li>
+<li>play_tone_continuously</li>
+<li>play_tone_off</li>
+<li>pwm_write</li>
+<li>send_reset</li>
+<li>servo_write</li>
+<li>set_pin_mode_analog_input</li>
+<li>set_pin_mode_digital_input</li>
+<li>set_pin_mode_digital_input_pullup</li>
+<li>set_pin_mode_digital_output</li>
+<li>set_pin_mode_i2c</li>
+<li>set_pin_mode_pwm_output</li>
+<li>set_pin_mode_servo</li>
+<li>set_pin_mode_sonar</li>
+<li>set_pin_mode_stepper</li>
+<li>set_pin_mode_tone</li>
+<li>set_sampling_interval</li>
+<li>shutdown</li>
+<li>sonar_read</li>
+<li>stepper_write</li>
+</ul>
+<h2 id="the-reporter-thread">The Reporter Thread</h2>
+<p>The <em>Reporter Thread</em> continuously monitors the <em>deque</em> to see if any data is 
+available from the Arduino to process. </p>
+<p>If the <em>Reporter Thread</em> receives an input data type message, it places
+the latest value in one of the data structures that it shares with the <em>Command Thread</em>. Also,
+the <em>Reporter Thread</em> determines if there is a registered callback method for the event. If so,
+it <em>calls</em> the callback method passing in the appropriate data list.</p>
+<p>Callback methods should be written to be as fast as possible so that the <em>Report Thread</em> is not
+blocked.</p>
+<h2 id="the-serial-data-receiver-thread">The Serial Data Receiver Thread</h2>
+<p>The <em>Serial Data Receiver Thread</em> continuously monitors the serial port for incoming data.
+It receives data one character at a time and places the data into the deque that it shares with
+the <em>Reporter Thread</em>. It does not interpret the data since this is the job of the <em>Reporter Thread</em>.</p>
+<p><br>
+<br></p>
+<p>Copyright (C) 2020 Alan Yorinks. All Rights Reserved.</p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../exceptions/" title="Exceptions" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Exceptions
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../python_3_verify/" title="Verifying Python 3 Version" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Verifying Python 3 Version
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

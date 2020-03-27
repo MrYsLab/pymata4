@@ -36,7 +36,7 @@ Firmata sketch is shown on the right.
 ## The Command Thread
 
 Whenever your application makes an API method call, it is interacting directly
-with the *Command Thread*. API calls may be though of as synchronous (blocking) or 
+with the *Command Thread*. API calls may be thought of as synchronous (blocking) or 
 asynchronous (non-blocking) calls.
 
 ### Synchronous API Method Calls
@@ -130,7 +130,7 @@ the data and adds it to a buffer. It parses the data as it arrives until a compl
 message is received.  
 
 If the *Reporter Thread* receives an input data type message, it writes 
-latest reported value to the appropriate shared data structure. 
+the latest reported value to the appropriate shared data structure. 
 
 The *Reporter Thread* also determines if there is a registered callback method for the event. If so,
 it *calls* the callback method passing in the appropriate data list.

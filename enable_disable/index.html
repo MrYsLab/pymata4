@@ -561,7 +561,7 @@ the Arduino may continue to stream data, even though your application has exited
 <p>In this scenario, if you do not re-power the Arduino before restarting your application,
 the continuing data stream may cause pymata4 to fail because the data stream is out
 of sync with pymata4's state.</p>
-<p>One way of making sure that you do encounter this scenario is to turn off
+<p>One way of making sure that you do not encounter this scenario is to turn off
 reporting before exiting your application.</p>
 <h2 id="disable_analog_reporting">disable_analog_reporting</h2>
 <pre><code class="python"> def disable_analog_reporting(self, pin)

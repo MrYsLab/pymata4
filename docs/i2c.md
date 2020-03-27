@@ -6,7 +6,7 @@ The API supports several i2c read methods, and a single i2c write method, descri
 **NOTE 1:** 
 
 If you do not specify a callback for any give read method, to retrieve the latest
-values, you will need to use the [i2c_read_saved_data](/pin_changes/#i2c_read_saved_data) method. 
+values, you will need to use the [i2c_read_saved_data](../pin_changes/#i2c_read_saved_data) method. 
 The amount of time it takes an i2c device to reply to a an i2c read varies from device to device.
 Therefore it is simpler to use callbacks.
 

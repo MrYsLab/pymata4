@@ -1,6 +1,6 @@
 # Retrieving The Latest Input Data Values
 As was mentioned earlier, 
-[callbacks](/polling/#using-callbacks-instead-of-polling) are preferred over 
+[callbacks](../polling/#using-callbacks-instead-of-polling) are preferred over 
 polling for input data change notifications.
 
 That being said, your application may dictate using polling over callbacks. This section

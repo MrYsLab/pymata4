@@ -3,7 +3,7 @@ An Arduino pin can be configured to operate in one of several modes.
 The modes available to any given pin is dependent upon pin type.
 
 For example, 
-a digital pin may be configured for input, output, or and for some digital pins, PWM output operation.
+a digital pin may be configured for input, output, and for some digital pins, PWM output operation.
 
 Analog input pins
 are even more flexible.

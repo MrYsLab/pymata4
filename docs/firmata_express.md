@@ -1,4 +1,6 @@
-# Installation Instruction
+# FirmataExpress
+
+## Installation Instructions
 
 
 <p>1. Open the Arduino IDE and select Tools/Manage Libraries.</p>
@@ -16,7 +18,7 @@ Using the Arduino IDE, install the [ultrasonic library](https://github.com/Erick
 and select Ultrasonic and then click Install.
 <img src="../images/Ultrasonic.png">
 
-# Setting The FirmataExpress Instance ID
+## Setting The FirmataExpress Instance ID
 
 FirmataExpress, in conjunction with pymata4, has the ability to automatically
 associate a Pymata Express application with a specific Arduino board

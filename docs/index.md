@@ -121,7 +121,7 @@ Pin: 12 Value: 1 Time Stamp: 2020-03-10 13:26:27
     * [Verifying The Python 3 Version.](./python_3_verify/#how-to-verify-the-python-3-version-installed) 
     * [Python 3 Installation Instructions.](./python_install/#installing-python-37-or-greater)
     * [Installing _pymata4_.](./install_pymata4/#before-you-install)
-    * [Installing FirmataExpress On Your Arduino.](./#firmata_express/#installation-instruction)
+    * [Installing FirmataExpress On Your Arduino.](./firmata_express/#installation-instructions)
 
 
 <br>

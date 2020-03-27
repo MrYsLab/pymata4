@@ -224,6 +224,9 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 **Example:**
 1. [stepper.py](https://github.com/MrYsLab/pymata4/blob/master/examples/stepper.py)
 
+** Notes:**
+Only a single stepper motor is supported.
+
 ### set_pin_mode_tone
 ```python
  def set_pin_mode_tone(self, pin_number)

@@ -24,8 +24,8 @@ To accomplish all this, pymata4 uses the Python [threading](https://docs.python.
 module. It breaks its tasks into three
 main threads, the *Command Thread*, the *Reporter Thread*, and the *Serial Data Reciever Thread*. 
 
-The concurrency model is depicted in the diagram below. The three threads, including the data structures used to 
-provide for inter-thread communication, are contained in the rectangle with the solid border.
+The concurrency model is depicted in the diagram below. The three threads, including the data structures that 
+provide inter-thread communication, are contained in the rectangle with the solid border.
 This rectangle constitutes the pymata4 package.
 
 The user application is depicted on the left side of the diagram, and the Arduino containing the
@@ -36,8 +36,8 @@ Firmata sketch is shown on the right.
 ## The Command Thread
 
 Whenever your application makes an API method call, it is interacting directly
-with the *Command Thread*. The API calls fall into two major categories, synchronous or blocking
-calls and asynchronous or non-blocking calls.
+with the *Command Thread*. API calls may be though of as synchronous (blocking) or 
+asynchronous (non-blocking) calls.
 
 ### Synchronous API Method Calls
 The synchronous API methods may be placed into two categories. Calls that poll
@@ -50,11 +50,14 @@ for cached data values and calls that request report generation.
 * sonar_read
 
 When the application calls one of the polling methods, the *Command Thread* accesses
-the pin data, i2c data, or sonar data structures. It then retrieves the current value for the item.
+the pin data, i2c data, or sonar data structures and retrieves the current value of the 
+requested item.
 
 The polling calls are reasonably quick in that the *Command Thread* reads and returns
-a value from one of the internal data structures. Only the *Command Thread* is involved
-in processing polling requests.
+a value from one of the internal data structures and does not interact with the other
+threads. Because the data structures may be accessed by both the *Command Thread* and the 
+*Reporter Thread* a threading lock is used to prevent data corruption. As a result, there 
+is some slight overhead to obtain and release the lock.
 
 
 #### Report Request Method Calls
@@ -73,10 +76,10 @@ When your application requests a report:
 serial link.
 4. The *Serial Data Receiver Thread* receives the reply, and places each character on the *deque* that
 is shared between the *Serial Data Receiver Thread* and the *Reporter Thread*. 
-5. The *Reporter Thread* decodes the reply and places the result on an internal data structure 
+5. The *Reporter Thread* decodes the reply and stores the result in an internal data structure 
 shared with the *Command Thread*.
 6. The *Command Thread* detects that the report is available, and returns the report to the application.
-At this time, the *Command Thread* is no longer blocked.
+The operation is now complete and  the *Command Thread* is no longer blocked.
 
 Requesting report information should only be done when necessary because
 of the long blocking period of the request.
@@ -84,7 +87,7 @@ of the long blocking period of the request.
 ### Asynchronous API Method Calls
 All other API methods calls are considered asynchronous in that they do not block.
 These calls only involve the *Command Thread*. They build a Firmata message and send the
-message the Arduino over the serial link.
+message to the Arduino over the serial link.
 
 * digital_pin_write
 * digital_write
@@ -122,20 +125,23 @@ message the Arduino over the serial link.
 ## The Reporter Thread
 
 The *Reporter Thread* continuously monitors the *deque* to see if any data is 
-available from the Arduino to process. 
+available from the Arduino to process. When it detects data is present, it removes
+the data and adds it to a buffer. It parses the data as it arrives until a complete
+message is received.  
 
-If the *Reporter Thread* receives an input data type message, it places
-the latest value in one of the data structures that it shares with the *Command Thread*. Also,
-the *Reporter Thread* determines if there is a registered callback method for the event. If so,
+If the *Reporter Thread* receives an input data type message, it writes 
+latest reported value to the appropriate shared data structure. 
+
+The *Reporter Thread* also determines if there is a registered callback method for the event. If so,
 it *calls* the callback method passing in the appropriate data list.
 
-Callback methods should be written to be as fast as possible so that the *Report Thread* is not
+Callback methods should be written to be as fast as possible so that the *Reporter Thread* is not
 blocked.
 
 ## The Serial Data Receiver Thread
 The *Serial Data Receiver Thread* continuously monitors the serial port for incoming data.
 It receives data one character at a time and places the data into the deque that it shares with
-the *Reporter Thread*. It does not interpret the data since this is the job of the *Reporter Thread*.
+the *Reporter Thread*. 
 
 <br>
 <br>

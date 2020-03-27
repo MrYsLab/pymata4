@@ -62,7 +62,7 @@ mode.
 ```
 **Example:**
 
-1. [disable_enable_digital_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_analog_reporting.py) 
+1. [disable_enable_digital_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_digital_reporting.py) 
 
 ## enable_digital_reporting
 
@@ -79,7 +79,7 @@ mode.
 ```
 **Example:**
 
-1. [disable_enable_digital_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_analog_reporting.py) 
+1. [disable_enable_digital_reporting.py](https://github.com/MrYsLab/pymata4/blob/master/examples/disable_enable_digital_reporting.py) 
 
 
 <br>

@@ -56,8 +56,7 @@ The *com_port* parameter specifies a serial com_port, such as COM4 or '/dev/ttyA
 The default for this parameter is 115200, matching the speed set in the 
 FirmataExpress sketch. If you wish to use StandardFirmata instead of
 FirmataExpress, you will set the baud_rate to 57600. If you specify the baud_rate
-and accept the default com_port value, pymata4 attempts to find a connected Arduino
-Instantiating The Pymata4 Class
+and accept the default com_port value, pymata4 attempts to find a connected Arduino.
 
 ### arduino_instance_id
 This parameter is only valid when using FirmataExpress. This parameter

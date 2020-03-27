@@ -33,6 +33,11 @@ Firmata sketch is shown on the right.
 
 ![](./images/threading.png)
 
+## The Command Thread
+
+## The Reporter Thread
+
+## The Serial Data Receiver Thread
 
 
 <br>

@@ -11,7 +11,7 @@
 client that, in conjunction with an Arduino Firmata sketch, permits you to control and monitor Arduino hardware
 remotely over a serial link.
 
-Like its asyncio sibling [pymata-express,](https://mryslab.github.io/pymata4/) pymata4 allows the user to take
+Like its asyncio sibling [pymata-express,](https://mryslab.github.io/pymata-express/) pymata4 allows the user to take
 advantage of the advanced feature set of 
 the [FirmataExpress](https://github.com/MrYsLab/FirmataExpress) (recommended) or StandardFirmata 
 Arduino server sketches. 

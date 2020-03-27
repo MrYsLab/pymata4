@@ -660,16 +660,16 @@ improve overall speed of the execution in multi-processor and multi-core systems
 <p>To accomplish all this, pymata4 uses the Python <a href="https://docs.python.org/3.8/library/threading.html">threading</a> 
 module. It breaks its tasks into three
 main threads, the <em>Command Thread</em>, the <em>Reporter Thread</em>, and the <em>Serial Data Reciever Thread</em>. </p>
-<p>The concurrency model is depicted in the diagram below. The three threads, including the data structures used to 
-provide for inter-thread communication, are contained in the rectangle with the solid border.
+<p>The concurrency model is depicted in the diagram below. The three threads, including the data structures that 
+provide inter-thread communication, are contained in the rectangle with the solid border.
 This rectangle constitutes the pymata4 package.</p>
 <p>The user application is depicted on the left side of the diagram, and the Arduino containing the
 Firmata sketch is shown on the right.</p>
 <p><img alt="" src="../images/threading.png" /></p>
 <h2 id="the-command-thread">The Command Thread</h2>
 <p>Whenever your application makes an API method call, it is interacting directly
-with the <em>Command Thread</em>. The API calls fall into two major categories, synchronous or blocking
-calls and asynchronous or non-blocking calls.</p>
+with the <em>Command Thread</em>. API calls may be though of as synchronous (blocking) or 
+asynchronous (non-blocking) calls.</p>
 <h3 id="synchronous-api-method-calls">Synchronous API Method Calls</h3>
 <p>The synchronous API methods may be placed into two categories. Calls that poll
 for cached data values and calls that request report generation.</p>
@@ -681,10 +681,13 @@ for cached data values and calls that request report generation.</p>
 <li>sonar_read</li>
 </ul>
 <p>When the application calls one of the polling methods, the <em>Command Thread</em> accesses
-the pin data, i2c data, or sonar data structures. It then retrieves the current value for the item.</p>
+the pin data, i2c data, or sonar data structures and retrieves the current value of the 
+requested item.</p>
 <p>The polling calls are reasonably quick in that the <em>Command Thread</em> reads and returns
-a value from one of the internal data structures. Only the <em>Command Thread</em> is involved
-in processing polling requests.</p>
+a value from one of the internal data structures and does not interact with the other
+threads. Because the data structures may be accessed by both the <em>Command Thread</em> and the 
+<em>Reporter Thread</em> a threading lock is used to prevent data corruption. As a result, there 
+is some slight overhead to obtain and release the lock.</p>
 <h4 id="report-request-method-calls">Report Request Method Calls</h4>
 <ul>
 <li>get_analog_map</li>
@@ -702,17 +705,17 @@ in processing polling requests.</p>
 serial link.</li>
 <li>The <em>Serial Data Receiver Thread</em> receives the reply, and places each character on the <em>deque</em> that
 is shared between the <em>Serial Data Receiver Thread</em> and the <em>Reporter Thread</em>. </li>
-<li>The <em>Reporter Thread</em> decodes the reply and places the result on an internal data structure 
+<li>The <em>Reporter Thread</em> decodes the reply and stores the result in an internal data structure 
 shared with the <em>Command Thread</em>.</li>
 <li>The <em>Command Thread</em> detects that the report is available, and returns the report to the application.
-At this time, the <em>Command Thread</em> is no longer blocked.</li>
+The operation is now complete and  the <em>Command Thread</em> is no longer blocked.</li>
 </ol>
 <p>Requesting report information should only be done when necessary because
 of the long blocking period of the request.</p>
 <h3 id="asynchronous-api-method-calls">Asynchronous API Method Calls</h3>
 <p>All other API methods calls are considered asynchronous in that they do not block.
 These calls only involve the <em>Command Thread</em>. They build a Firmata message and send the
-message the Arduino over the serial link.</p>
+message to the Arduino over the serial link.</p>
 <ul>
 <li>digital_pin_write</li>
 <li>digital_write</li>
@@ -748,17 +751,19 @@ message the Arduino over the serial link.</p>
 </ul>
 <h2 id="the-reporter-thread">The Reporter Thread</h2>
 <p>The <em>Reporter Thread</em> continuously monitors the <em>deque</em> to see if any data is 
-available from the Arduino to process. </p>
-<p>If the <em>Reporter Thread</em> receives an input data type message, it places
-the latest value in one of the data structures that it shares with the <em>Command Thread</em>. Also,
-the <em>Reporter Thread</em> determines if there is a registered callback method for the event. If so,
+available from the Arduino to process. When it detects data is present, it removes
+the data and adds it to a buffer. It parses the data as it arrives until a complete
+message is received.  </p>
+<p>If the <em>Reporter Thread</em> receives an input data type message, it writes 
+latest reported value to the appropriate shared data structure. </p>
+<p>The <em>Reporter Thread</em> also determines if there is a registered callback method for the event. If so,
 it <em>calls</em> the callback method passing in the appropriate data list.</p>
-<p>Callback methods should be written to be as fast as possible so that the <em>Report Thread</em> is not
+<p>Callback methods should be written to be as fast as possible so that the <em>Reporter Thread</em> is not
 blocked.</p>
 <h2 id="the-serial-data-receiver-thread">The Serial Data Receiver Thread</h2>
 <p>The <em>Serial Data Receiver Thread</em> continuously monitors the serial port for incoming data.
 It receives data one character at a time and places the data into the deque that it shares with
-the <em>Reporter Thread</em>. It does not interpret the data since this is the job of the <em>Reporter Thread</em>.</p>
+the <em>Reporter Thread</em>. </p>
 <p><br>
 <br></p>
 <p>Copyright (C) 2020 Alan Yorinks. All Rights Reserved.</p>

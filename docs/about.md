@@ -1,6 +1,6 @@
 # REPORTING ISSUES
 
-If you wish to report an issue with Pymata Express, please use
+If you wish to report an issue with pymata4, please use
 [this link](https://github.com/MrYsLab/pymata4/issues).
 For FirmataExpress, please use [this link](https://github.com/MrYsLab/FirmataExpress/issues).
 

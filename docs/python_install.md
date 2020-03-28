@@ -51,7 +51,7 @@ sudo python3 get-pip.py
 
 ### Verify The Python Installation
 
-Use the [procedure shown here](https://mryslab.github.io/pymata4/python_3_7.install/#verifying-the-python-version-on-your-computer) to verify that you have successfully
+Use the [procedure shown here](../python_3_verify) to verify that you have successfully
 installed Python 3.7 on your
 computer.
 <br>

@@ -7,7 +7,7 @@
 
 # What is pymata4? 
 
-[Pymata4](https://github.com/MrYsLab/pymata4) is a Python 3 (Version 3.7 or above)  [Firmata Protocol](https://github.com/firmata/protocol) 
+[Pymata4](https://github.com/MrYsLab/pymata4) is a Python 3 compatible (Version 3.7 or above)  [Firmata Protocol](https://github.com/firmata/protocol) 
 client that, in conjunction with an Arduino Firmata sketch, permits you to control and monitor Arduino hardware
 remotely over a serial link.
 

@@ -686,7 +686,7 @@ requested item.</p>
 <p>The polling calls are reasonably quick in that the <em>Command Thread</em> reads and returns
 a value from one of the internal data structures and does not interact with the other
 threads. Because the data structures may be accessed by both the <em>Command Thread</em> and the 
-<em>Reporter Thread</em> a threading lock is used to prevent data corruption. As a result, there 
+<em>Reporter Thread</em>, a threading lock is used to prevent data corruption. As a result, there 
 is some slight overhead to obtain and release the lock.</p>
 <h4 id="report-request-method-calls">Report Request Method Calls</h4>
 <ul>
@@ -708,7 +708,7 @@ is shared between the <em>Serial Data Receiver Thread</em> and the <em>Reporter 
 <li>The <em>Reporter Thread</em> decodes the reply and stores the result in an internal data structure 
 shared with the <em>Command Thread</em>.</li>
 <li>The <em>Command Thread</em> detects that the report is available, and returns the report to the application.
-The operation is now complete and  the <em>Command Thread</em> is no longer blocked.</li>
+The operation is now complete, and the <em>Command Thread</em> is no longer blocked.</li>
 </ol>
 <p>Requesting report information should only be done when necessary because
 of the long blocking period of the request.</p>

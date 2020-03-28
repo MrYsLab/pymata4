@@ -56,7 +56,7 @@ requested item.
 The polling calls are reasonably quick in that the *Command Thread* reads and returns
 a value from one of the internal data structures and does not interact with the other
 threads. Because the data structures may be accessed by both the *Command Thread* and the 
-*Reporter Thread* a threading lock is used to prevent data corruption. As a result, there 
+*Reporter Thread*, a threading lock is used to prevent data corruption. As a result, there 
 is some slight overhead to obtain and release the lock.
 
 
@@ -79,7 +79,7 @@ is shared between the *Serial Data Receiver Thread* and the *Reporter Thread*.
 5. The *Reporter Thread* decodes the reply and stores the result in an internal data structure 
 shared with the *Command Thread*.
 6. The *Command Thread* detects that the report is available, and returns the report to the application.
-The operation is now complete and  the *Command Thread* is no longer blocked.
+The operation is now complete, and the *Command Thread* is no longer blocked.
 
 Requesting report information should only be done when necessary because
 of the long blocking period of the request.

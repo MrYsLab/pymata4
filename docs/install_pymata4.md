@@ -19,7 +19,7 @@ For Windows users type:
 pip install pymata4
 ```
 
-You can find the code for pymata4 on [GitHub](https://github.com/MrYsLab/pymata-express).
+You can find the code for pymata4 on [GitHub](https://github.com/MrYsLab/pymata4).
 
 # Accessing The Advanced Feature Set
 

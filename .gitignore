@@ -16,6 +16,7 @@ dist/
 downloads/
 eggs/
 .eggs/
+html/
 lib/
 lib64/
 parts/
@@ -130,3 +131,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+!/html/

@@ -1,5 +1,5 @@
 # Remote Firmata Management
-The methods in this section allow your application to to 
+The methods in this section allow your application to 
 perform some Firmata management functions remotely.
 
 ## keep_alive

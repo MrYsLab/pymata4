@@ -24,7 +24,7 @@ You can find the code for pymata4 on [GitHub](https://github.com/MrYsLab/pymata-
 # Accessing The Advanced Feature Set
 
 If you wish to use all the advanced features of _pymata4_, install the FirmataExpress Arduino sketch on your Arduino
-device. You can find the installation instructions [here](/firmata_express/).
+device. You can find the installation instructions [here](../firmata_express/).
 
 
 <br>

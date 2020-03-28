@@ -5,7 +5,7 @@ If you wish to report an issue with Pymata Express, please use
 For FirmataExpress, please use [this link](https://github.com/MrYsLab/FirmataExpress/issues).
 
 When filing an issue, please provide any console output, a description of the 
-issue, and sample code demonstrating problem can be reproduced.
+issue, and sample code demonstrating the problem.
 
 If you have any questions about Pymata Express or FirmataExpress, you
 may also use the issues links to do that as well.

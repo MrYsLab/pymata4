@@ -1,7 +1,7 @@
 ## INSTALLING PYTHON 3.7 OR GREATER
 ### Windows Users
 
-To install Python 3.x go to the
+To install Python 3.x, go to the
 <a href="https://www.python.org/" target="_blank">Python home page,</a>
 and download the latest Python 3 distribution for your operating system.
 
@@ -28,12 +28,12 @@ Open a terminal window and type:
   sudo apt-get install pip3-python
 ```
 
-You should them make sure you have the latest version by typing:
+You should then make sure you have the latest version by typing:
 ```python
 sudo pip3 install -U pip
 ```
 
-#### For All Othert Linux Distributions
+#### For All Other Linux Distributions
 
 Refer to your distribution's instructions.
 

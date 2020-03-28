@@ -8,6 +8,9 @@ Pymata4 is a Firmata client that, like its asyncio sibling,
  allows you to control an Arduino using the high-performance FirmataExpress sketch.
   It uses a conventional Python API for those that do not need or wish to use the asyncio programming paradigm of pymata-express.
 
+### A [User's Guide is available,](https://mryslab.github.io/pymata4/) containing an annotated API as well as links to working examples.
+
+
 ### It supports both an enhanced version of StandardaFirmata 2.5.8, called FirmataExpress, as well as StandardFirmata. 
 * **[FirmataExpress](https://github.com/MrYsLab/FirmataExpress) adds support for:**
      * **HC-SR04 Ultrasonic Distance Sensors using a single pin.**

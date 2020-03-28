@@ -1,7 +1,7 @@
 # Before You Install
 
 Pymata4 requires Python 3.7 or above.
-Please see the [Verifying/Installing Python 3.7](/pymata4/python_3_7.install/)
+Please see the [Verifying/Installing Python 3.7](../python_install)
  section of this
 document to verify or install Python on your computer.
 

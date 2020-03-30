@@ -74,7 +74,7 @@ def analog_in(my_board, pin):
         while True:
             time.sleep(POLL_TIME)
             # retrieve both the value and time stamp with each poll
-            value, time_stamp = board.analog_read(ANALOG_PIN)
+            value, time_stamp = board.analog_read(pin)
             # format the time stamp
             formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time_stamp))
             print(

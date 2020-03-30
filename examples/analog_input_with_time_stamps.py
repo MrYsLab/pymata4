@@ -78,7 +78,7 @@ def analog_in(my_board, pin):
             # format the time stamp
             formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time_stamp))
             print(
-                f'Reading latest analog input data for pin {ANALOG_PIN} = {value} change received on {formatted_time} '
+                f'Reading latest analog input data for pin {pin} = {value} change received on {formatted_time} '
                 f'(raw_time: {time_stamp})')
     except KeyboardInterrupt:
         my_board.shutdown()

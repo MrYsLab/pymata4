@@ -863,7 +863,7 @@ class Pymata4(threading.Thread):
     def _play_tone(self, pin, tone_command, frequency, duration):
         """
         This method will call the Tone library for the selected pin.
-        It requires FirmataPlus to be loaded onto the arduino
+        It requires FirmataExpress to be loaded onto the arduino
 
         If the tone command is set to TONE_TONE, then the specified
         tone will be played.

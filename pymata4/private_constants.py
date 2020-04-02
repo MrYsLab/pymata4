@@ -38,7 +38,7 @@ class PrivateConstants:
     PWM_MESSAGE = 0xE0 # Firmata confusingly conflates analog input with PWM output
     REPORT_VERSION = 0xF9  # report protocol version
 
-    # start of FirmataPlus defined SYSEX commands
+    # start of FirmataExpress defined SYSEX commands
     KEEP_ALIVE = 0x50  # keep alive message
     ARE_YOU_THERE = 0x51  # poll for boards existence
     I_AM_HERE = 0x52  # response to poll

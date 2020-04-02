@@ -196,7 +196,7 @@ def set_pin_mode_i2c(self, read_delay_time=0)
 
     :param echo_pin: The pin number for the received echo.
 
-    :param cb: optional callback function to report sonar data changes
+    :param callback: optional callback function to report sonar data changes
 
     :param timeout: a tuning parameter. 80000UL equals 80ms.
 
@@ -217,6 +217,8 @@ def set_pin_mode_i2c(self, read_delay_time=0)
     This is a FirmataExpress feature.
 
     Configure stepper motor prior to operation. 
+    
+    NOTE: Single stepper only. Multiple steppers not supported.
 
     :param steps_per_revolution: number of steps per motor revolution
 

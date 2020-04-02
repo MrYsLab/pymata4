@@ -85,7 +85,7 @@ class Pymata4(threading.Thread):
         self.the_serial_receive_thread.daemon = True
 
         # keep alive variables
-        self.keep_alive_interval = 0
+        self.keep_alive_interval = []
         self.period = 0
         self.margin = 0
 
@@ -619,9 +619,7 @@ class Pymata4(threading.Thread):
 
         :param address: I2C device address
 
-        :returns: Last cached value reported
-                  This contains the number of bytes requested
-                  followed by the time_stamp.
+        :returns data: [raw data returned from i2c device, time-stamp]
 
         """
         if address in self.i2c_map:
@@ -650,7 +648,7 @@ class Pymata4(threading.Thread):
 
         callback returns a data list:
 
-        [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
+        [pin_type, i2c_device_address, i2c_read_register, data_bytes returned, time_stamp]
 
         The pin_type for i2c = 6
 
@@ -679,7 +677,7 @@ class Pymata4(threading.Thread):
 
         callback returns a data list:
 
-        [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
+        [pin_type, i2c_device_address, i2c_read_register, data_bytes returned, time_stamp]
 
         The pin_type for i2c = 6
 
@@ -711,7 +709,7 @@ class Pymata4(threading.Thread):
 
         callback returns a data list:
 
-        [pin_type, i2c_device_address, i2c_read_regsiter, data_bytes returned, time_stamp]
+        [pin_type, i2c_device_address, i2c_read_register, data_bytes returned, time_stamp]
 
         The pin_type for i2c pins = 6
 
@@ -1072,7 +1070,7 @@ class Pymata4(threading.Thread):
 
         :param echo_pin: The pin number for the received echo.
 
-        :param cb: optional callback function to report sonar data changes
+        :param callback: optional callback function to report sonar data changes
 
         :param timeout: a tuning parameter. 80000UL equals 80ms.
 
@@ -1114,7 +1112,8 @@ class Pymata4(threading.Thread):
         This is a FirmataExpress feature.
 
         Configure stepper motor prior to operation.
-        This is a FirmataPlus feature.
+
+        NOTE: Single stepper only. Multiple steppers not supported.
 
         :param steps_per_revolution: number of steps per motor revolution
 
@@ -1404,6 +1403,9 @@ class Pymata4(threading.Thread):
                 if cb:
                     # send everything, including address and register bytes back
                     # to caller
+                    # reply data will contain:
+                    # [pin_type = 6, i2c_device address,
+                    #                       raw data returned from i2c device, time-stamp]
                     cb(reply_data)
 
     def _pin_state_response(self, data):
@@ -1503,9 +1505,9 @@ class Pymata4(threading.Thread):
         """
         while True:
             if self.period:
-                time.sleep(self.period - (self.period - (self.period * self.margin)))
                 self._send_sysex(PrivateConstants.KEEP_ALIVE,
                                  self.keep_alive_interval)
+                time.sleep(self.period - self.margin)
             else:
                 break
 

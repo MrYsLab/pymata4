@@ -19,11 +19,11 @@ import sys
 import time
 from pymata4 import pymata4
 
-# This is a demonstration of the tone methods
+"""
+This is a demonstration of the tone methods
+"""
 
-
-
-# instantiate pymata express
+# instantiate pymata4
 board = pymata4.Pymata4()
 TONE_PIN=3
 try:

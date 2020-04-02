@@ -33,7 +33,7 @@ ECHO_PIN = 13
 def the_callback(data):
     """
     The callback function to display the change in distance
-    :param data: data[0]=pin_type, data[1]=trigger pin number, data[2]=distance
+    :param data: [pin_type=12, trigger pin number, distance, timestamp]
     """
     print(f'Distance in cm: {data[DISTANCE_CM]}')
 

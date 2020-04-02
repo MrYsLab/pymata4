@@ -28,7 +28,7 @@ def retrieve_protocol_version(my_board):
     """
     Retrieve and print the protocol version
 
-    :param my_board: pymata_express instance
+    :param my_board: pymata4
     """
 
     print(f'Protocol Version: {my_board.get_protocol_version()}')

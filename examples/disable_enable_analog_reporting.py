@@ -1,5 +1,5 @@
 """
- Copyright (c) 2018-2019 Alan Yorinks All rights reserved.
+ Copyright (c) 2020 Alan Yorinks All rights reserved.
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
@@ -47,7 +47,7 @@ def analog_reporting(my_board, pin):
      allowing you to manipulate the pin to verify that
      callbacks are not generated
 
-     :param my_board: a pymata_express instance
+     :param my_board: a pymata4 instance
      :param pin: Arduino pin number
      """
 

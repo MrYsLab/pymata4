@@ -31,7 +31,7 @@ def servo(my_board, pin):
     Set a pin to servo mode and then adjust
     its position.
 
-    :param my_board: pymata_express instance
+    :param my_board: pymata4
     :param pin: pin to be controlled
     """
 

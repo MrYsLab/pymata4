@@ -1,5 +1,5 @@
 """
- Copyright (c) 2018-2019 Alan Yorinks All rights reserved.
+ Copyright (c) 2020 Alan Yorinks All rights reserved.
 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU AFFERO GENERAL PUBLIC LICENSE
@@ -57,7 +57,7 @@ def digital_in(my_board, pin):
      digital input. Any changes on this pin will
      be reported through the call back function.
 
-     :param my_board: a pymata_express instance
+     :param my_board: a pymata4 instance
      :param pin: Arduino pin number
      """
     # enable keep alives

@@ -28,7 +28,7 @@ of a version number and name of the file.
 def retrieve_firmware_version(my_board):
     """
 
-    :param my_board: pymata_express instance
+    :param my_board: pymata4
     :return: the firmware version
     """
     print(my_board.get_firmware_version())

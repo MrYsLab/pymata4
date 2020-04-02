@@ -48,7 +48,7 @@ def the_callback(data):
     :param data: [pin, current reported value, pin_mode, timestamp]
     """
     date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(data[CB_TIME]))
-    print(f'Pin: {data[CB_PIN]} Value: {data[1]} Time Stamp: {date}')
+    print(f'Pin: {data[CB_PIN]} Value: {data[CB_VALUE]} Time Stamp: {date}')
 
 
 def digital_in_pullup(my_board, pin):
@@ -57,7 +57,7 @@ def digital_in_pullup(my_board, pin):
      digital input. Any changes on this pin will
      be reported through the call back function.
 
-     :param my_board: a pymata_express instance
+     :param my_board: a pymata4 instance
      :param pin: Arduino pin number
      """
 

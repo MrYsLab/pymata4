@@ -71,7 +71,7 @@ def retrieve_capability_report(my_board):
     format_capability_report(report)
 
 
-# instantiate pymata_express
+# instantiate pymata4
 board = pymata4.Pymata4()
 
 try:

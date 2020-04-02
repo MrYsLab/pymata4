@@ -64,7 +64,7 @@ def analog_in(my_board, pin):
     difference of 5 or more between the current and
     last value reported.
 
-    :param my_board: a pymata_express instance
+    :param my_board: a pymata4 instance
 
     :param pin: Arduino pin number
     """
@@ -85,7 +85,7 @@ def analog_in(my_board, pin):
         sys.exit(0)
 
 
-# instantiate pymata_express
+# instantiate pymata4
 board = pymata4.Pymata4()
 
 analog_in(board, ANALOG_PIN)

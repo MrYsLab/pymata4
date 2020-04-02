@@ -31,7 +31,7 @@ def stepper(my_board, steps_per_rev, pins):
     Set the motor control control pins to stepper mode.
     Rotate the motor.
 
-    :param my_board: pymata_express instance
+    :param my_board: pymata4
     :param steps_per_rev: Number of steps per motor revolution
     :param pins: A list of the motor control pins
     """

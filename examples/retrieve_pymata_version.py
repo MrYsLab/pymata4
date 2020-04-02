@@ -28,7 +28,7 @@ of the major and minor version numbers.
 def retrieve_pymata_version(my_board):
     """
 
-    :param my_board: pymata_express instance
+    :param my_board: pymata4
     :return: the pymata version
     """
     print(my_board.get_pymata_version())

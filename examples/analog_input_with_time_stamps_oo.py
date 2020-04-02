@@ -89,7 +89,6 @@ class MonitorAnalogPin:
         :param data: [pin_mode, pin, current_reported_value,  timestamp]
 
         """
-        print(data[self.CB_TIME])
         formatted_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(data[self.CB_TIME]))
         print(f'Analog Call Input Callback: pin={data[self.CB_PIN]}, '
               f'Value={data[self.CB_VALUE]} Time={formatted_time} '

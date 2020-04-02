@@ -886,7 +886,7 @@ to determine which pins support PWM for your board.</p>
 
     :param echo_pin: The pin number for the received echo.
 
-    :param cb: optional callback function to report sonar data changes
+    :param callback: optional callback function to report sonar data changes
 
     :param timeout: a tuning parameter. 80000UL equals 80ms.
 
@@ -906,6 +906,8 @@ to determine which pins support PWM for your board.</p>
     This is a FirmataExpress feature.
 
     Configure stepper motor prior to operation. 
+
+    NOTE: Single stepper only. Multiple steppers not supported.
 
     :param steps_per_revolution: number of steps per motor revolution
 

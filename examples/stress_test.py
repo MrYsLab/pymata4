@@ -33,7 +33,7 @@ def stress_test(my_board, loop_count):
 
     my_board.set_pin_mode_digital_input(12, callback=the_callback)
     my_board.set_pin_mode_digital_input(13, callback=the_callback)
-    my_board.set_pin_mode_analog_input(2, callback=the_callback)
+    my_board.set_pin_mode_analog_input(2, callback=the_callback, differential=5)
     my_board.set_pin_mode_pwm_output(9)
     my_board.set_pin_mode_digital_output(6)
 

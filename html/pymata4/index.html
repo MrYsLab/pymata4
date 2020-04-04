@@ -831,8 +831,7 @@ class Pymata4(threading.Thread):
         will physically reset itself.
 
         Frequency of keep alive transmission is calculated as follows:
-        keep_alive_sent = period - (period * margin)
-
+        keep_alive_sent = period - margin
 
         :param period: Time period between keepalives. Range is 0-10 seconds.
                        0 disables the keepalive mechanism.
@@ -904,7 +903,7 @@ class Pymata4(threading.Thread):
     def _play_tone(self, pin, tone_command, frequency, duration):
         &#34;&#34;&#34;
         This method will call the Tone library for the selected pin.
-        It requires FirmataPlus to be loaded onto the arduino
+        It requires FirmataExpress to be loaded onto the arduino
 
         If the tone command is set to TONE_TONE, then the specified
         tone will be played.
@@ -2547,8 +2546,7 @@ receiving a KeyboardInterrupt exception</p></section>
         will physically reset itself.
 
         Frequency of keep alive transmission is calculated as follows:
-        keep_alive_sent = period - (period * margin)
-
+        keep_alive_sent = period - margin
 
         :param period: Time period between keepalives. Range is 0-10 seconds.
                        0 disables the keepalive mechanism.
@@ -2620,7 +2618,7 @@ receiving a KeyboardInterrupt exception</p></section>
     def _play_tone(self, pin, tone_command, frequency, duration):
         &#34;&#34;&#34;
         This method will call the Tone library for the selected pin.
-        It requires FirmataPlus to be loaded onto the arduino
+        It requires FirmataExpress to be loaded onto the arduino
 
         If the tone command is set to TONE_TONE, then the specified
         tone will be played.
@@ -4123,7 +4121,7 @@ passed in as a list</p></section>
 <p>If the Arduino does not received a keep alive, the Arduino
 will physically reset itself.</p>
 <p>Frequency of keep alive transmission is calculated as follows:
-keep_alive_sent = period - (period * margin)</p>
+keep_alive_sent = period - margin</p>
 <p>:param period: Time period between keepalives. Range is 0-10 seconds.
 0 disables the keepalive mechanism.</p>
 <p>:param margin: Safety margin to assure keepalives are sent before
@@ -4142,8 +4140,7 @@ period expires. Range is 0.1 to 0.9</p></section>
     will physically reset itself.
 
     Frequency of keep alive transmission is calculated as follows:
-    keep_alive_sent = period - (period * margin)
-
+    keep_alive_sent = period - margin
 
     :param period: Time period between keepalives. Range is 0-10 seconds.
                    0 disables the keepalive mechanism.
@@ -4835,7 +4832,7 @@ positive is forward, negative is reverse</p></section>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pymata4" href="index_ORIG.html">pymata4</a></code></li>
+<li><code><a title="pymata4" href="index.html">pymata4</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>

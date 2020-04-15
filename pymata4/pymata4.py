@@ -790,8 +790,7 @@ class Pymata4(threading.Thread):
         will physically reset itself.
 
         Frequency of keep alive transmission is calculated as follows:
-        keep_alive_sent = period - (period * margin)
-
+        keep_alive_sent = period - margin
 
         :param period: Time period between keepalives. Range is 0-10 seconds.
                        0 disables the keepalive mechanism.
@@ -1347,6 +1346,9 @@ class Pymata4(threading.Thread):
             # get pin value
             value = port_data & 0x01
 
+            # retrieve previous value
+            last_value = self.digital_pins[pin].current_value
+
             # set the current value in the pin structure
             self.digital_pins[pin].current_value = value
             time_stamp = time.time()
@@ -1358,8 +1360,9 @@ class Pymata4(threading.Thread):
             else:
                 message = [PrivateConstants.INPUT, pin, value, time_stamp]
 
-            if self.digital_pins[pin].cb:
-                self.digital_pins[pin].cb(message)
+            if last_value != value:
+                if self.digital_pins[pin].cb:
+                    self.digital_pins[pin].cb(message)
 
             port_data >>= 1
 

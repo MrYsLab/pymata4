@@ -35,7 +35,7 @@ are available for download [online.](https://github.com/MrYsLab/pymata4/tree/mas
 * Advanced Arduino auto-discovery support is provided.
 * Additional hardware support is provided for:
     * HC-SR04 ultrasonic distance sensors.
-    * DHT Humidity/Temperature sensors.
+    * DHT Humidity/Temperature sensors (in collaboration with Martyn Wheeler).
     * Stepper motors.
     * Tone generation for piezo devices.
     

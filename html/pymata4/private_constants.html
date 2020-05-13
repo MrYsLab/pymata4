@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.7.5" />
+<meta name="generator" content="pdoc 0.8.1" />
 <title>pymata4.private_constants API documentation</title>
 <meta name="description" content="Copyright (c) 2015-2019 Alan Yorinks All rights reserved …" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
 </head>
 <body>
@@ -76,7 +76,7 @@ class PrivateConstants:
     # messages from firmata
     DIGITAL_MESSAGE = 0x90  # send or receive data for a digital pin
     ANALOG_MESSAGE = 0xE0  # send or receive data for a PWM configured pin
-    PWM_MESSAGE = 0xE0 # Firmata confusingly conflates analog input with PWM output
+    PWM_MESSAGE = 0xE0  # Firmata confusingly conflates analog input with PWM output
     REPORT_VERSION = 0xF9  # report protocol version
 
     # start of FirmataExpress defined SYSEX commands
@@ -111,7 +111,7 @@ class PrivateConstants:
     SYSEX_REALTIME = 0x7F  # MIDI Reserved for realtime messages
 
     # reserved for PyMata
-    PYMATA_EXPRESS_THREADED_VERSION = &#34;1.01&#34;
+    PYMATA_EXPRESS_THREADED_VERSION = &#34;1.03&#34;
 
     # each byte represents a digital port
     #  and its value contains the current port settings
@@ -135,7 +135,7 @@ class PrivateConstants:
     STEPPER_STEP = 1  # command a motor to move at the provided speed
     STEPPER_LIBRARY_VERSION = 2  # used to get stepper library version number
 
-# pin modes
+    # pin modes
     INPUT = 0x00  # pin set as input
     OUTPUT = 0x01  # pin set as output
     ANALOG = 0x02  # analog pin in analogInput mode
@@ -147,12 +147,19 @@ class PrivateConstants:
     PULLUP = 0x0b  # Any pin in pullup mode
     SONAR = 0x0c  # Any pin in SONAR mode
     TONE = 0x0d  # Any pin in tone mode
+    PIXY = 0x0e  # reserved for pixy camera mode
+    DHT = 0x0f  # DHT sensor
 
     IGNORE = 0x7f
 
     # Tone commands
     TONE_TONE = 0  # play a tone
     TONE_NO_TONE = 1  # turn off tone
+
+    # DHT command
+    DHT_CONFIG = 0x64  # dht config command
+    DHT_DATA = 0x65  # dht sensor command
+    ###
 
     # I2C command operation modes
     I2C_WRITE = 0B00000000
@@ -179,7 +186,7 @@ class PrivateConstants:
 <span>class <span class="ident">PrivateConstants</span></span>
 </code></dt>
 <dd>
-<section class="desc"><p>This class contains a set of constants for PyMata internal use .</p></section>
+<div class="desc"><p>This class contains a set of constants for PyMata internal use .</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -203,7 +210,7 @@ class PrivateConstants:
     # messages from firmata
     DIGITAL_MESSAGE = 0x90  # send or receive data for a digital pin
     ANALOG_MESSAGE = 0xE0  # send or receive data for a PWM configured pin
-    PWM_MESSAGE = 0xE0 # Firmata confusingly conflates analog input with PWM output
+    PWM_MESSAGE = 0xE0  # Firmata confusingly conflates analog input with PWM output
     REPORT_VERSION = 0xF9  # report protocol version
 
     # start of FirmataExpress defined SYSEX commands
@@ -238,7 +245,7 @@ class PrivateConstants:
     SYSEX_REALTIME = 0x7F  # MIDI Reserved for realtime messages
 
     # reserved for PyMata
-    PYMATA_EXPRESS_THREADED_VERSION = &#34;1.01&#34;
+    PYMATA_EXPRESS_THREADED_VERSION = &#34;1.03&#34;
 
     # each byte represents a digital port
     #  and its value contains the current port settings
@@ -262,7 +269,7 @@ class PrivateConstants:
     STEPPER_STEP = 1  # command a motor to move at the provided speed
     STEPPER_LIBRARY_VERSION = 2  # used to get stepper library version number
 
-# pin modes
+    # pin modes
     INPUT = 0x00  # pin set as input
     OUTPUT = 0x01  # pin set as output
     ANALOG = 0x02  # analog pin in analogInput mode
@@ -274,12 +281,19 @@ class PrivateConstants:
     PULLUP = 0x0b  # Any pin in pullup mode
     SONAR = 0x0c  # Any pin in SONAR mode
     TONE = 0x0d  # Any pin in tone mode
+    PIXY = 0x0e  # reserved for pixy camera mode
+    DHT = 0x0f  # DHT sensor
 
     IGNORE = 0x7f
 
     # Tone commands
     TONE_TONE = 0  # play a tone
     TONE_NO_TONE = 1  # turn off tone
+
+    # DHT command
+    DHT_CONFIG = 0x64  # dht config command
+    DHT_DATA = 0x65  # dht sensor command
+    ###
 
     # I2C command operation modes
     I2C_WRITE = 0B00000000
@@ -296,275 +310,291 @@ class PrivateConstants:
 <dl>
 <dt id="pymata4.private_constants.PrivateConstants.ANALOG"><code class="name">var <span class="ident">ANALOG</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.ANALOG_MAPPING_QUERY"><code class="name">var <span class="ident">ANALOG_MAPPING_QUERY</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.ANALOG_MAPPING_RESPONSE"><code class="name">var <span class="ident">ANALOG_MAPPING_RESPONSE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.ANALOG_MESSAGE"><code class="name">var <span class="ident">ANALOG_MESSAGE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.ARE_YOU_THERE"><code class="name">var <span class="ident">ARE_YOU_THERE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.CAPABILITY_QUERY"><code class="name">var <span class="ident">CAPABILITY_QUERY</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.CAPABILITY_RESPONSE"><code class="name">var <span class="ident">CAPABILITY_RESPONSE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
+</dd>
+<dt id="pymata4.private_constants.PrivateConstants.DHT"><code class="name">var <span class="ident">DHT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pymata4.private_constants.PrivateConstants.DHT_CONFIG"><code class="name">var <span class="ident">DHT_CONFIG</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pymata4.private_constants.PrivateConstants.DHT_DATA"><code class="name">var <span class="ident">DHT_DATA</span></code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.DIGITAL_MESSAGE"><code class="name">var <span class="ident">DIGITAL_MESSAGE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.DIGITAL_OUTPUT_PORT_PINS"><code class="name">var <span class="ident">DIGITAL_OUTPUT_PORT_PINS</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.END_SYSEX"><code class="name">var <span class="ident">END_SYSEX</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.EXTENDED_PWM"><code class="name">var <span class="ident">EXTENDED_PWM</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C"><code class="name">var <span class="ident">I2C</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_10BIT_ADDRESS_MODE_MASK"><code class="name">var <span class="ident">I2C_10BIT_ADDRESS_MODE_MASK</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_CONFIG"><code class="name">var <span class="ident">I2C_CONFIG</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_END_TX_MASK"><code class="name">var <span class="ident">I2C_END_TX_MASK</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_READ"><code class="name">var <span class="ident">I2C_READ</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_READ_CONTINUOUSLY"><code class="name">var <span class="ident">I2C_READ_CONTINUOUSLY</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_READ_WRITE_MODE_MASK"><code class="name">var <span class="ident">I2C_READ_WRITE_MODE_MASK</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_REPLY"><code class="name">var <span class="ident">I2C_REPLY</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_REQUEST"><code class="name">var <span class="ident">I2C_REQUEST</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_RESTART_TX"><code class="name">var <span class="ident">I2C_RESTART_TX</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_STOP_READING"><code class="name">var <span class="ident">I2C_STOP_READING</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_STOP_TX"><code class="name">var <span class="ident">I2C_STOP_TX</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I2C_WRITE"><code class="name">var <span class="ident">I2C_WRITE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.IGNORE"><code class="name">var <span class="ident">IGNORE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.INPUT"><code class="name">var <span class="ident">INPUT</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.I_AM_HERE"><code class="name">var <span class="ident">I_AM_HERE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.KEEP_ALIVE"><code class="name">var <span class="ident">KEEP_ALIVE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.LSB"><code class="name">var <span class="ident">LSB</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.MSB"><code class="name">var <span class="ident">MSB</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.MSG_CMD_MIN"><code class="name">var <span class="ident">MSG_CMD_MIN</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.OUTPUT"><code class="name">var <span class="ident">OUTPUT</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.PIN_STATE_QUERY"><code class="name">var <span class="ident">PIN_STATE_QUERY</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.PIN_STATE_RESPONSE"><code class="name">var <span class="ident">PIN_STATE_RESPONSE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
+</dd>
+<dt id="pymata4.private_constants.PrivateConstants.PIXY"><code class="name">var <span class="ident">PIXY</span></code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.PULLUP"><code class="name">var <span class="ident">PULLUP</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.PWM"><code class="name">var <span class="ident">PWM</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.PWM_MESSAGE"><code class="name">var <span class="ident">PWM_MESSAGE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.PYMATA_EXPRESS_THREADED_VERSION"><code class="name">var <span class="ident">PYMATA_EXPRESS_THREADED_VERSION</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.REPORTING_DISABLE"><code class="name">var <span class="ident">REPORTING_DISABLE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.REPORTING_ENABLE"><code class="name">var <span class="ident">REPORTING_ENABLE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.REPORT_ANALOG"><code class="name">var <span class="ident">REPORT_ANALOG</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.REPORT_DIGITAL"><code class="name">var <span class="ident">REPORT_DIGITAL</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.REPORT_FIRMWARE"><code class="name">var <span class="ident">REPORT_FIRMWARE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.REPORT_VERSION"><code class="name">var <span class="ident">REPORT_VERSION</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.RESERVED_1"><code class="name">var <span class="ident">RESERVED_1</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SAMPLING_INTERVAL"><code class="name">var <span class="ident">SAMPLING_INTERVAL</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SERIAL"><code class="name">var <span class="ident">SERIAL</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SERVO"><code class="name">var <span class="ident">SERVO</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SERVO_CONFIG"><code class="name">var <span class="ident">SERVO_CONFIG</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SET_DIGITAL_PIN_VALUE"><code class="name">var <span class="ident">SET_DIGITAL_PIN_VALUE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SET_PIN_MODE"><code class="name">var <span class="ident">SET_PIN_MODE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SONAR"><code class="name">var <span class="ident">SONAR</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SONAR_CONFIG"><code class="name">var <span class="ident">SONAR_CONFIG</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SONAR_DATA"><code class="name">var <span class="ident">SONAR_DATA</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.START_SYSEX"><code class="name">var <span class="ident">START_SYSEX</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.STEPPER"><code class="name">var <span class="ident">STEPPER</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.STEPPER_CONFIGURE"><code class="name">var <span class="ident">STEPPER_CONFIGURE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.STEPPER_DATA"><code class="name">var <span class="ident">STEPPER_DATA</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.STEPPER_LIBRARY_VERSION"><code class="name">var <span class="ident">STEPPER_LIBRARY_VERSION</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.STEPPER_STEP"><code class="name">var <span class="ident">STEPPER_STEP</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.STRING_DATA"><code class="name">var <span class="ident">STRING_DATA</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SYSEX_NON_REALTIME"><code class="name">var <span class="ident">SYSEX_NON_REALTIME</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SYSEX_REALTIME"><code class="name">var <span class="ident">SYSEX_REALTIME</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.SYSTEM_RESET"><code class="name">var <span class="ident">SYSTEM_RESET</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.TONE"><code class="name">var <span class="ident">TONE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.TONE_DATA"><code class="name">var <span class="ident">TONE_DATA</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.TONE_NO_TONE"><code class="name">var <span class="ident">TONE_NO_TONE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 <dt id="pymata4.private_constants.PrivateConstants.TONE_TONE"><code class="name">var <span class="ident">TONE_TONE</span></code></dt>
 <dd>
-<section class="desc"></section>
+<div class="desc"></div>
 </dd>
 </dl>
 </dd>
@@ -594,6 +624,9 @@ class PrivateConstants:
 <li><code><a title="pymata4.private_constants.PrivateConstants.ARE_YOU_THERE" href="#pymata4.private_constants.PrivateConstants.ARE_YOU_THERE">ARE_YOU_THERE</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.CAPABILITY_QUERY" href="#pymata4.private_constants.PrivateConstants.CAPABILITY_QUERY">CAPABILITY_QUERY</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.CAPABILITY_RESPONSE" href="#pymata4.private_constants.PrivateConstants.CAPABILITY_RESPONSE">CAPABILITY_RESPONSE</a></code></li>
+<li><code><a title="pymata4.private_constants.PrivateConstants.DHT" href="#pymata4.private_constants.PrivateConstants.DHT">DHT</a></code></li>
+<li><code><a title="pymata4.private_constants.PrivateConstants.DHT_CONFIG" href="#pymata4.private_constants.PrivateConstants.DHT_CONFIG">DHT_CONFIG</a></code></li>
+<li><code><a title="pymata4.private_constants.PrivateConstants.DHT_DATA" href="#pymata4.private_constants.PrivateConstants.DHT_DATA">DHT_DATA</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.DIGITAL_MESSAGE" href="#pymata4.private_constants.PrivateConstants.DIGITAL_MESSAGE">DIGITAL_MESSAGE</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.DIGITAL_OUTPUT_PORT_PINS" href="#pymata4.private_constants.PrivateConstants.DIGITAL_OUTPUT_PORT_PINS">DIGITAL_OUTPUT_PORT_PINS</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.END_SYSEX" href="#pymata4.private_constants.PrivateConstants.END_SYSEX">END_SYSEX</a></code></li>
@@ -621,6 +654,7 @@ class PrivateConstants:
 <li><code><a title="pymata4.private_constants.PrivateConstants.OUTPUT" href="#pymata4.private_constants.PrivateConstants.OUTPUT">OUTPUT</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.PIN_STATE_QUERY" href="#pymata4.private_constants.PrivateConstants.PIN_STATE_QUERY">PIN_STATE_QUERY</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.PIN_STATE_RESPONSE" href="#pymata4.private_constants.PrivateConstants.PIN_STATE_RESPONSE">PIN_STATE_RESPONSE</a></code></li>
+<li><code><a title="pymata4.private_constants.PrivateConstants.PIXY" href="#pymata4.private_constants.PrivateConstants.PIXY">PIXY</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.PULLUP" href="#pymata4.private_constants.PrivateConstants.PULLUP">PULLUP</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.PWM" href="#pymata4.private_constants.PrivateConstants.PWM">PWM</a></code></li>
 <li><code><a title="pymata4.private_constants.PrivateConstants.PWM_MESSAGE" href="#pymata4.private_constants.PrivateConstants.PWM_MESSAGE">PWM_MESSAGE</a></code></li>
@@ -663,7 +697,7 @@ class PrivateConstants:
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad()</script>

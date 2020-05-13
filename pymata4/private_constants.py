@@ -35,7 +35,7 @@ class PrivateConstants:
     # messages from firmata
     DIGITAL_MESSAGE = 0x90  # send or receive data for a digital pin
     ANALOG_MESSAGE = 0xE0  # send or receive data for a PWM configured pin
-    PWM_MESSAGE = 0xE0 # Firmata confusingly conflates analog input with PWM output
+    PWM_MESSAGE = 0xE0  # Firmata confusingly conflates analog input with PWM output
     REPORT_VERSION = 0xF9  # report protocol version
 
     # start of FirmataExpress defined SYSEX commands
@@ -70,7 +70,7 @@ class PrivateConstants:
     SYSEX_REALTIME = 0x7F  # MIDI Reserved for realtime messages
 
     # reserved for PyMata
-    PYMATA_EXPRESS_THREADED_VERSION = "1.02"
+    PYMATA_EXPRESS_THREADED_VERSION = "1.03"
 
     # each byte represents a digital port
     #  and its value contains the current port settings
@@ -94,7 +94,7 @@ class PrivateConstants:
     STEPPER_STEP = 1  # command a motor to move at the provided speed
     STEPPER_LIBRARY_VERSION = 2  # used to get stepper library version number
 
-# pin modes
+    # pin modes
     INPUT = 0x00  # pin set as input
     OUTPUT = 0x01  # pin set as output
     ANALOG = 0x02  # analog pin in analogInput mode
@@ -106,12 +106,19 @@ class PrivateConstants:
     PULLUP = 0x0b  # Any pin in pullup mode
     SONAR = 0x0c  # Any pin in SONAR mode
     TONE = 0x0d  # Any pin in tone mode
+    PIXY = 0x0e  # reserved for pixy camera mode
+    DHT = 0x0f  # DHT sensor
 
     IGNORE = 0x7f
 
     # Tone commands
     TONE_TONE = 0  # play a tone
     TONE_NO_TONE = 1  # turn off tone
+
+    # DHT command
+    DHT_CONFIG = 0x64  # dht config command
+    DHT_DATA = 0x65  # dht sensor command
+    ###
 
     # I2C command operation modes
     I2C_WRITE = 0B00000000

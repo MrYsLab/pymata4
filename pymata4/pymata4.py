@@ -1010,9 +1010,9 @@ class Pymata4(threading.Thread):
 
         [pin_type, pin_number, DHT type, humidity value, temperature raw_time_stamp]
 
-        The pin_type for analog input pins = 15
+        The pin_type for DHT input pins = 15
 
-        ERROR CODES: If either humidity or temperature value:
+                ERROR CODES: If either humidity or temperature value:
                               == -1 Configuration Error
                               == -2 Checksum Error
                               == -3 Timeout Error

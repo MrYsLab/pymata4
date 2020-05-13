@@ -51,7 +51,45 @@ input that may constantly fluctuate by a small value, and you wish to ignore the
 For example, pin A3 is referred to as pin 3.
 3. Data reporting via callbacks for this pin begins immediately after this method is called. 
 
+## DHT PIN MODE
 
+### set_pin_mode_dht
+
+```python
+def set_pin_mode_dht(self, pin_number, sensor_type=22, differential=.1, callback=None):
+    """
+    Configure a DHT sensor prior to operation.
+    Up to 6 DHT sensors are supported
+
+    :param pin_number: digital pin number on arduino.
+
+    :param sensor_type: type of dht sensor
+                        Valid values = DHT11, DHT12, DHT22, DHT21, AM2301
+
+    :param differential: This value needs to be met for a callback
+                         to be invoked.
+
+    :param callback: callback function
+
+    callback: returns a data list:
+
+    [pin_type, pin_number, DHT type, humidity value, temperature raw_time_stamp]
+
+    The pin_type for DHT input pins = 15
+
+            ERROR CODES: If either humidity or temperature value:
+                          == -1 Configuration Error
+                          == -2 Checksum Error
+                          == -3 Timeout Error
+    """
+```
+**Examples:** 
+
+1. [dht.py](https://github.com/MrYsLab/pymata4/blob/master/examples/dht.py)
+
+**Notes:** 
+
+You may reset the differential value by calling this method again with new a differntial value.
 
 ## DIGITAL PIN MODES
 

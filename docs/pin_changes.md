@@ -22,6 +22,27 @@ describes the API methods to retrieve the latest cached input data values.
 1. [analog_input_with_time_stamps.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps.py)
 2. [analog_input_with_time_stamps_oo.py](https://github.com/MrYsLab/pymata4/blob/master/examples/analog_input_with_time_stamps_oo.py)
 
+## dht_read
+```python
+def dht_read(self, pin):
+    """
+    Retrieve the last data update for the specified dht pin.
+
+    :param pin: digital pin number
+
+    :return: A list = [humidity, temperature  time_stamp]
+
+             ERROR CODES: If either humidity or temperature value:
+                          == -1 Configuration Error
+                          == -2 Checksum Error
+                          == -3 Timeout Error
+
+    """
+```
+**Examples:**
+
+1. [dht.py](https://github.com/MrYsLab/pymata4/blob/master/examples/dht.py)
+
 ## digital_read
 ```python
  def digital_read(self, pin)

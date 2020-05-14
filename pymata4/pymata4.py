@@ -52,7 +52,9 @@ class Pymata4(threading.Thread):
         then you may accept all the default values.
 
         If you are using some other Firmata sketch, then
-        you must specify both the com_port and baudrate.
+        you must specify both the com_port and baudrate for
+        as serial connection, or ip_address and ip_port if
+        using StandardFirmataWifi.
 
         :param com_port: e.g. COM3 or /dev/ttyACM0.
 

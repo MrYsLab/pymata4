@@ -93,7 +93,9 @@ class Pymata4(threading.Thread):
         then you may accept all the default values.
 
         If you are using some other Firmata sketch, then
-        you must specify both the com_port and baudrate.
+        you must specify both the com_port and baudrate for
+        as serial connection, or ip_address and ip_port if
+        using StandardFirmataWifi.
 
         :param com_port: e.g. COM3 or /dev/ttyACM0.
 
@@ -1980,7 +1982,9 @@ a set of private methods.</p>
 and have a single Arduino connected to your computer,
 then you may accept all the default values.</p>
 <p>If you are using some other Firmata sketch, then
-you must specify both the com_port and baudrate.</p>
+you must specify both the com_port and baudrate for
+as serial connection, or ip_address and ip_port if
+using StandardFirmataWifi.</p>
 <p>:param com_port: e.g. COM3 or /dev/ttyACM0.</p>
 <p>:param baud_rate: Match this to the Firmata sketch in use.</p>
 <p>:param arduino_instance_id: If you are using the Firmata
@@ -2021,7 +2025,9 @@ the WiFi device. Typically this is 3030</p></div>
         then you may accept all the default values.
 
         If you are using some other Firmata sketch, then
-        you must specify both the com_port and baudrate.
+        you must specify both the com_port and baudrate for
+        as serial connection, or ip_address and ip_port if
+        using StandardFirmataWifi.
 
         :param com_port: e.g. COM3 or /dev/ttyACM0.
 

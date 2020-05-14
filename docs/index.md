@@ -27,6 +27,7 @@ or polling may be used when a synchronous approach is desired.
  is available online.
 * A full set of working examples
 are available for download [online.](https://github.com/MrYsLab/pymata4/tree/master/examples)
+* Supports StandardFirmataWiFi.
 
 
 ## Advantages of Using The FirmataExpress Sketch Over StandardFirmata:

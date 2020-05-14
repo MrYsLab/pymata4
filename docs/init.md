@@ -28,10 +28,11 @@ There is nothing *magic* about the name *board*.
 
 ## Understanding The Pymata4 *\__init__* Parameters
 ```python
-def __init__(self, com_port=None, baud_rate=115200,
+ def __init__(self, com_port=None, baud_rate=115200,
                  arduino_instance_id=1, arduino_wait=4,
                  sleep_tune=0.000001,
-                 shutdown_on_exception=True):
+                 shutdown_on_exception=True, ip_address=None,
+                 ip_port=None):
 ```
 There are many optional parameters available when you instantiate Pymata4. 
 
@@ -99,9 +100,19 @@ your application even after restarting it.
 
 The default is True and recommended to be used.
 
+### ip_address
+If you are using StandardFirmataWiFi, set this parameter to the IP address of your WiFi
+connected device.
+
+### ip_port
+If you are using StandardFirmataWiFi, set this parameter to the IP port of your WiFi
+connected device.
+
 ### Examples
    Each [example on GitHub](https://github.com/MrYsLab/pymata4/tree/master/examples) 
    demonstrates instantiating the Pymata4 class.
+   
+   A [blink demo](https://github.com/MrYsLab/pymata4/blob/master/examples/wifi_blink.py) is provided for StandardFirmata WiFi connections.
 
 <br>
 <br>

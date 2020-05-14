@@ -122,6 +122,7 @@ Data reporting via callbacks for this pin begins immediately after this method i
 
 1. [digital_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_output.py)
 2. [digital_pin_output.py](https://github.com/MrYsLab/pymata4/blob/master/examples/digital_pin_output.py)
+3. [wif_blink.py](https://github.com/MrYsLab/pymata4/blob/master/examples/wifi_blink.py)
 
 
 ### set_pin_mode_pwm_output

@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.6">
+      <meta name="generator" content="mkdocs-1.1.1, mkdocs-material-5.1.6">
     
     
       
@@ -288,6 +288,20 @@
           <li class="md-nav__item">
   <a href="#shutdown_on_exception" class="md-nav__link">
     shutdown_on_exception
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_address" class="md-nav__link">
+    ip_address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_port" class="md-nav__link">
+    ip_port
   </a>
   
 </li>
@@ -609,6 +623,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ip_address" class="md-nav__link">
+    ip_address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_port" class="md-nav__link">
+    ip_port
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#examples" class="md-nav__link">
     Examples
   </a>
@@ -655,10 +683,11 @@ the <em>shutdown</em> method:</p>
 <p>Of course, you can name the instance variable, anything that is meaningful to you.
 There is nothing <em>magic</em> about the name <em>board</em>.</p>
 <h2 id="understanding-the-pymata4-__init__-parameters">Understanding The Pymata4 <em>__init__</em> Parameters</h2>
-<pre><code class="python">def __init__(self, com_port=None, baud_rate=115200,
+<pre><code class="python"> def __init__(self, com_port=None, baud_rate=115200,
                  arduino_instance_id=1, arduino_wait=4,
                  sleep_tune=0.000001,
-                 shutdown_on_exception=True):
+                 shutdown_on_exception=True, ip_address=None,
+                 ip_port=None):
 </code></pre>
 
 <p>There are many optional parameters available when you instantiate Pymata4. </p>
@@ -708,9 +737,16 @@ in addition to closing the serial port.</p>
 <p>By setting this parameter to False, the Arduino may continue to send data to
 your application even after restarting it.</p>
 <p>The default is True and recommended to be used.</p>
+<h3 id="ip_address">ip_address</h3>
+<p>If you are using StandardFirmataWiFi, set this parameter to the IP address of your WiFi
+connected device.</p>
+<h3 id="ip_port">ip_port</h3>
+<p>If you are using StandardFirmataWiFi, set this parameter to the IP port of your WiFi
+connected device.</p>
 <h3 id="examples">Examples</h3>
 <p>Each <a href="https://github.com/MrYsLab/pymata4/tree/master/examples">example on GitHub</a> 
    demonstrates instantiating the Pymata4 class.</p>
+<p>A <a href="https://github.com/MrYsLab/pymata4/blob/master/examples/wifi_blink.py">blink demo</a> is provided for StandardFirmata WiFi connections.</p>
 <p><br>
 <br></p>
 <p>Copyright (C) 2020 Alan Yorinks. All Rights Reserved.</p>

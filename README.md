@@ -11,7 +11,7 @@ Pymata4 is a Firmata client that, like its asyncio sibling,
 ### It supports both an enhanced version of StandardaFirmata 2.5.8, called FirmataExpress, as well as StandardFirmata and StandardFimataWiFi. 
 * **[FirmataExpress](https://github.com/MrYsLab/FirmataExpress) adds support for:**
      * **HC-SR04 Ultrasonic Distance Sensors.**
-     * **DHT Humidity/Temperture Sensors.** 
+     * **DHT Humidity/Temperature Sensors.** 
      * **Stepper Motors.**
      * **Piezo Tone Generation.**
      * **Baud rate of 115200**

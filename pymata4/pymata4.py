@@ -449,8 +449,8 @@ class Pymata4(threading.Thread):
 
         """
         return self.digital_pins[pin].current_value[0], \
-               self.digital_pins[pin].current_value[1], \
-               self.digital_pins[pin].event_time
+            self.digital_pins[pin].current_value[1], \
+            self.digital_pins[pin].event_time
 
     def digital_read(self, pin):
         """
@@ -1481,13 +1481,28 @@ class Pymata4(threading.Thread):
             # if data read correctly process and return
 
             if data[10] == 0:
-                humidity = (((data[2] & 0x7f) + (data[3] << 7)) * 256 +
-                            ((data[4] & 0x7f) + (data[5] << 7))) * 0.1
-                temperature = (((data[6] & 0x7f) + (data[7] << 7) & 0x7F) * 256 +
-                               ((data[8] & 0x7f) + (data[9] << 7))) * 0.1
+                # dht 22
+                if data[1] == 22:
+                    humidity = (((data[2] & 0x7f) + (data[3] << 7)) * 256 +
+                                ((data[4] & 0x7f) + (data[5] << 7))) * 0.1
+                    temperature = (((data[6] & 0x7f) + (data[7] << 7) & 0x7F) * 256 +
+                                   ((data[8] & 0x7f) + (data[9] << 7))) * 0.1
+                # dht 11
+                elif data[2] == 11:
+                    humidity = (((data[2] & 0x7f) + (data[3] << 7)) +
+                                ((data[4] & 0x7f) + (data[5] << 7))) * 0.1
+                    temperature = (((data[6] & 0x7f) + (data[7] << 7) & 0x7F) +
+                                   ((data[8] & 0x7f) + (data[9] << 7))) * 0.1
+                else:
+                    raise RuntimeError(f'Unknown DHT Sensor type reported: {data[2]}')
 
                 humidity = round(humidity, 2)
                 temperature = round(temperature, 2)
+
+                # check for negative temperature
+                if data[6] & 0x80:
+                    temperature = -temperature
+
             elif data[8] == 1:
                 # Checksum Error
                 humidity = temperature = -2
@@ -1915,5 +1930,5 @@ class Pymata4(threading.Thread):
             try:
                 payload = self.sock.recv(1)
                 self.the_deque.append(ord(payload))
-            except:
+            except Exception:
                 pass

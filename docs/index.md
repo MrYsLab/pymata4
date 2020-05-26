@@ -69,9 +69,9 @@ class DigitalInput:
         """
 
         # Indices into the callback report data
-        self.CB_PIN = 0
-        self.CB_VALUE = 1
-        self.CB_PIN_MODE = 2
+        self.CB_PIN_MODE = 0
+        self.CB_PIN = 1
+        self.CB_VALUE = 2
         self.CB_TIME = 3
 
         # Instantiate this class with the pymata4 API
@@ -106,6 +106,7 @@ class DigitalInput:
 if __name__ == '__main__':
     # Monitor Pin 12 For Digital Input changes
     DigitalInput(12)
+
 ```
 
 Sample console output as input change events occur:
@@ -131,4 +132,4 @@ Pin: 12 Value: 1 Time Stamp: 2020-03-10 13:26:27
 
 Copyright (C) 2020 Alan Yorinks. All Rights Reserved.
 
-**Last updated 25 May 2020 For Release v1.6**
+**Last updated 26 May 2020 For Release v1.6**

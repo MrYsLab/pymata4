@@ -25,7 +25,7 @@ import socket
 import sys
 import threading
 import time
-
+import logging
 from pymata4.pin_data import PinData
 from pymata4.private_constants import PrivateConstants
 
@@ -219,7 +219,7 @@ class Pymata4(threading.Thread):
         # flag to indicate we are in shutdown mode
         self.shutdown_flag = False
 
-        print(f"pymata4:  Version {PrivateConstants.PYMATA_EXPRESS_THREADED_VERSION}\n\n"
+        logging.info(f"pymata4:  Version {PrivateConstants.PYMATA_EXPRESS_THREADED_VERSION}\n\n"
               f"Copyright (c) 2020 Alan Yorinks All Rights Reserved.\n")
         # if this is not a tcp interface, find the serial port
         if not self.ip_address:
@@ -239,7 +239,7 @@ class Pymata4(threading.Thread):
                         self.shutdown()
 
             if self.serial_port:
-                print(f"Arduino compatible device found and connected to {self.serial_port.port}")
+                logging.info(f"Arduino compatible device found and connected to {self.serial_port.port}")
 
             # no com_port found - raise a runtime exception
             else:
@@ -250,10 +250,10 @@ class Pymata4(threading.Thread):
         else:
             # with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
             #     s = self.sock.create_connection((self.ip_address, self.ip_port))
-            #     print(s)
+            #     logging.info(s)
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.sock.connect((self.ip_address, self.ip_port))
-            print(f'Successfully connected to: {self.ip_address}:{self.ip_port}')
+            logging.info(f'Successfully connected to: {self.ip_address}:{self.ip_port}')
 
         self.the_reporter_thread.start()
         self.the_data_receive_thread.start()
@@ -263,7 +263,7 @@ class Pymata4(threading.Thread):
 
         # get arduino firmware version and print it
         try:
-            print('\nRetrieving Arduino Firmware ID...')
+            logging.info('\nRetrieving Arduino Firmware ID...')
             firmware_version = self.get_firmware_version()
 
             if not firmware_version:
@@ -271,12 +271,12 @@ class Pymata4(threading.Thread):
                     self.shutdown()
                 raise RuntimeError(f'Firmata Sketch Firmware Version Not Found')
             else:
-                print(f'Arduino Firmware ID: {firmware_version}')
+                logging.info(f'Arduino Firmware ID: {firmware_version}')
         except TypeError:
-            print('\nIs your serial cable plugged in and do you have the '
+            logging.error('\nIs your serial cable plugged in and do you have the '
                   'correct Firmata sketch loaded?')
-            print('Is the COM port correct?')
-            print('To see a list of serial ports, type: "list_serial_ports" '
+            logging.error('Is the COM port correct?')
+            logging.error('To see a list of serial ports, type: "list_serial_ports" '
                   'in your console.')
             raise RuntimeError
         except KeyboardInterrupt:
@@ -284,7 +284,7 @@ class Pymata4(threading.Thread):
                 self.shutdown()
             raise RuntimeError('No Arduino Found or User Aborted Program')
 
-        print('\nRetrieving analog map...')
+        logging.info('\nRetrieving analog map...')
 
         # try to get an analog pin map. if it comes back as none raise an exception
 
@@ -305,7 +305,7 @@ class Pymata4(threading.Thread):
                     analog_data = PinData(self.the_pin_data_lock)
                     self.analog_pins.append(analog_data)
 
-            print(f'Auto-discovery complete. Found {len(self.digital_pins)} Digital Pins'
+            logging.info(f'Auto-discovery complete. Found {len(self.digital_pins)} Digital Pins'
                   f' and {len(self.analog_pins)} Analog Pins\n\n')
             self.first_analog_pin = len(self.digital_pins) - len(self.analog_pins)
         except KeyboardInterrupt:
@@ -330,7 +330,7 @@ class Pymata4(threading.Thread):
         # a list of serial ports to be checked
         serial_ports = []
 
-        print('Opening all potential serial ports...')
+        logging.info('Opening all potential serial ports...')
         the_ports_list = list_ports.comports()
         for port in the_ports_list:
             if port.pid is None:
@@ -344,19 +344,19 @@ class Pymata4(threading.Thread):
             serial_ports.append(self.serial_port)
 
             # display to the user
-            print('\t' + port.device)
+            logging.info('\t' + port.device)
 
             # clear out any possible data in the input buffer
             self.serial_port.reset_input_buffer()
             self.serial_port.reset_output_buffer()
 
         # wait for arduino to reset
-        print(f'\nWaiting {self.arduino_wait} seconds(arduino_wait) for Arduino devices to '
+        logging.info(f'\nWaiting {self.arduino_wait} seconds(arduino_wait) for Arduino devices to '
               'reset...')
         try:
             time.sleep(self.arduino_wait)
 
-            print(f'\nSearching for an Arduino configured with an arduino_instance = {self.arduino_instance_id}')
+            logging.info(f'\nSearching for an Arduino configured with an arduino_instance = {self.arduino_instance_id}')
 
             for serial_port in serial_ports:
                 self.serial_port = serial_port
@@ -392,11 +392,11 @@ class Pymata4(threading.Thread):
         """
         # if port is not found, a serial exception will be thrown
         try:
-            print(f'Opening {self.com_port}...')
+            logging.info(f'Opening {self.com_port}...')
             self.serial_port = serial.Serial(self.com_port, self.baud_rate,
                                              timeout=1, writeTimeout=0)
 
-            print(f'\nWaiting {self.arduino_wait} seconds(arduino_wait) for Arduino devices to '
+            logging.info(f'\nWaiting {self.arduino_wait} seconds(arduino_wait) for Arduino devices to '
                   'reset...')
             time.sleep(self.arduino_wait)
             # time.sleep(self.arduino_wait)
@@ -1201,7 +1201,7 @@ class Pymata4(threading.Thread):
                            PrivateConstants.INPUT)
         # update the ping data map for this pin
         if len(self.active_sonar_map) > 6:
-            print('sonar_config: maximum number of devices assigned'
+            logging.warning('sonar_config: maximum number of devices assigned'
                   ' - ignoring request')
         else:
             # initialize map entry with callback, data value of 0 and time_stamp of 0
@@ -1270,7 +1270,7 @@ class Pymata4(threading.Thread):
                 self.analog_pins[pin_number].cb = callback
                 self.analog_pins[pin_number].differential = differential
             else:
-                print('{} {}'.format('set_pin_mode: callback ignored for '
+                logging.warning('{} {}'.format('set_pin_mode: callback ignored for '
                                      'pin state:', pin_state))
 
         pin_mode = pin_state
@@ -1798,7 +1798,7 @@ class Pymata4(threading.Thread):
             reply_data = x
             if reply_data:
                 reply += chr(reply_data)
-        print(reply)
+        logging.info(reply)
 
     def _run_threads(self):
         self.run_event.set()

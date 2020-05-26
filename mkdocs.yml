@@ -18,6 +18,7 @@ nav:
         - Python 3 Installation: python_install.md
         - Installing pymata4: install_pymata4.md
         - Installing FirmataExpress: firmata_express.md
+        - Upgrading pymata4 To The Latest Version: upgrade.md
     - About: about.md
     - License: license.md
 # theme: windmill

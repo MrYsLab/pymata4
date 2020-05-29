@@ -15,6 +15,10 @@ Pymata4 is a Firmata client that, like its asyncio sibling,
      * **Stepper Motors.**
      * **Piezo Tone Generation.**
      * **Baud rate of 115200**
+     
+## Special Note For FirmataExpress Users:
+### pymata4 now verifies the version of FirmataExpress in use.  You may need to upgrade to the latest version of FirmataExpress using the Arduino IDE Library management tool.
+   
 
 <h2><u>Major features</u></h2>
 

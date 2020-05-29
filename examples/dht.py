@@ -92,7 +92,7 @@ def dht(my_board, callback=None):
             if not changed:
                 # explicitly change the differential values
                 my_board.set_pin_mode_dht(6, sensor_type=22, differential=20.0, callback=callback)
-                my_board.set_pin_mode_dht(7, sensor_type=22, differential=2.0, callback=callback)
+                my_board.set_pin_mode_dht(7, sensor_type=11, differential=2.0, callback=callback)
                 changed = True
         except KeyboardInterrupt:
             board.shutdown()

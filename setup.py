@@ -11,7 +11,7 @@ setup(
     packages=['pymata4'],
     install_requires=['pyserial'],
 
-    version='1.6',
+    version='1.7',
     description="A Python Protocol Abstraction Library For Arduino Firmata",
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -20,7 +20,7 @@ Pymata4 is a Firmata client that, like its asyncio sibling,
      * **Baud rate of 115200**
 
 ### Major features
-
+ 
 * **Fully documented <a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html" target="_blank">intuitive API</a>**
 
 

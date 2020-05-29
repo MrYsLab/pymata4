@@ -18,8 +18,10 @@ Using the Arduino IDE, install the [ultrasonic library](https://github.com/Erick
 and select Ultrasonic and then click Install.
 <img src="../images/Ultrasonic.png">
 
-If you have an incompatible version of FirmataExpress installed for the current version of pymata4, 
-a RunTime exception will be raised. 
+When pymata4 is instantiated, the version of FirmataExpress is checked for
+compatibility. If an incompatible version is found,
+a RuntimeError exception will be raised. The correct version to be used is identified and printed
+on the console.
 
 ## Setting The FirmataExpress Instance ID
 
@@ -35,8 +37,8 @@ Arduino. The ID number is then supplied as an input parameter when your applicat
 The Pymata Express instance parameter is discussed
 [here](https://mryslab.github.io/pymata-express/guidelines/#parameter-arduino_instance_id).
 
-To set the ID number in FirmataExpress, load the FirmataExpress sketch into the Arduino IDE,
-and look for the following line:
+To set the ID number in FirmataExpress, load the FirmataExpress sketch into the Arduino IDE.
+Look for the following line:
 
 ```
 #define ARDUINO_INSTANCE_ID         1

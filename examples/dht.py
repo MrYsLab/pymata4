@@ -21,13 +21,13 @@ from pymata4 import pymata4
 
 """
 Setup a pin for dht mode
+One pin is set for a dht22 and another for dht11
 Both polling and callback are being used in this example.
 """
 
-# Setup a pin for analog input and monitor its changes
+#
 POLL_TIME = 5  # number of seconds between polls
 
-# Callback data indices
 # Callback data indices
 CB_PIN_MODE = 0
 CB_PIN = 1
@@ -64,7 +64,7 @@ def dht(my_board, callback=None):
 
     # set the pin mode - for pin 6 differential is set explicitly
     my_board.set_pin_mode_dht(6, sensor_type=22, differential=.01, callback=callback)
-    my_board.set_pin_mode_dht(7, sensor_type=22, callback=callback)
+    my_board.set_pin_mode_dht(7, sensor_type=11, callback=callback)
 
     # a flag to change the differential value after the first 5 seconds
     changed = False

@@ -72,6 +72,9 @@ class PrivateConstants:
     # reserved for PyMata
     PYMATA_EXPRESS_THREADED_VERSION = "1.6"
 
+    # matching FirmataExpress Version Number
+    FIRMATA_EXPRESS_VERSION = "1.1"
+
     # each byte represents a digital port
     #  and its value contains the current port settings
     DIGITAL_OUTPUT_PORT_PINS = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

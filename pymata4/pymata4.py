@@ -154,7 +154,7 @@ class Pymata4(threading.Thread):
         self.report_dispatch.update({PrivateConstants.CAPABILITY_RESPONSE: [self._capability_response, 2]})
         self.report_dispatch.update({PrivateConstants.PIN_STATE_RESPONSE: [self._pin_state_response, 2]})
         self.report_dispatch.update({PrivateConstants.ANALOG_MAPPING_RESPONSE: [self._analog_mapping_response, 4]})
-        self.report_dispatch.update({PrivateConstants.DHT_DATA: [self._dht_read_response, 12]})
+        self.report_dispatch.update({PrivateConstants.DHT_DATA: [self._dht_read_response, 7]})
 
         # report query results are stored in this dictionary
         self.query_reply_data = {PrivateConstants.REPORT_VERSION: '',
@@ -166,6 +166,9 @@ class Pymata4(threading.Thread):
                                  PrivateConstants.PIN_STATE_RESPONSE: None}
 
         self.firmata_firmware = []
+
+        # a flag to indicate if using FirmataExpress
+        self.using_firmata_express = False
 
         # dht error flag
         self.dht_sensor_error = False
@@ -271,6 +274,10 @@ class Pymata4(threading.Thread):
                     self.shutdown()
                 raise RuntimeError(f'Firmata Sketch Firmware Version Not Found')
             else:
+                if self.using_firmata_express:
+                    version_number = firmware_version[0:3]
+                    if version_number != PrivateConstants.FIRMATA_EXPRESS_VERSION:
+                        raise RuntimeError(f'You must use FirmataExpress version 1.1. Version Found = {version_number}')
                 print(f'Arduino Firmware ID: {firmware_version}')
         except TypeError:
             print('\nIs your serial cable plugged in and do you have the '
@@ -381,6 +388,7 @@ class Pymata4(threading.Thread):
                 else:
                     # got an I am here message - is it the correct ID?
                     if i_am_here[2] == self.arduino_instance_id:
+                        self.using_firmata_express = True
                         self.com_port = self.serial_port
         except KeyboardInterrupt:
             raise RuntimeError('User Hit Control-C')
@@ -449,8 +457,8 @@ class Pymata4(threading.Thread):
 
         """
         return self.digital_pins[pin].current_value[0], \
-            self.digital_pins[pin].current_value[1], \
-            self.digital_pins[pin].event_time
+               self.digital_pins[pin].current_value[1], \
+               self.digital_pins[pin].event_time
 
     def digital_read(self, pin):
         """
@@ -1472,7 +1480,7 @@ class Pymata4(threading.Thread):
 
         self.digital_pins[pin].event_time = time_stamp
 
-        if data[11] == 1:  # data[9] is config flag
+        if data[7] == 1:  # data[9] is config flag
             if data[10] != 0:
                 self.dht_sensor_error = True
                 humidity = temperature = -1
@@ -1480,19 +1488,15 @@ class Pymata4(threading.Thread):
         else:
             # if data read correctly process and return
 
-            if data[10] == 0:
+            if data[6] == 0:
                 # dht 22
                 if data[1] == 22:
-                    humidity = (((data[2] & 0x7f) + (data[3] << 7)) * 256 +
-                                ((data[4] & 0x7f) + (data[5] << 7))) * 0.1
-                    temperature = (((data[6] & 0x7f) + (data[7] << 7) & 0x7F) * 256 +
-                                   ((data[8] & 0x7f) + (data[9] << 7))) * 0.1
+                    humidity = (data[2] * 256 + data[3]) * 0.1
+                    temperature = ((data[4] & 0x7F) * 256 + data[5]) * 0.1
                 # dht 11
                 elif data[1] == 11:
-                    humidity = (((data[2] & 0x7f) + (data[3] << 7)) +
-                                ((data[4] & 0x7f) + (data[5] << 7))) * 0.1
-                    temperature = (((data[6] & 0x7f) + (data[7] << 7) & 0x7F) +
-                                   ((data[8] & 0x7f) + (data[9] << 7))) * 0.1
+                    humidity = (data[2]) + (data[3]) * 0.1
+                    temperature = (data[4]) + (data[5]) * 0.1
                 else:
                     raise RuntimeError(f'Unknown DHT Sensor type reported: {data[2]}')
 
@@ -1503,11 +1507,11 @@ class Pymata4(threading.Thread):
                 if data[6] & 0x80:
                     temperature = -temperature
 
-            elif data[8] == 1:
+            elif data[7] == 1:
                 # Checksum Error
                 humidity = temperature = -2
                 self.dht_sensor_error = True
-            elif data[8] == 2:
+            elif data[7] == 2:
                 # Timeout Error
                 humidity = temperature = -3
                 self.dht_sensor_error = True

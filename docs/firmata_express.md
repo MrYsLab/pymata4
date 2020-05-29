@@ -18,6 +18,9 @@ Using the Arduino IDE, install the [ultrasonic library](https://github.com/Erick
 and select Ultrasonic and then click Install.
 <img src="../images/Ultrasonic.png">
 
+If you have an incompatible version of FirmataExpress installed for the current version of pymata4, 
+a RunTime exception will be raised. 
+
 ## Setting The FirmataExpress Instance ID
 
 FirmataExpress, in conjunction with pymata4, has the ability to automatically

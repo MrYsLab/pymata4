@@ -829,7 +829,7 @@ class Pymata4(threading.Thread):
         if address not in self.i2c_map:
             with self.the_i2c_map_lock:
                 self.i2c_map[address] = {'value': None, 'callback': callback}
-        if register:
+        if register is not None:
             data = [address, read_type, register & 0x7f, (register >> 7) & 0x7f,
                     number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         else:

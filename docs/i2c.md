@@ -20,27 +20,23 @@ for the i2c read and write methods.
 ### i2c_read
 
 ```python
- def i2c_read(self, address, register, number_of_bytes, callback=None)
+  def i2c_read(self, address, register, number_of_bytes, callback=None)
 
-    Read the specified number of bytes from the specified 
-    register for the i2c device.
+    Read the specified number of bytes from the specified register for the i2c device.
 
     :param address: i2c device address
 
-    :param register: i2c register
+    :param register: i2c register (or None if no register selection is needed)
 
     :param number_of_bytes: number of bytes to be read
 
-    :param callback: Optional callback function to report i2c 
-                     data as a result of read command
+    :param callback: Optional callback function to report i2c data as a result of read command
 
     callback returns a data list:
 
-    [pin_type, i2c_device_address, i2c_read_regsiter, 
-     data_bytes returned, time_stamp]
+    [pin_type, i2c_device_address, i2c_read_register, data_bytes returned, time_stamp]
 
     The pin_type for i2c = 6
-
 ```
 **Example:**
 
@@ -51,25 +47,21 @@ See NOTE 2 above.
 ```python
  def i2c_read_continuous(self, address, register, number_of_bytes, callback=None)
 
-    Some i2c devices support a continuous streaming data output. 
-    This command enables that mode for the device that supports continuous reads.
+    Some i2c devices support a continuous streaming data output. This command enables that mode for the device that supports continuous reads.
 
     :param address: i2c device address
 
-    :param register: i2c register
+    :param register: i2c register (or None if no register selection is needed)
 
     :param number_of_bytes: number of bytes to be read
 
-    :param callback: Optional callback function to report 
-                     i2c data as a result of read command
+    :param callback: Optional callback function to report i2c data as a result of read command
 
     callback returns a data list:
 
-    [pin_type, i2c_device_address, i2c_read_regsiter, 
-     data_bytes returned, time_stamp]
+    [pin_type, i2c_device_address, i2c_read_register, data_bytes returned, time_stamp]
 
     The pin_type for i2c = 6
-
 ```
 **Example:**
 

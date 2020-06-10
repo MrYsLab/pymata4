@@ -738,7 +738,7 @@ class Pymata4(threading.Thread):
 
         :param address: i2c device address
 
-        :param register: i2c register
+        :param register: i2c register (or None if no register selection is needed)
 
         :param number_of_bytes: number of bytes to be read
 

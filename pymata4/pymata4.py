@@ -709,7 +709,7 @@ class Pymata4(threading.Thread):
 
         :param address: i2c device address
 
-        :param register: i2c register
+        :param register: i2c register (or None if no register selection is needed)
 
         :param number_of_bytes: number of bytes to be read
 
@@ -815,7 +815,7 @@ class Pymata4(threading.Thread):
 
         :param address: i2c device address
 
-        :param register: register number (can be set to zero)
+        :param register: register number (or None if no register selection is needed)
 
         :param number_of_bytes: number of bytes expected to be returned
 
@@ -829,8 +829,12 @@ class Pymata4(threading.Thread):
         if address not in self.i2c_map:
             with self.the_i2c_map_lock:
                 self.i2c_map[address] = {'value': None, 'callback': callback}
-        data = [address, read_type, register & 0x7f, (register >> 7) & 0x7f,
-                number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
+        if register is not None:
+            data = [address, read_type, register & 0x7f, (register >> 7) & 0x7f,
+                    number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
+        else:
+            data = [address, read_type, 
+                    number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         self._send_sysex(PrivateConstants.I2C_REQUEST, data)
 
     def i2c_write(self, address, args):

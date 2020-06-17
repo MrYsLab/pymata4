@@ -372,6 +372,7 @@ class Pymata4(threading.Thread):
 
                 # wait until the END_SYSEX comes back
                 i_am_here = self.serial_port.read_until(b'\xf7')
+
                 if not i_am_here:
                     continue
 
@@ -390,6 +391,7 @@ class Pymata4(threading.Thread):
                     if i_am_here[2] == self.arduino_instance_id:
                         self.using_firmata_express = True
                         self.com_port = self.serial_port
+                        return
         except KeyboardInterrupt:
             raise RuntimeError('User Hit Control-C')
 
@@ -770,7 +772,8 @@ class Pymata4(threading.Thread):
 
         :param address: i2c device address
 
-        :param register: i2c register
+        :param register: i2c register (or None if no register
+                                                    selection is needed)
 
         :param number_of_bytes: number of bytes to be read
 

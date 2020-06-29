@@ -37,7 +37,8 @@ def format_capability_report(data):
     pin_modes = {0: 'Digital_Input', 1: 'Digital_Output',
                  2: 'Analog_Input', 3: 'PWM', 4: 'Servo',
                  6: 'I2C', 8: 'Stepper',
-                 11: 'Digital_Input_Pullup', 12: 'HC-SR04_Sonar', 13: 'Tone'}
+                 11: 'Digital_Input_Pullup', 12: 'HC-SR04_Sonar', 13: 'Tone',
+                 15: 'DHT'}
     x = 0
     pin = 0
 

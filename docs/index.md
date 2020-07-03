@@ -132,4 +132,4 @@ Pin: 12 Value: 1 Time Stamp: 2020-03-10 13:26:27
 
 Copyright (C) 2020 Alan Yorinks. All Rights Reserved.
 
-**Last updated 29 June 2020 For Release v1.10**
+**Last updated 03 July 2020 For Release v1.10**

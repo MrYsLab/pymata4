@@ -240,7 +240,7 @@ class Pymata4(threading.Thread):
                 # com_port specified - set com_port and baud rate
                 try:
                     self._manual_open()
-                except KeyboardInterrupt:
+                except Exception:
                     if self.shutdown_on_exception:
                         self.shutdown()
 
@@ -839,7 +839,7 @@ class Pymata4(threading.Thread):
             data = [address, read_type, register & 0x7f, (register >> 7) & 0x7f,
                     number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         else:
-            data = [address, read_type, 
+            data = [address, read_type,
                     number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         self._send_sysex(PrivateConstants.I2C_REQUEST, data)
 
@@ -1339,9 +1339,6 @@ class Pymata4(threading.Thread):
 
         """
 
-        self.shutdown_flag = True
-
-        self._stop_threads()
 
         try:
             # stop all reporting - both analog and digital
@@ -1351,6 +1348,9 @@ class Pymata4(threading.Thread):
             for pin in range(len(self.digital_pins)):
                 self.disable_digital_reporting(pin)
             self.send_reset()
+            self.shutdown_flag = True
+
+            self._stop_threads()
             if self.ip_address:
                 try:
                     self.sock.shutdown(socket.SHUT_RDWR)
@@ -1822,6 +1822,7 @@ class Pymata4(threading.Thread):
 
     def _stop_threads(self):
         self.run_event.clear()
+        time.sleep(1)
 
     def _reporter(self):
         """

@@ -93,7 +93,7 @@ A callback function is specified to accept a single input parameter, typically n
 ***data***. The input parameter will be filled with a list when pymata4 invokes the callback.
 A description of what is contained in the list
 is provided in the 
-[reference API.](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html) 
+[reference API.](hhttps://htmlpreview.github.io/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html) 
 
 ```python
 def my_callback(data):

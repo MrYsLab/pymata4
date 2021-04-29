@@ -23,7 +23,7 @@ Arduino server sketches.
 * Data change events may be associated with a callback function for asynchronous notification, 
 or polling may be used when a synchronous approach is desired.
 * Each data change event is time-stamped and stored.
-* [API Reference Documentation](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html) 
+* [API Reference Documentation](https://htmlpreview.github.io/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html) 
  is available online.
 * A full set of working examples
 are available for download [online.](https://github.com/MrYsLab/pymata4/tree/master/examples)

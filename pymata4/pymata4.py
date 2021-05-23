@@ -839,7 +839,7 @@ class Pymata4(threading.Thread):
             data = [address, read_type, register & 0x7f, (register >> 7) & 0x7f,
                     number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         else:
-            data = [address, read_type, 
+            data = [address, read_type,
                     number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         self._send_sysex(PrivateConstants.I2C_REQUEST, data)
 
@@ -1475,6 +1475,7 @@ class Pymata4(threading.Thread):
 
         :param: data - array of 9 7bit bytes ending with the error status
         """
+
         # get the time of the report
         time_stamp = time.time()
         # initiate a list for a potential call back
@@ -1485,12 +1486,12 @@ class Pymata4(threading.Thread):
         reply_data.append(pin)
         dht_type = data[1]
         reply_data.append(dht_type)
-        humidity = None
-        temperature = None
+        humidity = 0
+        temperature = 0
 
         self.digital_pins[pin].event_time = time_stamp
 
-        if data[7] == 1:  # data[9] is config flag
+        if data[11] == 1:  # data[9] is config flag
             if data[10] != 0:
                 self.dht_sensor_error = True
                 humidity = temperature = -1
@@ -1498,15 +1499,25 @@ class Pymata4(threading.Thread):
         else:
             # if data read correctly process and return
 
-            if data[6] == 0:
+            if data[10] == 0:
                 # dht 22
                 if data[1] == 22:
-                    humidity = (data[2] * 256 + data[3]) * 0.1
-                    temperature = ((data[4] & 0x7F) * 256 + data[5]) * 0.1
+                    humidity1 = data[2] + (data[3] << 7)
+                    humidity2 = data[4] + (data[5] << 7)
+                    humidity = ((humidity1 & 0x7F) * 256 + humidity2) * 0.1
+
+                    temperature1 = data[6] + (data[7] << 7)
+                    temperature2 = data[8] + (data[9] << 7)
+                    temperature = (temperature1 & 0x7F) * 256 + temperature2 * 0.1
                 # dht 11
                 elif data[1] == 11:
-                    humidity = (data[2]) + (data[3]) * 0.1
-                    temperature = (data[4]) + (data[5]) * 0.1
+                    humidity1 = data[2] + (data[3] << 7)
+                    humidity2 = data[4] + (data[5] << 7)
+                    humidity = humidity1 + humidity2 * 0.1
+
+                    temperature1 = data[6] + (data[7] << 7)
+                    temperature2 = data[8] + (data[9] << 7)
+                    temperature = temperature1 + temperature2 * 0.1
                 else:
                     raise RuntimeError(f'Unknown DHT Sensor type reported: {data[2]}')
 
@@ -1514,14 +1525,14 @@ class Pymata4(threading.Thread):
                 temperature = round(temperature, 2)
 
                 # check for negative temperature
-                if data[6] & 0x80:
+                if data[10] & 0x80:
                     temperature = -temperature
 
-            elif data[7] == 1:
+            elif data[11] == 1:
                 # Checksum Error
                 humidity = temperature = -2
                 self.dht_sensor_error = True
-            elif data[7] == 2:
+            elif data[10] == 2:
                 # Timeout Error
                 humidity = temperature = -3
                 self.dht_sensor_error = True

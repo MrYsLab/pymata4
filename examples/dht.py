@@ -63,8 +63,11 @@ def dht(my_board, callback=None):
      """
 
     # set the pin mode - for pin 6 differential is set explicitly
-    my_board.set_pin_mode_dht(6, sensor_type=22, differential=.01, callback=callback)
-    my_board.set_pin_mode_dht(7, sensor_type=11, callback=callback)
+    my_board.set_pin_mode_dht(8, sensor_type=11, callback=callback)
+    my_board.set_pin_mode_dht(9, sensor_type=22, callback=callback)
+
+    my_board.set_pin_mode_dht(10, sensor_type=22, differential=.01, callback=callback)
+    my_board.set_pin_mode_dht(11, sensor_type=11, callback=callback)
 
     # a flag to change the differential value after the first 5 seconds
     changed = False
@@ -72,27 +75,59 @@ def dht(my_board, callback=None):
         try:
             time.sleep(POLL_TIME)
 
-            # poll the first DHT
-            value = board.dht_read(6)
+            value = board.dht_read(8)
 
             # format the time string and then print the data
             tlist = time.localtime(value[2])
             ftime = f'{tlist.tm_year}-{tlist.tm_mon:02}-{tlist.tm_mday:02} ' \
                     f'{tlist.tm_hour:02}:{tlist.tm_min:0}:{tlist.tm_sec:02}'
-            print(f'poll pin 6: humidity={value[0]} temp={value[1]} '
+            print(f'poll pin 8: humidity={value[0]} temp={value[1]} '
                   f'time of last report: {ftime}')
 
             # poll the second DHT and print the values
-            value = board.dht_read(7)
+            value = board.dht_read(11)
             tlist = time.localtime(value[2])
             ftime = f'{tlist.tm_year}-{tlist.tm_mon:02}-{tlist.tm_mday:02} ' \
                     f'{tlist.tm_hour:02}:{tlist.tm_min:0}:{tlist.tm_sec:02}'
-            print(f'poll pin 7: humidity={value[0]} temp={value[1]} '
+            print(f'poll pin 11: humidity={value[0]} temp={value[1]} '
+                  f'time of last report: {ftime}')
+            # poll the first DHT
+
+            value = board.dht_read(9)
+
+            # format the time string and then print the data
+            tlist = time.localtime(value[2])
+            ftime = f'{tlist.tm_year}-{tlist.tm_mon:02}-{tlist.tm_mday:02} ' \
+                    f'{tlist.tm_hour:02}:{tlist.tm_min:0}:{tlist.tm_sec:02}'
+            print(f'poll pin 9: humidity={value[0]} temp={value[1]} '
+                  f'time of last report: {ftime}')
+            value = board.dht_read(10)
+
+            # format the time string and then print the data
+            tlist = time.localtime(value[2])
+            ftime = f'{tlist.tm_year}-{tlist.tm_mon:02}-{tlist.tm_mday:02} ' \
+                    f'{tlist.tm_hour:02}:{tlist.tm_min:0}:{tlist.tm_sec:02}'
+            print(f'poll pin 10: humidity={value[0]} temp={value[1]} '
+                  f'time of last report: {ftime}')
+
+            # poll the second DHT and print the values
+            value = board.dht_read(11)
+            tlist = time.localtime(value[2])
+            ftime = f'{tlist.tm_year}-{tlist.tm_mon:02}-{tlist.tm_mday:02} ' \
+                    f'{tlist.tm_hour:02}:{tlist.tm_min:0}:{tlist.tm_sec:02}'
+            print(f'poll pin 11: humidity={value[0]} temp={value[1]} '
                   f'time of last report: {ftime}')
             if not changed:
                 # explicitly change the differential values
-                my_board.set_pin_mode_dht(6, sensor_type=22, differential=20.0, callback=callback)
-                my_board.set_pin_mode_dht(7, sensor_type=11, differential=2.0, callback=callback)
+
+                my_board.set_pin_mode_dht(8, sensor_type=11, differential=2.0,
+                                          callback=callback)
+                my_board.set_pin_mode_dht(9, sensor_type=22, differential=20.0,
+                                          callback=callback)
+                my_board.set_pin_mode_dht(10, sensor_type=22, differential=20.0,
+                                          callback=callback)
+                my_board.set_pin_mode_dht(11, sensor_type=11, differential=2.0,
+                                          callback=callback)
                 changed = True
         except KeyboardInterrupt:
             board.shutdown()

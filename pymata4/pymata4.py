@@ -1508,7 +1508,7 @@ class Pymata4(threading.Thread):
 
                     temperature1 = data[6] + (data[7] << 7)
                     temperature2 = data[8] + (data[9] << 7)
-                    temperature = (temperature1 & 0x7F) * 256 + temperature2 * 0.1
+                    temperature = ((temperature1 & 0x7F) * 256 + temperature2) * 0.1
                 # dht 11
                 elif data[1] == 11:
                     humidity1 = data[2] + (data[3] << 7)

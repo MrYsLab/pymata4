@@ -280,7 +280,8 @@ class Pymata4(threading.Thread):
                 if self.using_firmata_express:
                     version_number = firmware_version[0:3]
                     if version_number != PrivateConstants.FIRMATA_EXPRESS_VERSION:
-                        raise RuntimeError(f'You must use FirmataExpress version 1.1. Version Found = {version_number}')
+                        raise RuntimeError(f'You must use FirmataExpress version 1.2. '
+                                           f'Version Found = {version_number}')
                 print(f'Arduino Firmware ID: {firmware_version}')
         except TypeError:
             print('\nIs your serial cable plugged in and do you have the '
@@ -1047,7 +1048,7 @@ class Pymata4(threading.Thread):
         :param pin_number: digital pin number on arduino.
 
         :param sensor_type: type of dht sensor
-                            Valid values = DHT11, DHT12, DHT22, DHT21, AM2301
+                            Valid values = DHT11, DHT22,
 
         :param differential: This value needs to be met for a callback
                              to be invoked.
@@ -1062,9 +1063,13 @@ class Pymata4(threading.Thread):
         The pin_type for DHT input pins = 15
 
         Validation Flag Values:
+
         No Errors = 0
+
         Checksum Error = 1
+
         Timeout Error = 2
+
         Invalid Value = 999
 
         """

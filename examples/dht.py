@@ -77,6 +77,7 @@ def dht(my_board, callback=None):
         try:
             time.sleep(POLL_TIME)
 
+            # poll the first dht
             value = board.dht_read(8)
 
             # format the time string and then print the data
@@ -93,7 +94,8 @@ def dht(my_board, callback=None):
                     f'{tlist.tm_hour:02}:{tlist.tm_min:0}:{tlist.tm_sec:02}'
             print(f'poll pin 9: humidity={value[0]} temp={value[1]} '
                   f'time of last report: {ftime}')
-            # poll the first DHT
+
+            # poll the third dht
 
             value = board.dht_read(10)
 
@@ -101,10 +103,10 @@ def dht(my_board, callback=None):
             tlist = time.localtime(value[2])
             ftime = f'{tlist.tm_year}-{tlist.tm_mon:02}-{tlist.tm_mday:02} ' \
                     f'{tlist.tm_hour:02}:{tlist.tm_min:0}:{tlist.tm_sec:02}'
-            print(f'poll pin 9: humidity={value[0]} temp={value[1]} '
+            print(f'poll pin 10: humidity={value[0]} temp={value[1]} '
                   f'time of last report: {ftime}')
 
-            # poll the second DHT and print the values
+            # poll the fourth DHT
             value = board.dht_read(11)
             tlist = time.localtime(value[2])
             ftime = f'{tlist.tm_year}-{tlist.tm_mon:02}-{tlist.tm_mday:02} ' \

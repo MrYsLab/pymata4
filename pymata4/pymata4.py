@@ -1470,7 +1470,8 @@ class Pymata4(threading.Thread):
         Process the dht response message.
 
 
-        :param: data: [Report Type, pin, dht_type, validation_flag, humidity, temperature]
+        :param: data: [pin, dht_type, validation_flag, humidity_positivity_flag,
+                temperature_positivity_flag, humidity, temperature]
         """
         # get the time of the report
         time_stamp = time.time()
@@ -1486,8 +1487,12 @@ class Pymata4(threading.Thread):
         humidity = temperature = 0
 
         if data[2] == 0: # all is well
-            humidity = float(data[3] + data[4] / 10)
-            temperature = float(data[5] + data[6] / 10)
+            humidity = float(data[5] + data[6] / 100)
+            if data[3]:
+                humidity *= -1.0
+            temperature = float(data[7] + data[8] / 100)
+            if data[4]:
+                temperature *= -1.0
 
         self.digital_pins[pin].event_time = time_stamp
         reply_data.append(data[2])

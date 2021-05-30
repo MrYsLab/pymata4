@@ -280,7 +280,8 @@ class Pymata4(threading.Thread):
                 if self.using_firmata_express:
                     version_number = firmware_version[0:3]
                     if version_number != PrivateConstants.FIRMATA_EXPRESS_VERSION:
-                        raise RuntimeError(f'You must use FirmataExpress version 1.1. Version Found = {version_number}')
+                        raise RuntimeError(f'You must use FirmataExpress version 1.2. '
+                                           f'Version Found = {version_number}')
                 print(f'Arduino Firmware ID: {firmware_version}')
         except TypeError:
             print('\nIs your serial cable plugged in and do you have the '
@@ -455,10 +456,8 @@ class Pymata4(threading.Thread):
 
         :return: A list = [humidity, temperature  time_stamp]
 
-                 ERROR CODES: If either humidity or temperature value:
-                              == -1 Configuration Error
-                              == -2 Checksum Error
-                              == -3 Timeout Error
+        NOTE: If an error was returned, the humidity and temperture
+              are set to 0.0.
 
         """
         return self.digital_pins[pin].current_value[0], \
@@ -839,7 +838,7 @@ class Pymata4(threading.Thread):
             data = [address, read_type, register & 0x7f, (register >> 7) & 0x7f,
                     number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         else:
-            data = [address, read_type, 
+            data = [address, read_type,
                     number_of_bytes & 0x7f, (number_of_bytes >> 7) & 0x7f]
         self._send_sysex(PrivateConstants.I2C_REQUEST, data)
 
@@ -1049,7 +1048,7 @@ class Pymata4(threading.Thread):
         :param pin_number: digital pin number on arduino.
 
         :param sensor_type: type of dht sensor
-                            Valid values = DHT11, DHT12, DHT22, DHT21, AM2301
+                            Valid values = DHT11, DHT22,
 
         :param differential: This value needs to be met for a callback
                              to be invoked.
@@ -1058,14 +1057,21 @@ class Pymata4(threading.Thread):
 
         callback: returns a data list:
 
-        [pin_type, pin_number, DHT type, humidity value, temperature raw_time_stamp]
+        [pin_type, pin_number, DHT type, validation flag, humidity value, temperature
+        raw_time_stamp]
 
         The pin_type for DHT input pins = 15
 
-                ERROR CODES: If either humidity or temperature value:
-                              == -1 Configuration Error
-                              == -2 Checksum Error
-                              == -3 Timeout Error
+        Validation Flag Values:
+
+        No Errors = 0
+
+        Checksum Error = 1
+
+        Timeout Error = 2
+
+        Invalid Value = 999
+
         """
 
         # if the pin is not currently associated with a DHT device
@@ -1463,17 +1469,9 @@ class Pymata4(threading.Thread):
         """
         Process the dht response message.
 
-        Values are calculated using:
-                humidity = (_bits[0] * 256 + _bits[1]) * 0.1
 
-                temperature = ((_bits[2] & 0x7F) * 256 + _bits[3]) * 0.1
-
-        error codes:
-        0 - OK
-        1 - DHTLIB_ERROR_TIMEOUT
-        2 - Checksum error
-
-        :param: data - array of 9 7bit bytes ending with the error status
+        :param: data: [pin, dht_type, validation_flag, humidity_positivity_flag,
+                temperature_positivity_flag, humidity, temperature]
         """
         # get the time of the report
         time_stamp = time.time()
@@ -1485,49 +1483,19 @@ class Pymata4(threading.Thread):
         reply_data.append(pin)
         dht_type = data[1]
         reply_data.append(dht_type)
-        humidity = None
-        temperature = None
+
+        humidity = temperature = 0
+
+        if data[2] == 0: # all is well
+            humidity = float(data[5] + data[6] / 100)
+            if data[3]:
+                humidity *= -1.0
+            temperature = float(data[7] + data[8] / 100)
+            if data[4]:
+                temperature *= -1.0
 
         self.digital_pins[pin].event_time = time_stamp
-
-        if data[7] == 1:  # data[9] is config flag
-            if data[10] != 0:
-                self.dht_sensor_error = True
-                humidity = temperature = -1
-                # return
-        else:
-            # if data read correctly process and return
-
-            if data[6] == 0:
-                # dht 22
-                if data[1] == 22:
-                    humidity = (data[2] * 256 + data[3]) * 0.1
-                    temperature = ((data[4] & 0x7F) * 256 + data[5]) * 0.1
-                # dht 11
-                elif data[1] == 11:
-                    humidity = (data[2]) + (data[3]) * 0.1
-                    temperature = (data[4]) + (data[5]) * 0.1
-                else:
-                    raise RuntimeError(f'Unknown DHT Sensor type reported: {data[2]}')
-
-                humidity = round(humidity, 2)
-                temperature = round(temperature, 2)
-
-                # check for negative temperature
-                if data[6] & 0x80:
-                    temperature = -temperature
-
-            elif data[7] == 1:
-                # Checksum Error
-                humidity = temperature = -2
-                self.dht_sensor_error = True
-            elif data[7] == 2:
-                # Timeout Error
-                humidity = temperature = -3
-                self.dht_sensor_error = True
-        # since we initialize
-        if humidity is None:
-            return
+        reply_data.append(data[2])
         reply_data.append(humidity)
         reply_data.append(temperature)
         reply_data.append(time_stamp)

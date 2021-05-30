@@ -70,10 +70,10 @@ class PrivateConstants:
     SYSEX_REALTIME = 0x7F  # MIDI Reserved for realtime messages
 
     # reserved for PyMata
-    PYMATA_EXPRESS_THREADED_VERSION = "1.10"
+    PYMATA_EXPRESS_THREADED_VERSION = "1.11"
 
     # matching FirmataExpress Version Number
-    FIRMATA_EXPRESS_VERSION = "1.1"
+    FIRMATA_EXPRESS_VERSION = "1.2"
 
     # each byte represents a digital port
     #  and its value contains the current port settings

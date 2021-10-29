@@ -70,7 +70,7 @@ class PrivateConstants:
     SYSEX_REALTIME = 0x7F  # MIDI Reserved for realtime messages
 
     # reserved for PyMata
-    PYMATA_EXPRESS_THREADED_VERSION = "1.11"
+    PYMATA_EXPRESS_THREADED_VERSION = "1.12"
 
     # matching FirmataExpress Version Number
     FIRMATA_EXPRESS_VERSION = "1.2"

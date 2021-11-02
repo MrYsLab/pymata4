@@ -396,9 +396,13 @@ class Pymata4(threading.Thread):
                         self.using_firmata_express = True
                         self.com_port = self.serial_port
                         return
+                    # continue trying
                     else:
-                        raise RuntimeError(f'arduino_instance_id does not match the '
-                                           f'value on the board.')
+                        continue
+
+            # did not find a match anywehre
+            raise RuntimeError(f'arduino_instance_id does not match '
+                                           f'a value on the boards.')
         except KeyboardInterrupt:
             raise RuntimeError('User Hit Control-C')
 

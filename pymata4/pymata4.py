@@ -122,10 +122,10 @@ class Pymata4(threading.Thread):
         # check to make sure that Python interpreter is version 3.7 or greater
         python_version = sys.version_info
         if python_version[0] >= 3:
-            if python_version[1] >= 7:
+            if python_version[1] >= 6:
                 pass
             else:
-                raise RuntimeError("ERROR: Python 3.7 or greater is "
+                raise RuntimeError("ERROR: Python 3.6 or greater is "
                                    "required for use of this program.")
 
         # save input parameters as instance variables

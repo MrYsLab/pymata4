@@ -1730,26 +1730,26 @@ class Pymata4(threading.Thread):
 
         with self.the_sonar_map_lock:
             sonar_pin_entry = self.active_sonar_map[pin_number]
-            if sonar_pin_entry[0] is not None:
-                # check if value changed since last reading
-                if sonar_pin_entry[1] != val:
-                    sonar_pin_entry[1] = val
-                    time_stamp = time.time()
-                    sonar_pin_entry[2] = time_stamp
-                    self.active_sonar_map[pin_number] = sonar_pin_entry
-                    # Do a callback if one is specified in the table
-                    if sonar_pin_entry[0]:
-                        reply_data.append(pin_number)
-                        reply_data.append(val)
-                        reply_data.append(time_stamp)
-                        if sonar_pin_entry[1]:
-                            sonar_pin_entry[0](reply_data)
+            #if sonar_pin_entry[0] is not None:
+            # check if value changed since last reading
+            if sonar_pin_entry[1] != val:
+                sonar_pin_entry[1] = val
+                time_stamp = time.time()
+                sonar_pin_entry[2] = time_stamp
+                self.active_sonar_map[pin_number] = sonar_pin_entry
+                # Do a callback if one is specified in the table
+                if sonar_pin_entry[0]:
+                    reply_data.append(pin_number)
+                    reply_data.append(val)
+                    reply_data.append(time_stamp)
+                    if sonar_pin_entry[1]:
+                        sonar_pin_entry[0](reply_data)
 
-                # update the data in the table with latest value
-                else:
-                    sonar_pin_entry[1] = val
-                    self.active_sonar_map[pin_number] = sonar_pin_entry
-            time.sleep(self.sleep_tune)
+            # update the data in the table with latest value
+            else:
+                sonar_pin_entry[1] = val
+                self.active_sonar_map[pin_number] = sonar_pin_entry
+        time.sleep(self.sleep_tune)
 
     def _send_sysex(self, sysex_command, sysex_data=None):
         """

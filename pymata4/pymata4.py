@@ -1544,6 +1544,8 @@ class Pymata4(threading.Thread):
 
             # retrieve previous value
             last_value = self.digital_pins[pin].current_value
+            if type(last_value) is list:
+                continue
 
             # set the current value in the pin structure
             self.digital_pins[pin].current_value = value

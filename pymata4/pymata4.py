@@ -216,7 +216,7 @@ class Pymata4(threading.Thread):
         # to the current data value returned
         # if a callback was specified, it is stored in the map as well.
         # A map entry consists of:
-        #   pin: [callback, current_data_returned, time_stamp]
+        #   pin: [callback, current_data_returned, time_stamp, always_trigger]
         self.active_sonar_map = {}
 
         # first analog pin number
@@ -1185,7 +1185,7 @@ class Pymata4(threading.Thread):
         self._send_sysex(PrivateConstants.SERVO_CONFIG, command)
 
     def set_pin_mode_sonar(self, trigger_pin, echo_pin,
-                           callback=None, timeout=80000):
+                           callback=None, always_trigger=False, timeout=80000):
         """
         This is a FirmataExpress feature.
 
@@ -1204,6 +1204,10 @@ class Pymata4(threading.Thread):
         :param echo_pin: The pin number for the received echo.
 
         :param callback: optional callback function to report sonar data changes
+
+        :param always_trigger: specifies if the callback should be called only
+                               if the value read changes or if it should always
+                               be called, not matter what is read
 
         :param timeout: a tuning parameter. 80000UL equals 80ms.
 
@@ -1236,7 +1240,7 @@ class Pymata4(threading.Thread):
                   ' - ignoring request')
         else:
             # initialize map entry with callback, data value of 0 and time_stamp of 0
-            self.active_sonar_map[trigger_pin] = [callback, 0, 0]
+            self.active_sonar_map[trigger_pin] = [callback, 0, 0, always_trigger]
 
         self._send_sysex(PrivateConstants.SONAR_CONFIG, data)
 
@@ -1734,7 +1738,7 @@ class Pymata4(threading.Thread):
             sonar_pin_entry = self.active_sonar_map[pin_number]
             #if sonar_pin_entry[0] is not None:
             # check if value changed since last reading
-            if sonar_pin_entry[1] != val:
+            if sonar_pin_entry[1] != val or sonar_pin_entry[3]:
                 sonar_pin_entry[1] = val
                 time_stamp = time.time()
                 sonar_pin_entry[2] = time_stamp
